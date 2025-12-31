@@ -19,7 +19,7 @@ function App() {
       <div className='bg-zinc-950 flex-1 flex flex-col pb-24 md:pb-0'>
         <Navbar />
         {/* the contents of the main page starts here */}
-        <div>
+        <div className='overflow-y-auto'>
           {display == "Home" && <Home />}
           {display == "Workouts" && <Workouts />}
           {display == "Exercises" && <Exercises />}

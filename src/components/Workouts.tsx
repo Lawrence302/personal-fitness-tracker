@@ -46,10 +46,10 @@ const Workouts = () => {
           return (
             <div
               key={index}
-              className='border border-white min-w-[250px] rounded-xl p-6'
+              className='border border-zinc-800 bg-zinc-900 min-w-[250px] rounded-xl p-6'
             >
               <div className='flex justify-between'>
-                <div className='bg-zinc-900 p-4 rounded-xl'>
+                <div className='bg-zinc-800 p-4 rounded-xl'>
                   <Layers className='text-cyan-500 ' />
                 </div>
 
