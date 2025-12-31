@@ -80,7 +80,7 @@ const Exercises = () => {
                   {exercise.musclesAffected.map((muscle, index) => {
                     return (
                       <span
-                        className='border border-zinc-800 bg-zinc-900 rounded-sm px-2 text-zinc-500 font-bold text-[10px] md:text-[12px]  uppercase flex w-fit items-center gap-1'
+                        className='border border-zinc-800 bg-zinc-900 rounded-sm px-2 text-zinc-500 font-bold text-sm  md:text-[12px]  uppercase flex w-fit items-center gap-1'
                         key={index}
                       >
                         <Target size={10} />
@@ -89,7 +89,7 @@ const Exercises = () => {
                     );
                   })}
                 </div>
-                <p className='text-zinc-500 text-sm line-clamp-2  italic'>
+                <p className='text-zinc-400  line-clamp-2  italic'>
                   {exercise.basicInstruction}
                 </p>
               </div>
