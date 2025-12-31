@@ -43,9 +43,12 @@ const Workouts = () => {
         </p>
       </div>
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3  gap-4 '>
-        {workoutPrograms.map((program) => {
+        {workoutPrograms.map((program, index) => {
           return (
-            <div className='border border-white min-w-[250px] rounded-xl p-6'>
+            <div
+              key={index}
+              className='border border-white min-w-[250px] rounded-xl p-6'
+            >
               <div className='flex justify-between'>
                 <div className='bg-zinc-900 p-4 rounded-xl'>
                   <Layers className='text-cyan-500 ' />
@@ -66,9 +69,9 @@ const Workouts = () => {
                 </p>
               </div>
               <div>
-                {program.exercises.map((exercise) => {
+                {program.exercises.map((exercise, index) => {
                   return (
-                    <div className='flex justify-between'>
+                    <div key={index} className='flex justify-between'>
                       <p className='text-zinc-400  uppercase font-bold'>
                         {exercise.name}
                       </p>
