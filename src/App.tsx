@@ -1,10 +1,14 @@
+import { useState } from "react";
+import "./App.css";
+
 import Navbar from "./components/Navbar.tsx";
 import Sidebar from "./components/Sidebar.tsx";
 import Home from "./components/Home.tsx";
 import Workouts from "./components/Workouts.tsx";
 
-import "./App.css";
-import { useState } from "react";
+import Exercises from "./components/Exercises.tsx";
+import Data from "./components/Data.tsx";
+import Coach from "./components/Coach.tsx";
 
 function App() {
   const [display, setDisplay] = useState("Home");
@@ -18,6 +22,9 @@ function App() {
         <div>
           {display == "Home" && <Home />}
           {display == "Workouts" && <Workouts />}
+          {display == "Exercises" && <Exercises />}
+          {display == "Data" && <Data />}
+          {display == "Coach" && <Coach />}
         </div>
       </div>
 
