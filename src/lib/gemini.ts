@@ -1,3 +1,5 @@
+/*
+
 import { GoogleGenAI } from "@google/genai";
 
 // Initialize with direct process.env.API_KEY as per guidelines
@@ -44,3 +46,6 @@ export const getAIFitnessAdvice = async (query: string, history: any[]) => {
     return "I'm sorry, I'm having trouble connecting to my training data right now. Please try asking again in a moment.";
   }
 };
+
+
+*/
