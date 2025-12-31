@@ -2,7 +2,7 @@ import { Dumbbell, CircleCheck, Flame } from "lucide-react";
 
 const Navbar = () => {
   return (
-    <div className='border border-b-zinc-900  border-2 flex justify-between px-6 py-4 '>
+    <div className='border border-b-zinc-900  border-2 flex justify-between px-4 md:px-6 py-4 '>
       <div className='flex gap-3 items-center'>
         <div className='bg-blue-500 rounded p-2'>
           <Dumbbell className='w-8 h-8 ' size={32} color='white' />
