@@ -1,4 +1,4 @@
-import { Search } from "lucide-react";
+import { Plus, Search } from "lucide-react";
 import ExerciseCard from "./ExerciseCard";
 
 const exercises = [
@@ -61,10 +61,18 @@ const Exercises = () => {
         </div>
       </div>
 
+      {/* displaying exercises */}
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-6'>
         {exercises.map((exercise, index) => {
           return <ExerciseCard exercise={exercise} index={index} key={index} />;
         })}
+      </div>
+
+      <div>
+        <div className='text-white flex flex-col justify-center items-center border-2 border-dashed border-zinc-800 mt-6 h-24 rounded-xl gap-2 cursor-pointer'>
+          <Plus size={32} className='text-cyan-500' />
+          <p className='text-white'>Add New Exercise</p>
+        </div>
       </div>
     </div>
   );
