@@ -1,5 +1,5 @@
 // import { RechartsDevtools } from "@recharts/devtools";
-import { Activity } from "lucide-react";
+import { Activity, BicepsFlexed } from "lucide-react";
 import {
   CartesianGrid,
   Line,
@@ -11,6 +11,8 @@ import {
   Legend,
   AreaChart,
   Area,
+  Bar,
+  BarChart,
 } from "recharts";
 
 const fitnessChartData = [
@@ -49,6 +51,15 @@ const fitnessChartData = [
     density: 5.0,
     sessions: 5,
   },
+];
+
+const exerciseFrequencyData = [
+  { name: "Push-ups", count: 15 },
+  { name: "Pull-ups", count: 25 },
+  { name: "Squats", count: 22 },
+  { name: "Plank", count: 10 },
+  { name: "Burpees", count: 8 },
+  { name: "Lunges", count: 12 },
 ];
 
 const Data = () => {
@@ -112,8 +123,8 @@ const Data = () => {
       {/* Graph showing training sessions over time */}
       <div className='bg-zinc-900 border border-zinc-800 rounded-xl my-6 py-8'>
         <h3 className='text-[10px] font-black mb-8 text-zinc-500 capitalize tracking-widest flex items-center gap-2 pl-4'>
-          <Activity className='w-4 h-4 text-cyan-500' /> Training Sessions Over
-          Time
+          <Activity className='w-4 h-4 text-yellow-500' /> Training Sessions
+          Over Time
         </h3>
         <div className='w-full h-[250px] md:h-[350px] border-white '>
           <ResponsiveContainer>
@@ -177,7 +188,7 @@ const Data = () => {
       {/* Graph showing training Density over time */}
       <div className='bg-zinc-900 border border-zinc-800 rounded-xl my-6 py-8'>
         <h3 className='text-[10px] font-black mb-8 text-zinc-500 capitalize tracking-widest flex items-center gap-2 pl-4'>
-          <Activity className='w-4 h-4 text-cyan-500' /> Training Density Over
+          <Activity className='w-4 h-4 text-green-500' /> Training Density Over
           Time
         </h3>
         <div className='w-full h-[250px] md:h-[350px] border-white '>
@@ -235,6 +246,45 @@ const Data = () => {
 
               <Legend />
             </AreaChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Graph showing workout frequency. Most Frequent Exercises */}
+      <div className='bg-zinc-900 border border-zinc-800 rounded-xl my-6 py-8'>
+        <h3 className='text-[10px] font-black mb-8 text-zinc-500 capitalize tracking-widest flex items-center gap-2 pl-4'>
+          <BicepsFlexed className='w-4 h-4 text-cyan-500' /> FAVORITE EXERCISES
+        </h3>
+        <div className='w-full h-[250px] md:h-[350px] border-white '>
+          <ResponsiveContainer width='100%' height='100%'>
+            <BarChart data={exerciseFrequencyData} layout='vertical'>
+              <Bar
+                dataKey='count'
+                barSize={15}
+                radius={[0, 4, 4, 0]}
+                fill='#06b6d4'
+              />
+
+              <XAxis type='number' hide />
+              <YAxis
+                dataKey='name'
+                type='category'
+                stroke='#6b7280'
+                fontSize={9}
+                width={80}
+                axisLine={false}
+                tickLine={false}
+              />
+              <Tooltip
+                cursor={{ fill: "#27272a" }}
+                contentStyle={{
+                  backgroundColor: "#18181b",
+                  border: "none",
+                  borderRadius: "12px",
+                  fontSize: "10px",
+                }}
+              />
+            </BarChart>
           </ResponsiveContainer>
         </div>
       </div>
