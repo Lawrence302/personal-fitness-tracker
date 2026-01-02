@@ -13,37 +13,37 @@ import {
 const fitnessChartData = [
   {
     date: "2025-01-01",
-    density: 1.2,
+    intensity: 1.2,
     sessions: 2,
   },
   {
     date: "2025-01-03",
-    density: 1.5,
+    intensity: 1.5,
     sessions: 3,
   },
   {
     date: "2025-01-05",
-    density: 1.8,
+    intensity: 1.8,
     sessions: 4,
   },
   {
     date: "2025-01-07",
-    density: 3.6,
+    intensity: 3.6,
     sessions: 3,
   },
   {
     date: "2025-01-09",
-    density: 2.0,
+    intensity: 2.0,
     sessions: 2,
   },
   {
     date: "2025-01-10",
-    density: 4.0,
+    intensity: 4.0,
     sessions: 5,
   },
   {
     date: "2025-01-12",
-    density: 5.0,
+    intensity: 5.0,
     sessions: 5,
   },
 ];
@@ -104,7 +104,7 @@ const SessionVsIntensityChart = () => {
                 fontSize: "10px",
               }}
             />
-            <Line dataKey='density' stroke='#22c55e' strokeWidth={2} />
+            <Line dataKey='intensity' stroke='#22c55e' strokeWidth={2} />
             <Line yAxisId={"right"} dataKey={"sessions"} stroke='#facc15' />
             <Legend />
           </LineChart>
