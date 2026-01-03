@@ -1,8 +1,14 @@
 import { ColumnsSettings, Trash, Plus, Save } from "lucide-react";
 
-const RecordExerciseModal = () => {
+type RecordExerciseModalProps = {
+  closeModal: () => void;
+};
+const RecordExerciseModal = ({ closeModal }: RecordExerciseModalProps) => {
   return (
-    <div className='absolute inset-0 z-10 bg-zinc-950 border border-white flex justify-center items-center'>
+    <div
+      className='absolute inset-0 z-10 bg-zinc-950 border border-white flex justify-center items-center'
+      onClick={() => closeModal()}
+    >
       <div className='p-6 w-[90%] md:w-[50%] lg:w-[40%] bg-zinc-900 rounded-lg'>
         <div className=' flex justify-between items-center'>
           <div className='mb-4'>
