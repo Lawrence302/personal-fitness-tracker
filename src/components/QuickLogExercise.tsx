@@ -1,4 +1,5 @@
 import { Plus } from "lucide-react";
+import RecordExerciseModal from "./modals/RecordExerciseModal";
 //
 const exercises = [
   "Pull-ups",
@@ -24,6 +25,10 @@ const QuickLogExercise = () => {
             </button>
           );
         })}
+      </div>
+      {/* Exercise Log modal */}
+      <div>
+        <RecordExerciseModal />
       </div>
     </div>
   );
