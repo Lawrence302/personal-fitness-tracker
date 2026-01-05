@@ -7,7 +7,10 @@ const RecordExerciseModal = ({ closeModal }: RecordExerciseModalProps) => {
   return (
     <div
       className='absolute inset-0 z-10 bg-zinc-950 border border-white flex justify-center items-center'
-      onClick={() => closeModal()}
+      onClick={(e) => {
+        if (e.target !== e.currentTarget) return;
+        closeModal();
+      }}
     >
       <div className='p-6 w-[90%] md:w-[50%] lg:w-[40%] bg-zinc-900 rounded-lg'>
         <div className=' flex justify-between items-center'>
