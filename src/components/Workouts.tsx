@@ -1,33 +1,111 @@
 import { Layers } from "lucide-react";
 import { useState } from "react";
 import WorkoutSession from "./workoutSession";
+import type { Workout } from "../lib/types";
 
-const workoutPrograms = [
+const workoutPrograms: Workout[] = [
   {
-    name: "Full body foundations",
+    name: "Full Body Foundations",
+    level: 1,
+    estimatedTime: 20,
     exercises: [
-      { name: "AIR squats", level: "beginner" },
-      { name: "dead hang", level: "beginner" },
-      { name: "forward lunges", level: "beginner" },
-      { name: "push-ups", level: "begginer" },
+      {
+        name: "Air Squats",
+        level: "beginner",
+        targetMuscles: ["quads", "glutes"],
+      },
+      {
+        name: "Push-Ups",
+        level: "beginner",
+        targetMuscles: ["chest", "triceps", "shoulders"],
+      },
+      {
+        name: "Forward Lunges",
+        level: "beginner",
+        targetMuscles: ["quads", "glutes", "hamstrings"],
+      },
+      {
+        name: "Plank",
+        level: "beginner",
+        targetMuscles: ["core", "shoulders"],
+      },
     ],
   },
   {
-    name: "Full body foundations",
+    name: "Upper Body Calisthenics",
+    level: 2,
+    estimatedTime: 20,
     exercises: [
-      { name: "AIR squats", level: "beginner" },
-      { name: "dead hang", level: "beginner" },
-      { name: "forward lunges", level: "beginner" },
-      { name: "push-ups", level: "begginer" },
+      {
+        name: "Pull-Ups",
+        level: "intermediate",
+        targetMuscles: ["back", "biceps"],
+      },
+      {
+        name: "Chin-Ups",
+        level: "intermediate",
+        targetMuscles: ["biceps", "back"],
+      },
+      {
+        name: "Dips (on chair/bench)",
+        level: "intermediate",
+        targetMuscles: ["triceps", "chest", "shoulders"],
+      },
+      {
+        name: "Pike Push-Ups",
+        level: "intermediate",
+        targetMuscles: ["shoulders", "triceps"],
+      },
     ],
   },
   {
-    name: "Full body foundations",
+    name: "Lower Body Calisthenics",
+    level: 2,
+    estimatedTime: 20,
     exercises: [
-      { name: "AIR squats", level: "beginner" },
-      { name: "dead hang", level: "beginner" },
-      { name: "forward lunges", level: "beginner" },
-      { name: "push-ups", level: "begginer" },
+      {
+        name: "Jump Squats",
+        level: "intermediate",
+        targetMuscles: ["quads", "glutes"],
+      },
+      {
+        name: "Lunges",
+        level: "beginner",
+        targetMuscles: ["quads", "glutes", "hamstrings"],
+      },
+      { name: "Calf Raises", level: "beginner", targetMuscles: ["calves"] },
+      {
+        name: "Glute Bridges",
+        level: "beginner",
+        targetMuscles: ["glutes", "hamstrings", "lower back"],
+      },
+    ],
+  },
+  {
+    name: "Core Focus",
+    level: 1,
+    estimatedTime: 15,
+    exercises: [
+      {
+        name: "Plank",
+        level: "beginner",
+        targetMuscles: ["core", "shoulders"],
+      },
+      {
+        name: "Side Plank",
+        level: "beginner",
+        targetMuscles: ["obliques", "core"],
+      },
+      {
+        name: "Hollow Body Hold",
+        level: "intermediate",
+        targetMuscles: ["core"],
+      },
+      {
+        name: "Mountain Climbers",
+        level: "beginner",
+        targetMuscles: ["core", "hip flexors", "shoulders"],
+      },
     ],
   },
 ];
@@ -35,6 +113,7 @@ const workoutPrograms = [
 const Workouts = () => {
   const [showWorkouts, setShowWorkouts] = useState(true);
   const [showWorkoutSession, setShowWorkoutSession] = useState(false);
+  const [selectedSession, setSelectedSession] = useState<Workout>();
 
   return (
     <>
@@ -94,6 +173,7 @@ const Workouts = () => {
                       onClick={() => {
                         setShowWorkoutSession(true);
                         setShowWorkouts(false);
+                        setSelectedSession(program);
                       }}
                     >
                       Begin Workout
@@ -106,7 +186,11 @@ const Workouts = () => {
         </div>
       )}
       {/* displaying workoutSession */}
-      {showWorkoutSession && <WorkoutSession />}
+      {showWorkoutSession && selectedSession ? (
+        <WorkoutSession session={selectedSession} />
+      ) : (
+        <div>no session selected </div>
+      )}
     </>
   );
 };
