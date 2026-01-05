@@ -6,7 +6,7 @@ type RecordExerciseModalProps = {
 const RecordExerciseModal = ({ closeModal }: RecordExerciseModalProps) => {
   return (
     <div
-      className='absolute inset-0 z-10 bg-zinc-950 border border-white flex justify-center items-center'
+      className='fixed absolute inset-0 z-10 bg-zinc-950/70 border border-white flex justify-center items-center '
       onClick={(e) => {
         if (e.target !== e.currentTarget) return;
         closeModal();
@@ -16,7 +16,7 @@ const RecordExerciseModal = ({ closeModal }: RecordExerciseModalProps) => {
         <div className=' flex justify-between items-center'>
           <div className='mb-4'>
             <h1 className='text-lg text-white font-bold'>
-              Log Standart Push-ups
+              Log Standard Push-ups
             </h1>
             <p className='text-xs'>Tracking: Repititions</p>
           </div>
