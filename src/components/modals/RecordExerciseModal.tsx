@@ -1,4 +1,4 @@
-import { ColumnsSettings, Trash, Plus, Save } from "lucide-react";
+import { X, Trash, Plus, Save } from "lucide-react";
 
 type RecordExerciseModalProps = {
   closeModal: () => void;
@@ -21,7 +21,10 @@ const RecordExerciseModal = ({ closeModal }: RecordExerciseModalProps) => {
             <p className='text-xs'>Tracking: Repititions</p>
           </div>
           <div>
-            <ColumnsSettings />
+            <X
+              className='hover:text-zinc-300 cursor-pointer'
+              onClick={() => closeModal()}
+            />
           </div>
         </div>
         <div className='flex gap-6 items-center border border-zinc-800 bg-zinc-900 p-4 rounded-lg'>
