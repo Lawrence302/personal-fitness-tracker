@@ -2,8 +2,9 @@ import { Timer } from "lucide-react";
 import type { Workout } from "../lib/types";
 type WorkoutSessionProps = {
   session: Workout;
+  closeSession: () => void;
 };
-const WorkoutSession = ({ session }: WorkoutSessionProps) => {
+const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
   return (
     <div className='text-white border border-zinc-900 m-4 md:m-6 rounded-lg p-6'>
       <div className='flex justify-between items-center gap-4  flex-wrap mb-6 md:mb-8'>
@@ -21,7 +22,10 @@ const WorkoutSession = ({ session }: WorkoutSessionProps) => {
           </p>
         </div>
         <div>
-          <button className=' bg-blue-500 px-3 md:px-6 py-2 font-bold uppercase rounded-lg cursor-pointer hover:bg-blue-400 text-sm'>
+          <button
+            className=' bg-blue-500 px-3 md:px-6 py-2 font-bold uppercase rounded-lg cursor-pointer hover:bg-blue-400 text-sm'
+            onClick={() => closeSession()}
+          >
             Finish Session
           </button>
         </div>

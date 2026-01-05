@@ -115,6 +115,11 @@ const Workouts = () => {
   const [showWorkoutSession, setShowWorkoutSession] = useState(false);
   const [selectedSession, setSelectedSession] = useState<Workout>();
 
+  const closeWorkoutSession = () => {
+    setShowWorkoutSession(false);
+    setShowWorkouts(true);
+  };
+
   return (
     <>
       {showWorkouts && (
@@ -187,7 +192,10 @@ const Workouts = () => {
       )}
       {/* displaying workoutSession */}
       {showWorkoutSession && selectedSession ? (
-        <WorkoutSession session={selectedSession} />
+        <WorkoutSession
+          session={selectedSession}
+          closeSession={closeWorkoutSession}
+        />
       ) : (
         <div>no session selected </div>
       )}
