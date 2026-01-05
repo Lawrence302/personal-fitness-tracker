@@ -1,10 +1,19 @@
 import { Timer } from "lucide-react";
 import type { Workout } from "../lib/types";
+import { useState } from "react";
 type WorkoutSessionProps = {
   session: Workout;
   closeSession: () => void;
 };
 const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
+  const handleCheckEvent = (index: number) => {
+    if (!completedExercisese.includes(index)) {
+      setCompletedExercises([...completedExercisese, index]);
+    }
+    console.log(completedExercisese);
+  };
+
+  const [completedExercisese, setCompletedExercises] = useState<number[]>([]);
   return (
     <div className='text-white border border-zinc-900 m-4 md:m-6 rounded-lg p-6'>
       <div className='flex justify-between items-center gap-4  flex-wrap mb-6 md:mb-8'>
@@ -35,11 +44,21 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
           return (
             <div
               key={index}
-              className='border border-zinc-800 py-3 px-4 rounded-lg flex justify-between items-center hover:border-zinc-700 cursor-pointer'
+              className={`border border-zinc-800 py-3 px-4 rounded-lg flex justify-between items-center hover:border-zinc-700 cursor-pointer ${
+                completedExercisese.includes(index)
+                  ? "disabled:opacity-50 bg-zinc-900 pointer-events-none cursor-not-allowed"
+                  : ""
+              }`}
             >
               <div>
                 <h3 className='font-bold italic capitalize mb-2'>
-                  {exercise.name}
+                  {completedExercisese.includes(index) ? (
+                    <span className='line-through text-gray-400'>
+                      {exercise.name}
+                    </span>
+                  ) : (
+                    exercise.name
+                  )}
                 </h3>
                 <div className='flex gap-1'>
                   {exercise.targetMuscles.map((muscle, index) => {
@@ -56,7 +75,13 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
               </div>
               <div className='flxe-1 flex gap-1 italic font-bold text-sm '>
                 <span className='text-gray-400 text-sm'>Done</span>
-                <input type='checkbox' className='scale-150' />
+                <input
+                  type='checkbox'
+                  checked={completedExercisese.includes(index)}
+                  disabled={completedExercisese.includes(index)}
+                  className='scale-150'
+                  onChange={() => handleCheckEvent(index)}
+                />
               </div>
             </div>
           );
