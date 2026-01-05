@@ -1,4 +1,6 @@
-import { ChevronRight, Target, Plus } from "lucide-react";
+import { ChevronRight, Target } from "lucide-react";
+import QuickLogExercise from "./QuickLogExercise";
+
 const Home = () => {
   return (
     <div className='  flex-1 overflow-auto text-zinc-500 pt-4 mx-4 '>
@@ -45,33 +47,8 @@ const Home = () => {
         </div>
       </div>
       <div>
-        <h2 className='font-bold py-4'>QUICK LOG EXERCISE</h2>
-        <div className='flex flex-wrap text-white gap-2'>
-          <button className='bg-zinc-900 border border-zinc-800 px-4 py-2 rounded-xl font-bold hover:border-cyan-500/50 flex gap-2 items-center text-sm '>
-            <Plus className='text-cyan-500' />
-            Standard Push-ups
-          </button>
-          <button className='bg-zinc-900 border border-zinc-800 px-4 py-2 rounded-xl font-bold hover:border-cyan-500/50 flex gap-2 items-center text-sm '>
-            <Plus className='text-cyan-500' />
-            Pull-ups
-          </button>
-          <button className='bg-zinc-900 border border-zinc-800 px-4 py-2 rounded-xl font-bold hover:border-cyan-500/50 flex gap-2 items-center text-sm '>
-            <Plus className='text-cyan-500' />
-            Air Squats
-          </button>
-          <button className='bg-zinc-900 border border-zinc-800 px-4 py-2 rounded-xl font-bold hover:border-cyan-500/50 flex gap-2 items-center text-sm '>
-            <Plus className='text-cyan-500' />
-            Dead Hang
-          </button>
-          <button className='bg-zinc-900 border border-zinc-800 px-4 py-2 rounded-xl font-bold hover:border-cyan-500/50 flex gap-2 items-center text-sm '>
-            <Plus className='text-cyan-500' />
-            Horse Stance
-          </button>
-          <button className='bg-zinc-900 border border-zinc-800 px-4 py-2 rounded-xl font-bold hover:border-cyan-500/50 flex gap-2 items-center text-sm '>
-            <Plus className='text-cyan-500' />
-            Forward Lunges
-          </button>
-        </div>
+        {/* Quick Log Exercise Section */}
+        <QuickLogExercise />
       </div>
     </div>
   );
