@@ -1,8 +1,9 @@
 type ExerciseLevel = "beginner" | "intermediate" | "advanced";
 
-type Exercise = {
+export type Exercise = {
   name: string;
   level: ExerciseLevel;
+  measurement: "reps" | "seconds";
   targetMuscles: string[];
 };
 
