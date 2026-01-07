@@ -1,6 +1,6 @@
 import { Layers } from "lucide-react";
 import { useState } from "react";
-import WorkoutSession from "./workoutSession";
+import WorkoutSession from "./WorkoutSession";
 import type { Workout } from "../lib/types";
 
 const workoutPrograms: Workout[] = [
