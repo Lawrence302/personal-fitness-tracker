@@ -1,5 +1,5 @@
 import { Timer } from "lucide-react";
-import type { Workout } from "../lib/types.tsx";
+import type { Workout } from "../lib/types.ts";
 import { useState } from "react";
 type WorkoutSessionProps = {
   session: Workout;
