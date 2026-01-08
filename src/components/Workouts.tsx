@@ -30,7 +30,7 @@ const workoutPrograms: Workout[] = [
       {
         name: "Plank",
         level: "beginner",
-        measurement: "secongs",
+        measurement: "seconds",
         targetMuscles: ["core", "shoulders"],
       },
     ],

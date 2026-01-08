@@ -71,6 +71,7 @@ const QuickLogExercise = () => {
           <RecordExerciseModal
             closeModal={closeRecordExerciseModal}
             exercise={currentExercise}
+            mode='quickLog'
           />
         )}
       </div>

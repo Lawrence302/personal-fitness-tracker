@@ -1,16 +1,28 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { X, Trash, Plus, Save } from "lucide-react";
 import type { Exercise } from "../../lib/types";
 
 type RecordExerciseModalProps = {
   closeModal: () => void;
   exercise: Exercise;
+  mode: "quickLog" | "sessionExerciseLog";
+  recordInTrack?: React.Dispatch<React.SetStateAction<number[]>>;
+  exerciseIndex?: number;
 };
 const RecordExerciseModal = ({
   closeModal,
   exercise,
+  mode,
+  recordInTrack,
+  exerciseIndex,
 }: RecordExerciseModalProps) => {
   const [logInputs, setLogInputs] = useState<number[]>([0]);
+
+  // disable save button if all inputs are zero
+  const saveButtonDisabled = logInputs.reduce((sum, val) => sum + val, 0) === 0;
+
+  // sum of log inputs
+  const total = logInputs.reduce((sum, val) => sum + val, 0);
 
   const updateLogInput = (number: number, index: number) => {
     setLogInputs((prev) => {
@@ -29,14 +41,29 @@ const RecordExerciseModal = ({
   const saveWorkout = () => {
     // Save logic here
     console.log("Workout saved:", logInputs);
-    const total = logInputs.reduce((sum, val) => sum + val, 0);
+    // const total = logInputs.reduce((sum, val) => sum + val, 0);
     console.log("Total:", total);
+
+    if (mode === "sessionExerciseLog") {
+      // additional logic for session exercise log
+      if (total === 0) {
+        alert("Please log at least one set before saving.");
+        return;
+      }
+      console.log("Logged for session exercise");
+      if (recordInTrack && exerciseIndex !== undefined) {
+        recordInTrack((prev) => [...prev, exerciseIndex]); // mark as tracked
+      }
+    }
+
+    // save exercise log to database or state here
+    console.log(`Exercise: ${exercise.name}, Logs:`, logInputs);
     closeModal();
   };
 
   return (
     <div
-      className='fixed absolute inset-0 z-10 bg-zinc-950/70 border border-white flex justify-center items-center overflow-auto pb-10 md:pb-0'
+      className='fixed absolute inset-0 z-10 bg-zinc-950/70 border border-white text-zinc-500 flex justify-center items-center overflow-auto pb-10 md:pb-0'
       onClick={(e) => {
         if (e.target !== e.currentTarget) return;
         closeModal();
@@ -101,7 +128,10 @@ const RecordExerciseModal = ({
         </div>
         <div className='my-4'>
           <button
-            className='flex justify-center w-full bg-cyan-700 hover:bg-cyan-600 text-white font-bold p-2 cursor-pointer rounded-lg'
+            className={`flex justify-center w-full bg-cyan-700 hover:bg-cyan-600 text-white font-bold p-2 cursor-pointer rounded-lg ${
+              saveButtonDisabled ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+            disabled={saveButtonDisabled}
             onClick={saveWorkout}
           >
             <Save />
