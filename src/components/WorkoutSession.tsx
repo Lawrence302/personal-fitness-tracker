@@ -21,7 +21,21 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
   const progress = Math.round(
     (exercisesTrack.length / session.exercises.length) * 100
   );
-  console.log(session.exercises.length, progress);
+
+  const handleCloseSession = () => {
+    // check if all exercises are completed before closing session
+    if (exercisesTrack.length < session.exercises.length) {
+      const confirmClose = confirm(
+        "You have not completed all exercises. Are you sure you want to finish the session?"
+      );
+      if (confirmClose) {
+        closeSession();
+      }
+    } else {
+      closeSession();
+    }
+  };
+
   const closeRecordExerciseModal = () => {
     setShowRecordExerciseModal(false);
   };
@@ -63,7 +77,7 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
           <div>
             <button
               className=' bg-blue-500 px-3 md:px-6 py-2 font-bold uppercase rounded-lg cursor-pointer hover:bg-blue-400 text-sm'
-              onClick={() => closeSession()}
+              onClick={() => handleCloseSession()}
             >
               Finish Session
             </button>
