@@ -52,7 +52,12 @@ const RecordExerciseModal = ({
       }
       console.log("Logged for session exercise");
       if (recordInTrack && exerciseIndex !== undefined) {
-        recordInTrack((prev) => [...prev, exerciseIndex]); // mark as tracked
+        recordInTrack((prev) => {
+          if (prev.includes(exerciseIndex)) {
+            return prev; // already tracked
+          }
+          return [...prev, exerciseIndex];
+        }); // mark as tracked
       }
     }
 

@@ -17,6 +17,11 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
   const [selectedExercise, setSelectedExercise] = useState<Exercise>();
   const [selectedExerciseIndex, setSelectedExerciseIndex] = useState<number>();
 
+  // tracking the progress of the workout session
+  const progress = Math.round(
+    (exercisesTrack.length / session.exercises.length) * 100
+  );
+  console.log(session.exercises.length, progress);
   const closeRecordExerciseModal = () => {
     setShowRecordExerciseModal(false);
   };
@@ -62,6 +67,18 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
             >
               Finish Session
             </button>
+          </div>
+        </div>
+        {/* showing the progress made in the session */}
+        <div className='my-4'>
+          <h2 className='flex text-sm gap-4 italic tracking-tighter font-bold text-zinc-500 pl-4 mb-1'>
+            progress made so far <span>{progress}%</span>{" "}
+          </h2>
+          <div className='border border-zinc-800 h-3 py-1 rounded-full flex items-center bg-black'>
+            <div
+              className=' h-2 rounded-full'
+              style={{ backgroundColor: "cyan", width: `${progress}%` }}
+            ></div>
           </div>
         </div>
         <div className=' grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
