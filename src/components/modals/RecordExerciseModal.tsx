@@ -1,22 +1,84 @@
+import React, { useState } from "react";
 import { X, Trash, Plus, Save } from "lucide-react";
+import type { Exercise } from "../../lib/types";
 
 type RecordExerciseModalProps = {
   closeModal: () => void;
+  exercise: Exercise;
+  mode: "quickLog" | "sessionExerciseLog";
+  recordInTrack?: React.Dispatch<React.SetStateAction<number[]>>;
+  exerciseIndex?: number;
 };
-const RecordExerciseModal = ({ closeModal }: RecordExerciseModalProps) => {
+const RecordExerciseModal = ({
+  closeModal,
+  exercise,
+  mode,
+  recordInTrack,
+  exerciseIndex,
+}: RecordExerciseModalProps) => {
+  const [logInputs, setLogInputs] = useState<number[]>([0]);
+
+  // disable save button if all inputs are zero
+  const saveButtonDisabled = logInputs.reduce((sum, val) => sum + val, 0) === 0;
+
+  // sum of log inputs
+  const total = logInputs.reduce((sum, val) => sum + val, 0);
+
+  const updateLogInput = (number: number, index: number) => {
+    setLogInputs((prev) => {
+      const newLogInputs = [...prev]; // create a copy
+      newLogInputs[index] = number; // update the value at the index
+
+      return newLogInputs; // set new array
+    });
+    console.log(logInputs);
+  };
+
+  const handleAddSet = () => {
+    setLogInputs((prev) => [...prev, 0]);
+  };
+
+  const saveWorkout = () => {
+    // Save logic here
+    console.log("Workout saved:", logInputs);
+    // const total = logInputs.reduce((sum, val) => sum + val, 0);
+    console.log("Total:", total);
+
+    if (mode === "sessionExerciseLog") {
+      // additional logic for session exercise log
+      if (total === 0) {
+        alert("Please log at least one set before saving.");
+        return;
+      }
+      console.log("Logged for session exercise");
+      if (recordInTrack && exerciseIndex !== undefined) {
+        recordInTrack((prev) => {
+          if (prev.includes(exerciseIndex)) {
+            return prev; // already tracked
+          }
+          return [...prev, exerciseIndex];
+        }); // mark as tracked
+      }
+    }
+
+    // save exercise log to database or state here
+    console.log(`Exercise: ${exercise.name}, Logs:`, logInputs);
+    closeModal();
+  };
+
   return (
     <div
-      className='fixed absolute inset-0 z-10 bg-zinc-950/70 border border-white flex justify-center items-center '
+      className='fixed absolute inset-0 z-10 bg-zinc-950/70 border border-white text-zinc-500 flex justify-center items-center overflow-auto pb-10 md:pb-0'
       onClick={(e) => {
         if (e.target !== e.currentTarget) return;
         closeModal();
       }}
     >
-      <div className='p-6 w-[90%] md:w-[50%] lg:w-[40%] bg-zinc-900 rounded-lg'>
+      <div className='p-6 w-[90%] md:w-[50%] lg:w-[40%] bg-zinc-900 rounded-lg pb-6'>
         <div className=' flex justify-between items-center'>
           <div className='mb-4'>
             <h1 className='text-lg text-white font-bold'>
-              Log Standard Push-ups
+              Log {exercise.name}
             </h1>
             <p className='text-xs'>Tracking: Repititions</p>
           </div>
@@ -27,22 +89,39 @@ const RecordExerciseModal = ({ closeModal }: RecordExerciseModalProps) => {
             />
           </div>
         </div>
-        <div className='flex gap-6 items-center border border-zinc-800 bg-zinc-900 p-4 rounded-lg'>
-          <h3>#1</h3>
-          <div className='flex-1'>
-            <p className='text-sm mb-1'>REPS</p>
-            <div className='flex items-center  gap-4 '>
-              <input
-                className='border border-zinc-800 w-full bg-zinc-950 p-2 text-white'
-                type='number'
-                placeholder='0'
-              />
-              <Trash className='text-red-500 cursor-pointer' />
-            </div>
-          </div>
+        <div className=' flex flex-col gap-3 overflow-auto max-h-54'>
+          {/* in case of nultiple inputs */}
+          {logInputs.map((val, index) => {
+            return (
+              <div
+                key={index}
+                className='flex gap-6 items-center border border-zinc-800 bg-zinc-900 p-4 rounded-lg'
+              >
+                <h3>#{index + 1}</h3>
+                <div className='flex-1'>
+                  <p className='text-sm mb-1'>{exercise.measurement}</p>
+                  <div className='flex items-center  gap-4 '>
+                    <input
+                      className='border border-zinc-800 w-full bg-zinc-950 p-2 text-white'
+                      type='number'
+                      placeholder='0'
+                      value={val || ""}
+                      onChange={(e) =>
+                        updateLogInput(Number(e.target.value), index)
+                      }
+                    />
+                    <Trash className='text-red-500 cursor-pointer' />
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
         <div className='my-4'>
-          <button className='flex border-2 border-dashed  border-zinc-800 w-full p-2 rounded-lg justify-center gap-4 cursor-pointer hover:border-zinc-700 '>
+          <button
+            className='flex border-2 border-dashed  border-zinc-800 w-full p-2 rounded-lg justify-center gap-4 cursor-pointer hover:border-cyan-500  hover:text-cyan-500'
+            onClick={handleAddSet}
+          >
             <Plus /> Add Set
           </button>
         </div>
@@ -53,7 +132,13 @@ const RecordExerciseModal = ({ closeModal }: RecordExerciseModalProps) => {
           </div>
         </div>
         <div className='my-4'>
-          <button className='flex justify-center w-full bg-cyan-700 hover:bg-cyan-600 text-white font-bold p-2 cursor-pointer rounded-lg'>
+          <button
+            className={`flex justify-center w-full bg-cyan-700 hover:bg-cyan-600 text-white font-bold p-2 cursor-pointer rounded-lg ${
+              saveButtonDisabled ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+            disabled={saveButtonDisabled}
+            onClick={saveWorkout}
+          >
             <Save />
             Save Workout
           </button>
