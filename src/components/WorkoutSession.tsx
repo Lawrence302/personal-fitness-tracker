@@ -118,7 +118,7 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
                   </h3>
 
                   <div className='flex gap-1'>
-                    {exercise.targetMuscles.map((muscle, index) => {
+                    {exercise.targetMuscleGroups.map((muscle, index) => {
                       return (
                         <span
                           key={index}
