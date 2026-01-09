@@ -21,11 +21,12 @@ export type Exercise = {
 
 export type Workout = {
   id: string;
-  date: string; // when workout was done
   name: string;
+  date: string; // when workout was done
   level: number;
   estimatedTime: number;
   exercises: Exercise[];
+  description: string;
 };
 
 export type ExerciseLog = {

@@ -1,12 +1,8 @@
 import { Target } from "lucide-react";
+import type { Exercise } from "../lib/types";
 
 type ExerciseCardProps = {
-  exercise: {
-    name: string;
-    level: string;
-    musclesAffected: string[];
-    basicInstruction: string;
-  };
+  exercise: Exercise;
   index: number;
 };
 
@@ -24,7 +20,7 @@ const ExerciseCard = ({ exercise, index }: ExerciseCardProps) => {
       <div className='p-4'>
         <h2 className='text-white text-lg font-bold '>{exercise.name}</h2>
         <div className='flex gap-2 flex-wrap py-2'>
-          {exercise.musclesAffected.map((muscle, index) => {
+          {exercise.targetMuscleGroups.map((muscle, index) => {
             return (
               <span
                 className='border border-zinc-800 bg-zinc-900 rounded-sm px-2 text-zinc-500 font-bold text-sm  md:text-[12px]  uppercase flex w-fit items-center gap-1'
@@ -37,7 +33,7 @@ const ExerciseCard = ({ exercise, index }: ExerciseCardProps) => {
           })}
         </div>
         <p className='text-zinc-400  line-clamp-2  italic'>
-          {exercise.basicInstruction}
+          {exercise.description}
         </p>
       </div>
     </div>

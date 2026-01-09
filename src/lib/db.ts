@@ -10,15 +10,15 @@ export const initDB = async () => {
   const db = await openDB("calitrackDB", 1, {
     upgrade(db) {
       // we only create the stors if it does not already exist to avoid error
-      if (!db.objectStoreNames.contains("exercises")) {
+      if (!db.objectStoreNames.contains("exerciseLogs")) {
         const store = db.createObjectStore("exercises", { keyPath: "id" });
 
         // Create an index on the 'name' property
         // Index allows fast lookups by exercise name
         store.createIndex("name", "name", { unique: false });
       }
-      if (!db.objectStoreNames.contains("workouts")) {
-        db.createObjectStore("workouts", { keyPath: "id" });
+      if (!db.objectStoreNames.contains("activitySessions")) {
+        db.createObjectStore("activitySessions", { keyPath: "id" });
       }
     },
   });

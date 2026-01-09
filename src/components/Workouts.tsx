@@ -2,133 +2,8 @@ import { Layers } from "lucide-react";
 import { useState } from "react";
 import WorkoutSession from "./WorkoutSession";
 import type { Workout } from "../lib/types";
-
-const workoutPrograms: Workout[] = [
-  {
-    name: "Full Body Foundations",
-    level: 1,
-    estimatedTime: 20,
-    exercises: [
-      {
-        name: "Air Squats",
-        level: "beginner",
-        measurement: "reps",
-        targetMuscles: ["quads", "glutes"],
-      },
-      {
-        name: "Push-Ups",
-        level: "beginner",
-        measurement: "reps",
-        targetMuscles: ["chest", "triceps", "shoulders"],
-      },
-      {
-        name: "Forward Lunges",
-        level: "beginner",
-        measurement: "reps",
-        targetMuscles: ["quads", "glutes", "hamstrings"],
-      },
-      {
-        name: "Plank",
-        level: "beginner",
-        measurement: "seconds",
-        targetMuscles: ["core", "shoulders"],
-      },
-    ],
-  },
-  {
-    name: "Upper Body Calisthenics",
-    level: 2,
-    estimatedTime: 20,
-    exercises: [
-      {
-        name: "Pull-Ups",
-        level: "intermediate",
-        measurement: "reps",
-        targetMuscles: ["back", "biceps"],
-      },
-      {
-        name: "Chin-Ups",
-        level: "intermediate",
-        measurement: "reps",
-        targetMuscles: ["biceps", "back"],
-      },
-      {
-        name: "Dips (on chair/bench)",
-        level: "intermediate",
-        measurement: "reps",
-        targetMuscles: ["triceps", "chest", "shoulders"],
-      },
-      {
-        name: "Pike Push-Ups",
-        level: "intermediate",
-        measurement: "reps",
-        targetMuscles: ["shoulders", "triceps"],
-      },
-    ],
-  },
-  {
-    name: "Lower Body Calisthenics",
-    level: 2,
-    estimatedTime: 20,
-    exercises: [
-      {
-        name: "Jump Squats",
-        level: "intermediate",
-        measurement: "reps",
-        targetMuscles: ["quads", "glutes"],
-      },
-      {
-        name: "Lunges",
-        level: "beginner",
-        measurement: "reps",
-        targetMuscles: ["quads", "glutes", "hamstrings"],
-      },
-      {
-        name: "Calf Raises",
-        level: "beginner",
-        measurement: "reps",
-        targetMuscles: ["calves"],
-      },
-      {
-        name: "Glute Bridges",
-        level: "beginner",
-        measurement: "reps",
-        targetMuscles: ["glutes", "hamstrings", "lower back"],
-      },
-    ],
-  },
-  {
-    name: "Core Focus",
-    level: 1,
-    estimatedTime: 15,
-    exercises: [
-      {
-        name: "Plank",
-        level: "beginner",
-        measurement: "seconds",
-        targetMuscles: ["core", "shoulders"],
-      },
-      {
-        name: "Side Plank",
-        level: "beginner",
-        measurement: "seconds",
-        targetMuscles: ["obliques", "core"],
-      },
-      {
-        name: "Hollow Body Hold",
-        level: "intermediate",
-        measurement: "seconds",
-        targetMuscles: ["core"],
-      },
-      {
-        name: "Mountain Climbers",
-        level: "beginner",
-        measurement: "reps",
-        targetMuscles: ["core", "hip flexors", "shoulders"],
-      },
-    ],
-  },
-];
+// importing default workouts programs data
+import { workoutPrograms } from "../lib/defaultData";
 
 const Workouts = () => {
   const [showWorkouts, setShowWorkouts] = useState(true);
@@ -165,8 +40,10 @@ const Workouts = () => {
                     </div>
 
                     <div>
-                      <p className='text-cyan-500'>LEVEL 1</p>
-                      <p className='text-zinc-500'>20M MAX</p>
+                      <p className='text-cyan-500'>LEVEL {program.level}</p>
+                      <p className='text-zinc-500'>
+                        {program.estimatedTime} MINUTES
+                      </p>
                     </div>
                   </div>
                   <div className='py-6'>
@@ -186,7 +63,7 @@ const Workouts = () => {
                             {exercise.name}
                           </p>
                           <p className='text-zinc-500 uppercase text-xs font-bold'>
-                            [{exercise.level}]
+                            {exercise.level}
                           </p>
                         </div>
                       );
