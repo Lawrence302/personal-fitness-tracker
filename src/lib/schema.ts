@@ -11,6 +11,7 @@
   equipment: ["string"], // Optional, e.g., ["pull-up bar", "rings"], empty if bodyweight
   sets: "number", // Number of sets
   reps: "number", // Reps per set
+  unitPoint: "number", // points awarded per unit (rep or second)
   extraWeight: {
     // Optional for weighted calisthenics
     value: "number",
