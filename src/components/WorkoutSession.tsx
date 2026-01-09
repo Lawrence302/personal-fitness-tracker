@@ -100,14 +100,14 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
             return (
               <div
                 key={index}
-                className={`border border-zinc-800 py-3 px-4 rounded-lg flex justify-between items-center hover:border-zinc-700 cursor-pointer ${
+                className={`border border-zinc-800 py-3 px-4 rounded-lg flex justify-between items-center hover:border-zinc-700 cursor-pointer gap-3 ${
                   completedExercisese.includes(index)
                     ? "disabled:opacity-50 bg-zinc-900 pointer-events-none cursor-not-allowed"
                     : ""
                 }`}
               >
-                <div>
-                  <h3 className='font-bold italic capitalize mb-2'>
+                <div className=''>
+                  <h3 className='font-bold italic capitalize mb-2 '>
                     {completedExercisese.includes(index) ? (
                       <span className='line-through text-gray-400'>
                         {exercise.name}
@@ -117,7 +117,7 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
                     )}
                   </h3>
 
-                  <div className='flex gap-1'>
+                  <div className='flex gap-1 flex-wrap'>
                     {exercise.targetMuscleGroups.map((muscle, index) => {
                       return (
                         <span
@@ -130,6 +130,7 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
                     })}
                   </div>
                 </div>
+                {/* play button to record exercise progress and Tooltip  */}
                 <div
                   className='relative inline-block group border border-zinc-800 rounded-lg bg-green-950 p-1'
                   onClick={() => {
