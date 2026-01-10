@@ -1,7 +1,35 @@
+import { useEffect, useState } from "react";
 import { ChevronRight, Target } from "lucide-react";
 import QuickLogExercise from "./QuickLogExercise";
+import { initDB } from "../lib/db";
+
+const getTotalPoints = async () => {
+  // fetch all exercise logs from IndexedDB
+  // return total points from all logs
+  const db = await initDB();
+  const exercises = await db.getAll("exerciseLogs");
+  console.log("Fetched exercise logs:", exercises);
+
+  const totalPoints = exercises.reduce(
+    (sum, log) => sum + (log.pointsEarned || 0),
+    0
+  );
+  return totalPoints;
+};
 
 const Home = () => {
+  const [totalPoints, setTotalPoints] = useState<number>(0);
+
+  useEffect(() => {
+    console.log("Home component mounted");
+    const fetchData = async () => {
+      const totalPoints = await getTotalPoints();
+      setTotalPoints(totalPoints);
+      console.log("Total Points from DB:", totalPoints);
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className='  flex-1 overflow-auto text-zinc-500 pt-4 mx-4 '>
       <div className='flex justify-center flex-col  md:flex-row gap-8 mb-8 '>
@@ -30,7 +58,7 @@ const Home = () => {
           <p className='text-xs '>PHYSICAL RANK</p>
           <div>
             <h1 className='text-4xl  italic font-bold'>NOVICE</h1>
-            <p className='text-sm'>570 TOTAL PTS</p>
+            <p className='text-sm'>{totalPoints} TOTAL PTS</p>
           </div>
 
           <div className='progress-bar '>
