@@ -7,6 +7,13 @@ export type UserRank =
   | "EXPERT"
   | "ELITE";
 
+export type TierInfo = {
+  userRank: UserRank;
+  pointsToNextTier: number;
+  nextTier: UserRank | null;
+  progressToNextTier: number; // percentage
+};
+
 export type Exercise = {
   id: string;
   name: string; //  e.g., "Pull-up"
@@ -63,4 +70,15 @@ export type ActivitySession = {
   endTime: string;
   exerciseLogIds: string[];
   totalPoints: number;
+};
+
+export type UserInfo = {
+  id: string;
+  name: string;
+  age: number;
+  tierInfo: TierInfo;
+  totalPoints: number;
+  totalWorkouts: number;
+  totalExerciseLogs: number;
+  joinedDate: string;
 };

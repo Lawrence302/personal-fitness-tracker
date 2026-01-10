@@ -3,6 +3,7 @@ import { ChevronRight, Target } from "lucide-react";
 import QuickLogExercise from "./QuickLogExercise";
 import { initDB } from "../lib/db";
 import usePointsStore from "../stores/pointsStore";
+import { calculateTier } from "../lib/globalFunctions";
 
 const getTotalPoints = async () => {
   // fetch all exercise logs from IndexedDB
@@ -21,6 +22,7 @@ const getTotalPoints = async () => {
 const Home = () => {
   const totalPoints = usePointsStore((state) => state.totalPoints);
   const setTotalPoints = usePointsStore((state) => state.setTotalPoints);
+  const tierInfo = calculateTier(totalPoints);
 
   useEffect(() => {
     console.log("Home component mounted");
@@ -62,14 +64,15 @@ const Home = () => {
             <p className='text-sm'>{totalPoints} TOTAL PTS</p>
           </div>
 
-          <div className='progress-bar '>
-            <div className='flex justify-between text-sm'>
-              <span>PROGRESS TO ADEPT</span> <span>60%</span>
+          <div className='progress-bar mt-4'>
+            <div className='flex justify-between text-xs italic mb-1'>
+              <span>PROGRESS TO {tierInfo?.nextTier}</span>{" "}
+              <span>{tierInfo?.progressToNextTier}%</span>
             </div>
             <div className='w-full bg-grey-200 rounded-full h-1'>
               <div
                 className='bg-blue-500 h-2 rounded-full '
-                style={{ width: "60%" }}
+                style={{ width: `${tierInfo?.progressToNextTier}%` }}
               ></div>
             </div>
           </div>
