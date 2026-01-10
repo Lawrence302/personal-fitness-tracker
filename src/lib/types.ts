@@ -1,5 +1,12 @@
 type ExerciseLevel = "beginner" | "intermediate" | "advanced";
 
+export type UserRank =
+  | "BEGINNER"
+  | "INTERMEDIATE"
+  | "ADVANCED"
+  | "EXPERT"
+  | "ELITE";
+
 export type Exercise = {
   id: string;
   name: string; //  e.g., "Pull-up"
