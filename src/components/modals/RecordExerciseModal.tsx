@@ -8,8 +8,8 @@ type RecordExerciseModalProps = {
   closeModal: () => void;
   exercise: Exercise;
   mode: "quickLog" | "sessionExerciseLog";
-  recordInTrack?: React.Dispatch<React.SetStateAction<number[]>>;
-  exerciseIndex?: number;
+  recordInTrack?: React.Dispatch<React.SetStateAction<string[]>>;
+  exerciseId?: string;
   workoutId?: string;
 };
 const RecordExerciseModal = ({
@@ -17,7 +17,7 @@ const RecordExerciseModal = ({
   exercise,
   mode,
   recordInTrack,
-  exerciseIndex,
+  exerciseId,
   workoutId,
 }: RecordExerciseModalProps) => {
   const [logInputs, setLogInputs] = useState<number[]>([0]);
@@ -35,7 +35,7 @@ const RecordExerciseModal = ({
 
       return newLogInputs; // set new array
     });
-    console.log(logInputs);
+    // console.log(logInputs);
   };
 
   const handleAddSet = () => {
@@ -83,12 +83,12 @@ const RecordExerciseModal = ({
       console.log("Saved Exercise Log:", savedLog);
 
       // mark exercise as tracked in session
-      if (recordInTrack && exerciseIndex !== undefined) {
+      if (recordInTrack && savedLog && exerciseId !== undefined) {
         recordInTrack((prev) => {
-          if (prev.includes(exerciseIndex)) {
+          if (prev.includes(exerciseId)) {
             return prev; // already tracked
           }
-          return [...prev, exerciseIndex];
+          return [...prev, exerciseId];
         }); // mark as tracked
       }
     }

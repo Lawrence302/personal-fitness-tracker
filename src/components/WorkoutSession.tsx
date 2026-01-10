@@ -9,13 +9,13 @@ type WorkoutSessionProps = {
   closeSession: () => void;
 };
 const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
-  const [completedExercisese, setCompletedExercises] = useState<number[]>([]);
+  const [completedExercisese, setCompletedExercises] = useState<string[]>([]);
 
-  const [exercisesTrack, setExercisesTrack] = useState<number[]>([]);
+  const [exercisesTrack, setExercisesTrack] = useState<string[]>([]);
   const [showRecordExerciseModal, setShowRecordExerciseModal] =
     useState<boolean>(false);
   const [selectedExercise, setSelectedExercise] = useState<Exercise>();
-  const [selectedExerciseIndex, setSelectedExerciseIndex] = useState<number>();
+  const [selectedExerciseId, setSelectedExerciseId] = useState<string>();
 
   // tracking the progress of the workout session
   const progress = Math.round(
@@ -40,12 +40,12 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
     setShowRecordExerciseModal(false);
   };
 
-  const handleCheckEvent = (index: number) => {
-    console.log("Checked exercise at index:", index);
+  const handleCheckEvent = (exerciseId: string) => {
+    console.log("Checked exercise at index:", exerciseId);
     // Check if exercise is tracked. making sure user can't mark as done if not tracked
-    if (exercisesTrack.includes(index)) {
-      if (!completedExercisese.includes(index)) {
-        setCompletedExercises([...completedExercisese, index]);
+    if (exercisesTrack.includes(exerciseId)) {
+      if (!completedExercisese.includes(exerciseId)) {
+        setCompletedExercises([...completedExercisese, exerciseId]);
       }
       console.log(completedExercisese);
     } else {
@@ -96,19 +96,19 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
           </div>
         </div>
         <div className=' grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
-          {session.exercises.map((exercise, index) => {
+          {session.exercises.map((exercise) => {
             return (
               <div
-                key={index}
+                key={exercise.id}
                 className={`border border-zinc-800 py-3 px-4 rounded-lg flex justify-between items-center hover:border-zinc-700 cursor-pointer gap-3 ${
-                  completedExercisese.includes(index)
+                  completedExercisese.includes(exercise.id)
                     ? "disabled:opacity-50 bg-zinc-900 pointer-events-none cursor-not-allowed"
                     : ""
                 }`}
               >
                 <div className=''>
                   <h3 className='font-bold italic capitalize mb-2 '>
-                    {completedExercisese.includes(index) ? (
+                    {completedExercisese.includes(exercise.id) ? (
                       <span className='line-through text-gray-400'>
                         {exercise.name}
                       </span>
@@ -137,8 +137,8 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
                     setSelectedExercise(exercise);
                     setShowRecordExerciseModal(true);
                     // setSelectedExerciseIndex(index);
-                    if (!exercisesTrack.includes(index)) {
-                      setSelectedExerciseIndex(index);
+                    if (!exercisesTrack.includes(exercise.id)) {
+                      setSelectedExerciseId(exercise.id);
                     }
                   }}
                 >
@@ -161,10 +161,10 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
                   <span className='text-gray-400 text-sm'>Done</span>
                   <input
                     type='checkbox'
-                    checked={completedExercisese.includes(index)}
-                    disabled={completedExercisese.includes(index)}
+                    checked={completedExercisese.includes(exercise.id)}
+                    disabled={completedExercisese.includes(exercise.id)}
                     className='scale-150'
-                    onChange={() => handleCheckEvent(index)}
+                    onChange={() => handleCheckEvent(exercise.id)}
                   />
                 </div>
               </div>
@@ -179,7 +179,7 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
           exercise={selectedExercise}
           mode='sessionExerciseLog'
           recordInTrack={setExercisesTrack}
-          exerciseIndex={selectedExerciseIndex}
+          exerciseId={selectedExerciseId}
           workoutId={session.id}
         />
       )}
