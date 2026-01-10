@@ -180,6 +180,7 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
           mode='sessionExerciseLog'
           recordInTrack={setExercisesTrack}
           exerciseIndex={selectedExerciseIndex}
+          workoutId={session.id}
         />
       )}
     </div>

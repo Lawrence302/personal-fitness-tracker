@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { X, Trash, Plus, Save } from "lucide-react";
 import type { Exercise } from "../../lib/types";
+import { initDB } from "../../lib/db";
+import { v4 as uuid } from "uuid";
 
 type RecordExerciseModalProps = {
   closeModal: () => void;
@@ -8,6 +10,7 @@ type RecordExerciseModalProps = {
   mode: "quickLog" | "sessionExerciseLog";
   recordInTrack?: React.Dispatch<React.SetStateAction<number[]>>;
   exerciseIndex?: number;
+  workoutId?: string;
 };
 const RecordExerciseModal = ({
   closeModal,
@@ -15,6 +18,7 @@ const RecordExerciseModal = ({
   mode,
   recordInTrack,
   exerciseIndex,
+  workoutId,
 }: RecordExerciseModalProps) => {
   const [logInputs, setLogInputs] = useState<number[]>([0]);
 
@@ -38,7 +42,7 @@ const RecordExerciseModal = ({
     setLogInputs((prev) => [...prev, 0]);
   };
 
-  const saveWorkout = () => {
+  const saveWorkout = async () => {
     // Save logic here
     console.log("Workout saved:", logInputs);
     // const total = logInputs.reduce((sum, val) => sum + val, 0);
@@ -51,6 +55,34 @@ const RecordExerciseModal = ({
         return;
       }
       console.log("Logged for session exercise");
+
+      const addExerciseLog = async () => {
+        const db = await initDB();
+        const newLog = {
+          id: uuid(),
+          activitySessionId: "", // to be linked later
+          exerciseId: exercise.id,
+          exerciseName: exercise.name,
+          workoutRoutineId: workoutId, // can be extended later
+          setsCompleted: logInputs.length,
+          totalRepsOrDuration: total,
+          setDetails: logInputs.map((val, index) => ({
+            setNumber: index + 1,
+            repsOrDuration: val,
+            // extraWeightUsed: undefined, // can be extended later
+          })),
+          pointsEarned: total * exercise.unitPoint,
+          date: new Date().toISOString().split("T")[0], // YYYY-MM-DD
+        };
+
+        await db.put("exerciseLogs", newLog);
+        return newLog;
+      };
+
+      const savedLog = await addExerciseLog();
+      console.log("Saved Exercise Log:", savedLog);
+
+      // mark exercise as tracked in session
       if (recordInTrack && exerciseIndex !== undefined) {
         recordInTrack((prev) => {
           if (prev.includes(exerciseIndex)) {
@@ -59,6 +91,35 @@ const RecordExerciseModal = ({
           return [...prev, exerciseIndex];
         }); // mark as tracked
       }
+    }
+
+    if (mode === "quickLog") {
+      console.log("Logged for quick log");
+      // additional logic for quick log
+      const addExerciseLog = async () => {
+        const db = await initDB();
+        const newLog = {
+          id: uuid(),
+          activitySessionId: "", // to be linked later
+          exerciseId: exercise.id,
+          exerciseName: exercise.name,
+          setsCompleted: logInputs.length,
+          totalRepsOrDuration: total,
+          setDetails: logInputs.map((val, index) => ({
+            setNumber: index + 1,
+            repsOrDuration: val,
+            // extraWeightUsed: undefined, // can be extended later
+          })),
+          pointsEarned: total * exercise.unitPoint,
+          date: new Date().toISOString().split("T")[0], // YYYY-MM-DD
+        };
+
+        await db.put("exerciseLogs", newLog);
+        return newLog;
+      };
+
+      const savedLog = await addExerciseLog();
+      console.log("Saved Exercise Log:", savedLog);
     }
 
     // save exercise log to database or state here

@@ -11,7 +11,7 @@ export const initDB = async () => {
     upgrade(db) {
       // we only create the stors if it does not already exist to avoid error
       if (!db.objectStoreNames.contains("exerciseLogs")) {
-        const store = db.createObjectStore("exercises", { keyPath: "id" });
+        const store = db.createObjectStore("exerciseLogs", { keyPath: "id" });
 
         // Create an index on the 'name' property
         // Index allows fast lookups by exercise name
