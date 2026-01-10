@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { ChevronRight, Target } from "lucide-react";
 import QuickLogExercise from "./QuickLogExercise";
 import { initDB } from "../lib/db";
+import usePointsStore from "../stores/pointsStore";
 
 const getTotalPoints = async () => {
   // fetch all exercise logs from IndexedDB
   // return total points from all logs
   const db = await initDB();
   const exercises = await db.getAll("exerciseLogs");
-  console.log("Fetched exercise logs:", exercises);
+  // console.log("Fetched exercise logs:", exercises);
 
   const totalPoints = exercises.reduce(
     (sum, log) => sum + (log.pointsEarned || 0),
@@ -18,17 +19,17 @@ const getTotalPoints = async () => {
 };
 
 const Home = () => {
-  const [totalPoints, setTotalPoints] = useState<number>(0);
+  const totalPoints = usePointsStore((state) => state.totalPoints);
+  const setTotalPoints = usePointsStore((state) => state.setTotalPoints);
 
   useEffect(() => {
     console.log("Home component mounted");
     const fetchData = async () => {
-      const totalPoints = await getTotalPoints();
-      setTotalPoints(totalPoints);
-      console.log("Total Points from DB:", totalPoints);
+      const points = await getTotalPoints();
+      setTotalPoints(points);
     };
     fetchData();
-  }, []);
+  }, [setTotalPoints]);
 
   return (
     <div className='  flex-1 overflow-auto text-zinc-500 pt-4 mx-4 '>

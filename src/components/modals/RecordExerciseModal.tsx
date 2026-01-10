@@ -3,6 +3,7 @@ import { X, Trash, Plus, Save } from "lucide-react";
 import type { Exercise } from "../../lib/types";
 import { initDB } from "../../lib/db";
 import { v4 as uuid } from "uuid";
+import usePointsStore from "../../stores/pointsStore";
 
 type RecordExerciseModalProps = {
   closeModal: () => void;
@@ -21,6 +22,7 @@ const RecordExerciseModal = ({
   workoutId,
 }: RecordExerciseModalProps) => {
   const [logInputs, setLogInputs] = useState<number[]>([0]);
+  const addPoints = usePointsStore((state) => state.incrementPoints);
 
   // disable save button if all inputs are zero
   const saveButtonDisabled = logInputs.reduce((sum, val) => sum + val, 0) === 0;
@@ -81,6 +83,10 @@ const RecordExerciseModal = ({
 
       const savedLog = await addExerciseLog();
       console.log("Saved Exercise Log:", savedLog);
+      // add points to global store
+      if (savedLog?.pointsEarned) {
+        addPoints(savedLog.pointsEarned);
+      }
 
       // mark exercise as tracked in session
       if (recordInTrack && savedLog && exerciseId !== undefined) {
@@ -95,7 +101,8 @@ const RecordExerciseModal = ({
 
     if (mode === "quickLog") {
       console.log("Logged for quick log");
-      // additional logic for quick log
+
+      // save exercise log to database or state here
       const addExerciseLog = async () => {
         const db = await initDB();
         const newLog = {
@@ -119,11 +126,13 @@ const RecordExerciseModal = ({
       };
 
       const savedLog = await addExerciseLog();
-      console.log("Saved Exercise Log:", savedLog);
+
+      // add points to global store
+      if (savedLog?.pointsEarned) {
+        addPoints(savedLog.pointsEarned);
+      }
     }
 
-    // save exercise log to database or state here
-    console.log(`Exercise: ${exercise.name}, Logs:`, logInputs);
     closeModal();
   };
 
