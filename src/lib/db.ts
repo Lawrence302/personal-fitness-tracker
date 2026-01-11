@@ -18,7 +18,12 @@ export const initDB = async () => {
         store.createIndex("name", "name", { unique: false });
       }
       if (!db.objectStoreNames.contains("activitySessions")) {
-        db.createObjectStore("activitySessions", { keyPath: "id" });
+        const store = db.createObjectStore("activitySessions", {
+          keyPath: "id",
+        });
+
+        // Create an index on active property for quick access to current session
+        store.createIndex("active", "active", { unique: false });
       }
     },
   });

@@ -61,7 +61,7 @@ export type ExerciseLog = {
   }[]; // detailed breakdown per set
   pointsEarned: number;
   date: string; // when log was created
-  time: string; // time of the log
+  dateTime: string; // exact date and time when log was created
 };
 
 export type ActivitySession = {
@@ -70,6 +70,7 @@ export type ActivitySession = {
   endTime: string;
   exerciseLogIds: string[];
   totalPoints: number;
+  active: 0 | 1; // 1 = active, 0 = inactive
 };
 
 export type UserInfo = {

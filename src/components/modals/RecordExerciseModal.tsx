@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { X, Trash, Plus, Save } from "lucide-react";
 import type { Exercise } from "../../lib/types";
 import { initDB } from "../../lib/db";
+import { getCurrentSession } from "../../lib/globalFunctions";
 import { v4 as uuid } from "uuid";
 import usePointsStore from "../../stores/pointsStore";
 
@@ -30,6 +31,34 @@ const RecordExerciseModal = ({
   // sum of log inputs
   const total = logInputs.reduce((sum, val) => sum + val, 0);
 
+  // adde Exercises log function
+  const addExerciseLog = async () => {
+    // get the current active session
+    const currentSession = await getCurrentSession();
+
+    const db = await initDB();
+    const newLog = {
+      id: uuid(),
+      activitySessionId: currentSession.id, // to be linked later
+      exerciseId: exercise.id,
+      exerciseName: exercise.name,
+      workoutRoutineId: workoutId, // can be extended later
+      setsCompleted: logInputs.length,
+      totalRepsOrDuration: total,
+      setDetails: logInputs.map((val, index) => ({
+        setNumber: index + 1,
+        repsOrDuration: val,
+        // extraWeightUsed: undefined, // can be extended later
+      })),
+      pointsEarned: total * exercise.unitPoint,
+      date: new Date().toISOString().split("T")[0], // YYYY-MM-DD
+      dateTime: new Date().toISOString(),
+    };
+
+    await db.put("exerciseLogs", newLog);
+    return newLog;
+  };
+
   const updateLogInput = (number: number, index: number) => {
     setLogInputs((prev) => {
       const newLogInputs = [...prev]; // create a copy
@@ -45,11 +74,6 @@ const RecordExerciseModal = ({
   };
 
   const saveWorkout = async () => {
-    // Save logic here
-    console.log("Workout saved:", logInputs);
-    // const total = logInputs.reduce((sum, val) => sum + val, 0);
-    console.log("Total:", total);
-
     if (mode === "sessionExerciseLog") {
       // additional logic for session exercise log
       if (total === 0) {
@@ -58,29 +82,7 @@ const RecordExerciseModal = ({
       }
       console.log("Logged for session exercise");
 
-      const addExerciseLog = async () => {
-        const db = await initDB();
-        const newLog = {
-          id: uuid(),
-          activitySessionId: "", // to be linked later
-          exerciseId: exercise.id,
-          exerciseName: exercise.name,
-          workoutRoutineId: workoutId, // can be extended later
-          setsCompleted: logInputs.length,
-          totalRepsOrDuration: total,
-          setDetails: logInputs.map((val, index) => ({
-            setNumber: index + 1,
-            repsOrDuration: val,
-            // extraWeightUsed: undefined, // can be extended later
-          })),
-          pointsEarned: total * exercise.unitPoint,
-          date: new Date().toISOString().split("T")[0], // YYYY-MM-DD
-        };
-
-        await db.put("exerciseLogs", newLog);
-        return newLog;
-      };
-
+      // add the new exercise log
       const savedLog = await addExerciseLog();
       console.log("Saved Exercise Log:", savedLog);
       // add points to global store
@@ -101,31 +103,10 @@ const RecordExerciseModal = ({
 
     if (mode === "quickLog") {
       console.log("Logged for quick log");
-
-      // save exercise log to database or state here
-      const addExerciseLog = async () => {
-        const db = await initDB();
-        const newLog = {
-          id: uuid(),
-          activitySessionId: "", // to be linked later
-          exerciseId: exercise.id,
-          exerciseName: exercise.name,
-          setsCompleted: logInputs.length,
-          totalRepsOrDuration: total,
-          setDetails: logInputs.map((val, index) => ({
-            setNumber: index + 1,
-            repsOrDuration: val,
-            // extraWeightUsed: undefined, // can be extended later
-          })),
-          pointsEarned: total * exercise.unitPoint,
-          date: new Date().toISOString().split("T")[0], // YYYY-MM-DD
-        };
-
-        await db.put("exerciseLogs", newLog);
-        return newLog;
-      };
-
+      // adding new exercise log
       const savedLog = await addExerciseLog();
+
+      // console.log("Saved Exercise Log:", savedLog);
 
       // add points to global store
       if (savedLog?.pointsEarned) {

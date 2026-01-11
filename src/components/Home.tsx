@@ -24,10 +24,25 @@ const Home = () => {
   const setTotalPoints = usePointsStore((state) => state.setTotalPoints);
   const tierInfo = calculateTier(totalPoints);
 
+  // const clearExerciseLogs = async () => {
+  //   const db = await initDB();
+  //   await db.clear("exerciseLogs");
+  // };
+
+  // clearExerciseLogs(); // for testing purposes only
+
+  const now = new Date().toISOString();
+  console.log(now, new Date(now).getTime());
+
   useEffect(() => {
     console.log("Home component mounted");
     const fetchData = async () => {
       const points = await getTotalPoints();
+      // const currentSession = await getCurrentSession();
+      // console.log("Current Active Session:", currentSession);
+      const db = await initDB();
+      const exercises = await db.getAll("activitySessions");
+      console.log(exercises);
       setTotalPoints(points);
     };
     fetchData();
