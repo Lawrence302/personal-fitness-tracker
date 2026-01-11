@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BicepsFlexed } from "lucide-react";
 import {
   ResponsiveContainer,
@@ -7,55 +8,49 @@ import {
   Bar,
   BarChart,
 } from "recharts";
+import { initDB } from "../../lib/db";
+import { useEffect } from "react";
 
-// const fitnessChartData = [
-//   {
-//     date: "2025-01-01",
-//     density: 1.2,
-//     sessions: 2,
-//   },
-//   {
-//     date: "2025-01-03",
-//     density: 1.5,
-//     sessions: 3,
-//   },
-//   {
-//     date: "2025-01-05",
-//     density: 1.8,
-//     sessions: 4,
-//   },
-//   {
-//     date: "2025-01-07",
-//     density: 3.6,
-//     sessions: 3,
-//   },
-//   {
-//     date: "2025-01-09",
-//     density: 2.0,
-//     sessions: 2,
-//   },
-//   {
-//     date: "2025-01-10",
-//     density: 4.0,
-//     sessions: 5,
-//   },
-//   {
-//     date: "2025-01-12",
-//     density: 5.0,
-//     sessions: 5,
-//   },
-// ];
-
-const exerciseFrequencyData = [
-  { name: "Push-ups", count: 15 },
-  { name: "Pull-ups", count: 25 },
-  { name: "Squats", count: 22 },
-  { name: "Plank", count: 10 },
-  { name: "Burpees", count: 8 },
-  { name: "Lunges", count: 12 },
-];
+type frequencyDataProps = {
+  name: string;
+  count: number;
+};
 
 const ExerciseFrequencyChart = () => {
+  const [exerciseFrequencyData, setExerciseFrequencyData] = useState<
+    frequencyDataProps[]
+  >([]);
+  useEffect(() => {
+    const getExerciseFrequencies = async () => {
+      const db = await initDB();
+      const logs = await db.getAll("exerciseLogs");
+      // console.log(logs);
+
+      // using Map to count frequencies
+      const frequencyMap: Record<string, number> = {};
+
+      logs.forEach((log) => {
+        const name = log.exerciseName;
+        if (!frequencyMap[name]) {
+          frequencyMap[name] = 1;
+        } else {
+          frequencyMap[name] += 1;
+        }
+      });
+      // converting it into an array
+      const frequenciesArray = Object.entries(frequencyMap).map(
+        ([name, count]) => ({
+          name,
+          count,
+        })
+      );
+
+      setExerciseFrequencyData(frequenciesArray);
+      console.log(frequenciesArray);
+    };
+
+    console.log(getExerciseFrequencies());
+  }, []);
   return (
     <div className='bg-zinc-900 border border-zinc-800 rounded-xl my-6 py-8'>
       <h3 className='text-[10px] font-black mb-8 text-zinc-500 capitalize tracking-widest flex items-center gap-2 pl-4'>
