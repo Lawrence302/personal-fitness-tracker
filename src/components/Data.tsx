@@ -106,12 +106,10 @@ const Data = () => {
           </p>
         </div>
       </div>
-
-      {/* Graph showing training sessions over time */}
-      <SessionChart />
-
       {/* points optained on specific days */}
       <PointsPerDayChart />
+      {/* Graph showing training sessions over time */}
+      <SessionChart />
 
       {/* Graph showing workout frequency. Most Frequent Exercises */}
       <ExerciseFrequencyChart />
