@@ -59,7 +59,9 @@ const Data = () => {
           <div>
             <div className='flex justify-between px-4 mb-1 items-center'>
               <p className='tracking-widest text-zinc-500 text-xs font-bold italic'>
-                PROGRESS TO {tierInfo?.nextTier} -{" "}
+                {tierInfo?.nextTier != null
+                  ? `PROGRESS TO ${tierInfo?.nextTier}`
+                  : "🏆ELITE "}
                 {Math.floor(tierInfo?.progressToNextTier || 100)}%
               </p>
               <p className='italic tracking-tight text-sm '>

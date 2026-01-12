@@ -83,7 +83,11 @@ const Home = () => {
 
           <div className='progress-bar mt-4'>
             <div className='flex justify-between text-xs italic mb-1'>
-              <span>PROGRESS TO {tierInfo?.nextTier}</span>{" "}
+              <span>
+                {tierInfo?.nextTier != null
+                  ? `PROGRESS TO ${tierInfo?.nextTier}`
+                  : "🏆ELITE"}
+              </span>{" "}
               <span>{tierInfo?.progressToNextTier}%</span>
             </div>
             <div className='w-full bg-grey-200 rounded-full h-1'>
