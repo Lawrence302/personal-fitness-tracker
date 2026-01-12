@@ -2,6 +2,8 @@
 import ExerciseFrequencyChart from "./charts/ExerciseFrequencyChart";
 
 import SessionChart from "./charts/SessionChart";
+import PointsPerDayChart from "./charts/PointsPerDayChart";
+
 import { Trophy } from "lucide-react";
 
 import usePointsStore from "../stores/pointsStore";
@@ -107,6 +109,9 @@ const Data = () => {
 
       {/* Graph showing training sessions over time */}
       <SessionChart />
+
+      {/* points optained on specific days */}
+      <PointsPerDayChart />
 
       {/* Graph showing workout frequency. Most Frequent Exercises */}
       <ExerciseFrequencyChart />
