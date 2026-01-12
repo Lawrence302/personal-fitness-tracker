@@ -55,7 +55,15 @@ const RecordExerciseModal = ({
       dateTime: new Date().toISOString(),
     };
 
-    await db.put("exerciseLogs", newLog);
+    const newAddedLog = await db.put("exerciseLogs", newLog);
+    // adding exercise related data to session
+    if (currentSession) {
+      currentSession.exerciseLogIds.push(newAddedLog);
+      currentSession.totalPoints += newLog.pointsEarned;
+      // updating session in DB
+      await db.put("activitySessions", currentSession);
+    }
+
     return newLog;
   };
 
