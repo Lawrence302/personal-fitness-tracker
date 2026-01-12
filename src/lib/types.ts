@@ -83,3 +83,10 @@ export type UserInfo = {
   totalExerciseLogs: number;
   joinedDate: string;
 };
+
+export type StreakStats = {
+  id: string;
+  currentStreak: number; // in days
+  longestStreak: number; // in days
+  lastActiveDate: string; // date of last activity
+};

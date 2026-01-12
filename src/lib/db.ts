@@ -7,7 +7,7 @@ import { openDB } from "idb";
 
 // Define an async function called initDB to initialize or open our database
 export const initDB = async () => {
-  const db = await openDB("calitrackDB", 1, {
+  const db = await openDB("calitrackDB", 2, {
     upgrade(db) {
       // we only create the stors if it does not already exist to avoid error
       if (!db.objectStoreNames.contains("exerciseLogs")) {
@@ -24,6 +24,10 @@ export const initDB = async () => {
 
         // Create an index on active property for quick access to current session
         store.createIndex("active", "active", { unique: false });
+      }
+
+      if (!db.objectStoreNames.contains("streakStats")) {
+        db.createObjectStore("streakStats", { keyPath: "id" });
       }
     },
   });

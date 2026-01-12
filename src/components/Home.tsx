@@ -22,6 +22,7 @@ const getTotalPoints = async () => {
 const Home = () => {
   const totalPoints = usePointsStore((state) => state.totalPoints);
   const setTotalPoints = usePointsStore((state) => state.setTotalPoints);
+
   const tierInfo = calculateTier(totalPoints);
 
   // const clearExerciseLogs = async () => {
@@ -38,6 +39,7 @@ const Home = () => {
     console.log("Home component mounted");
     const fetchData = async () => {
       const points = await getTotalPoints();
+
       // const currentSession = await getCurrentSession();
       // console.log("Current Active Session:", currentSession);
       const db = await initDB();

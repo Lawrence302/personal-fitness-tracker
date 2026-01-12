@@ -68,7 +68,41 @@ export const getCurrentSession = async () => {
   const store = db.transaction("activitySessions").store;
   const index = store.index("active");
   const activeSession = await index.get(1); // get all active sessions
+  const streakStats = await db.get("streakStats", "local");
+  // update streak stats last active date
+  const todayDate = new Date().toISOString().split("T")[0];
+  const yesterdayDate = new Date(Date.now() - 86400000)
+    .toISOString()
+    .split("T")[0];
 
+  if (streakStats) {
+    const lastActive = streakStats.lastActiveDate;
+    if (lastActive === todayDate) {
+      // do nothing
+    } else if (lastActive === yesterdayDate) {
+      streakStats.lastActiveDate = todayDate;
+      streakStats.currentStreak += 1;
+      if (streakStats.currentStreak > streakStats.longestStreak) {
+        streakStats.longestStreak = streakStats.currentStreak;
+      }
+      await db.put("streakStats", streakStats);
+    } else {
+      // reset streak
+      streakStats.lastActiveDate = todayDate;
+      streakStats.currentStreak = 1;
+      await db.put("streakStats", streakStats);
+    }
+  } else {
+    const newStreakStats = {
+      id: "local",
+      currentStreak: 1,
+      longestStreak: 1,
+      lastActiveDate: todayDate,
+    };
+    await db.put("streakStats", newStreakStats);
+  }
+
+  // function to create a new activity session
   async function createNewActivitySession() {
     const startTime = new Date().toISOString();
     const endTime = new Date(startTime).getTime() + 5 * 60 * 1000;
