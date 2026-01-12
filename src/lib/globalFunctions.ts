@@ -65,10 +65,11 @@ const activeSessionTime = async (
 // getting current activity session
 export const getCurrentSession = async () => {
   const db = await initDB();
+  const streakStats = await db.get("streakStats", "local");
   const store = db.transaction("activitySessions").store;
   const index = store.index("active");
   const activeSession = await index.get(1); // get all active sessions
-  const streakStats = await db.get("streakStats", "local");
+
   // update streak stats last active date
   const todayDate = new Date().toISOString().split("T")[0];
   const yesterdayDate = new Date(Date.now() - 86400000)

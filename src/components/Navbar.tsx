@@ -63,7 +63,11 @@ const Navbar = () => {
           <p>STREAK</p>
           <div className='flex items-center gap-1 text-orange-400'>
             <Flame className='h-3 w-3 align-middle' />
-            <span className='text-xs md:text-sm'>{currentStreak} DAYS</span>
+            <span className='text-xs md:text-sm'>
+              {currentStreak < 2
+                ? `${currentStreak} DAY`
+                : `${currentStreak} DAYS`}
+            </span>
           </div>
         </div>
       </div>
