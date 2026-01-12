@@ -1,8 +1,7 @@
 // import { RechartsDevtools } from "@recharts/devtools";
 import ExerciseFrequencyChart from "./charts/ExerciseFrequencyChart";
-import IntensityChart from "./charts/IntensityChart";
+
 import SessionChart from "./charts/SessionChart";
-import SessionVsIntensityChart from "./charts/SessionVsIntensityChart";
 import { Trophy } from "lucide-react";
 
 import usePointsStore from "../stores/pointsStore";
@@ -105,12 +104,10 @@ const Data = () => {
           </p>
         </div>
       </div>
-      {/* Graph showing training sessions and Intensity over time */}
-      <SessionVsIntensityChart />
+
       {/* Graph showing training sessions over time */}
       <SessionChart />
-      {/* Graph showing training Intensity over time */}
-      <IntensityChart />
+
       {/* Graph showing workout frequency. Most Frequent Exercises */}
       <ExerciseFrequencyChart />
     </div>

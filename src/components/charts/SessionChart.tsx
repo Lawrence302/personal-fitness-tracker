@@ -48,15 +48,6 @@ const fitnessChartData = [
   },
 ];
 
-// const exerciseFrequencyData = [
-//   { name: "Push-ups", count: 15 },
-//   { name: "Pull-ups", count: 25 },
-//   { name: "Squats", count: 22 },
-//   { name: "Plank", count: 10 },
-//   { name: "Burpees", count: 8 },
-//   { name: "Lunges", count: 12 },
-// ];
-
 const SessionChart = () => {
   return (
     <div className='bg-zinc-900 border border-zinc-800 rounded-xl my-6 py-8'>
