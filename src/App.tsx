@@ -12,7 +12,7 @@ import Coach from "./components/Coach.tsx";
 
 function App() {
   const [display, setDisplay] = useState("Home");
-  console.log(display);
+  // console.log(display);
   return (
     <div className='bg-zinc-950 h-dvh  flex flex-col md:flex-row-reverse '>
       {/* <Sidebar /> */}
@@ -20,7 +20,7 @@ function App() {
         <Navbar />
         {/* the contents of the main page starts here */}
         <div className='overflow-y-auto'>
-          {display == "Home" && <Home />}
+          {display == "Home" && <Home setDisplay={setDisplay} />}
           {display == "Workouts" && <Workouts />}
           {display == "Exercises" && <Exercises />}
           {display == "Data" && <Data />}

@@ -5,8 +5,6 @@ import { initDB } from "../lib/db";
 import usePointsStore from "../stores/pointsStore";
 import { calculateTier } from "../lib/globalFunctions";
 
-import { DateTime } from "luxon";
-
 const getTotalPoints = async () => {
   // fetch all exercise logs from IndexedD
   // return total points from all logs
@@ -21,7 +19,11 @@ const getTotalPoints = async () => {
   return totalPoints;
 };
 
-const Home = () => {
+type HomeProps = {
+  setDisplay: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const Home = ({ setDisplay }: HomeProps) => {
   const totalPoints = usePointsStore((state) => state.totalPoints);
   const setTotalPoints = usePointsStore((state) => state.setTotalPoints);
 
@@ -34,22 +36,15 @@ const Home = () => {
 
   // clearExerciseLogs(); // for testing purposes only
 
-  const now = new Date().toISOString();
-  console.log(" normal date");
-  console.log(now);
-
-  const luxonNow = DateTime.now();
-  console.log("Luxon Now date: ");
-  console.log(luxonNow.toISO());
-
   useEffect(() => {
     // console.log("Home component mounted");
     const fetchData = async () => {
       const points = await getTotalPoints();
-
-      // const currentSession = await getCurrentSession();
-      // console.log("Current Active Session:", currentSession);
       // const db = await initDB();
+
+      // const currentSession = await db.getAll("activitySessions");
+      // console.log("Current Active Session:", currentSession);
+
       // const exercises = await db.getAll("activitySessions");
       // console.log(exercises);
       setTotalPoints(points);
@@ -72,8 +67,11 @@ const Home = () => {
             </p>
           </div>
           <div className=' flex flex-col md:flex-row font-bold gap-10'>
-            <button className='btn bg-white text-zinc-800 rounded-full hover:bg-cyan-400 py-3 px-8 flex  gap-2 items-center justify-center'>
-              ENTER GYM <ChevronRight size={24} />
+            <button
+              className='btn bg-white text-zinc-800 rounded-full hover:bg-cyan-400 py-3 px-8 flex  gap-2 items-center justify-center uppercase'
+              onClick={() => setDisplay("Workouts")}
+            >
+              Begin Training <ChevronRight size={24} />
             </button>
             <button className='text-white bg-zinc-800 rounded-full hover:bg-zinc-700  py-3 px-8 flex gap-2 items-center justify-center'>
               LOG OBJECTIVE <Target size={16} />
@@ -84,7 +82,9 @@ const Home = () => {
         <div className='right-banner flex-1 flex flex-col gap-2 border rounded-xl p-4 font-bold bg-zinc-900'>
           <p className='text-xs '>PHYSICAL RANK</p>
           <div>
-            <h1 className='text-4xl  italic font-bold'>NOVICE</h1>
+            <h1 className='text-4xl  italic font-bold '>
+              {tierInfo?.userRank}
+            </h1>
             <p className='text-sm'>{totalPoints} TOTAL PTS</p>
           </div>
 
