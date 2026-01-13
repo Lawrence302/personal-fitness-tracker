@@ -17,6 +17,8 @@ export const initDB = async () => {
         // Index allows fast lookups by exercise name
         store.createIndex("name", "name", { unique: false });
       }
+
+      // activity sessions are for the global sesssions
       if (!db.objectStoreNames.contains("activitySessions")) {
         const store = db.createObjectStore("activitySessions", {
           keyPath: "id",
@@ -24,6 +26,11 @@ export const initDB = async () => {
 
         // Create an index on active property for quick access to current session
         store.createIndex("active", "active", { unique: false });
+      }
+
+      // workout training sessions: this is for the trainings in workout module
+      if (!db.objectStoreNames.contains("trainingWorkoutLogs")) {
+        db.createObjectStore("trainingWorkoutLogs");
       }
 
       if (!db.objectStoreNames.contains("streakStats")) {
