@@ -1,11 +1,20 @@
 // import { RechartsDevtools } from "@recharts/devtools";
 import ExerciseFrequencyChart from "./charts/ExerciseFrequencyChart";
-import IntensityChart from "./charts/IntensityChart";
+
 import SessionChart from "./charts/SessionChart";
-import SessionVsIntensityChart from "./charts/SessionVsIntensityChart";
+import PointsPerDayChart from "./charts/PointsPerDayChart";
+
 import { Trophy } from "lucide-react";
 
+import usePointsStore from "../stores/pointsStore";
+import { calculateTier } from "../lib/globalFunctions";
+
 const Data = () => {
+  const totalPoints = usePointsStore((state) => state.totalPoints);
+
+  const tierInfo = calculateTier(totalPoints);
+  console.log("this is tier info ", tierInfo);
+
   return (
     <div className='text-white m-2 md:m-6'>
       <div>
@@ -27,7 +36,7 @@ const Data = () => {
               <div>
                 <p className='text-sm text-zinc-500 font-bold'>CURRENT RANK</p>
                 <h1 className='tracking-tighter text-3xl italic font-bold text-zinc-500'>
-                  NOVICE
+                  {tierInfo?.userRank}
                 </h1>
                 <p className='text-xs text-zinc-400 italic '>
                   starting the journey
@@ -39,24 +48,30 @@ const Data = () => {
                 TOTAL SCORE
               </p>
               <h2 className='font-bold text-cyan-500'>
-                <span className='text-white text-2xl italic'>550</span> PTS
+                <span className='text-white text-2xl italic'>
+                  {totalPoints}
+                </span>{" "}
+                PTS
               </h2>
             </div>
           </div>
           {/* progress bar area */}
           <div>
             <div className='flex justify-between px-4 mb-1 items-center'>
-              <p className='tracking-widest text-zinc-500 text-xs font-bold'>
-                PROGRESS TO ADEPT
+              <p className='tracking-widest text-zinc-500 text-xs font-bold italic'>
+                {tierInfo?.nextTier != null
+                  ? `PROGRESS TO ${tierInfo?.nextTier}`
+                  : "🏆ELITE "}
+                {Math.floor(tierInfo?.progressToNextTier || 100)}%
               </p>
               <p className='italic tracking-tight text-sm '>
-                <span>451</span> pts remaining
+                <span>{tierInfo?.pointsToNextTier}</span> pts remaining
               </p>
             </div>
             <div className='border border-zinc-800 rounded-full p-[1px] bg-zinc-950 '>
               <div
                 className='bg-zinc-500 h-2 rounded-full'
-                style={{ width: "55%" }}
+                style={{ width: `${tierInfo?.progressToNextTier}%` }}
               ></div>
             </div>
           </div>
@@ -93,12 +108,11 @@ const Data = () => {
           </p>
         </div>
       </div>
-      {/* Graph showing training sessions and Intensity over time */}
-      <SessionVsIntensityChart />
+      {/* points optained on specific days */}
+      <PointsPerDayChart />
       {/* Graph showing training sessions over time */}
       <SessionChart />
-      {/* Graph showing training Intensity over time */}
-      <IntensityChart />
+
       {/* Graph showing workout frequency. Most Frequent Exercises */}
       <ExerciseFrequencyChart />
     </div>

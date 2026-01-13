@@ -1,43 +1,8 @@
 import { Plus, Search } from "lucide-react";
 import ExerciseCard from "./ExerciseCard";
 
-const exercises = [
-  {
-    name: "Push-up",
-    level: "Beginner",
-    musclesAffected: ["Chest", "Shoulders", "Triceps", "Core"],
-    basicInstruction:
-      "Keep your core tight, body in a straight line, and elbows at about a 45-degree angle as you lower and push up.",
-  },
-  {
-    name: "Pull-up",
-    level: "Intermediate",
-    musclesAffected: ["Back", "Biceps", "Shoulders"],
-    basicInstruction:
-      "Start from a dead hang and pull until your chin goes over the bar, using a full range of motion.",
-  },
-  {
-    name: "Squat",
-    level: "Beginner",
-    musclesAffected: ["Quadriceps", "Glutes", "Hamstrings", "Core"],
-    basicInstruction:
-      "Keep your chest up and back neutral as you lower your hips until your thighs are parallel to the ground.",
-  },
-  {
-    name: "Dead Hang",
-    level: "Beginner",
-    musclesAffected: ["Forearms", "Grip", "Shoulders"],
-    basicInstruction:
-      "Hang from the bar with straight arms, relaxed shoulders, and controlled breathing.",
-  },
-  {
-    name: "Plank",
-    level: "Beginner",
-    musclesAffected: ["Core", "Shoulders", "Glutes"],
-    basicInstruction:
-      "Maintain a straight line from head to heels while keeping your core tight and hips level.",
-  },
-];
+// importing default exercises data
+import { exercises } from "../lib/defaultData.ts";
 
 const Exercises = () => {
   return (

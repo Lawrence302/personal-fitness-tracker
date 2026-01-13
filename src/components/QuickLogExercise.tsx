@@ -3,39 +3,8 @@ import RecordExerciseModal from "./modals/RecordExerciseModal";
 import { useState } from "react";
 import type { Exercise } from "../lib/types";
 //
-
-const exercises: Exercise[] = [
-  {
-    name: "Pull-ups",
-    measurement: "reps",
-    level: "intermediate",
-    targetMuscles: ["back", "biceps"],
-  },
-  {
-    name: "Air-squats",
-    measurement: "reps",
-    level: "beginner",
-    targetMuscles: ["quads", "glutes"],
-  },
-  {
-    name: "Dead-hang",
-    measurement: "seconds",
-    level: "beginner",
-    targetMuscles: ["forearms", "grip"],
-  },
-  {
-    name: "Horse-stance",
-    measurement: "seconds",
-    level: "beginner",
-    targetMuscles: ["quads", "inner thighs"],
-  },
-  {
-    name: "Forward-lunges",
-    measurement: "reps",
-    level: "beginner",
-    targetMuscles: ["quads", "glutes", "hamstrings"],
-  },
-];
+// Importing default exercises data
+import { exercises } from "../lib/defaultData";
 
 const QuickLogExercise = () => {
   const [showRecordExercisesModal, setShowRecordExerciseModal] =

@@ -1,3 +1,4 @@
+/*
 import { Activity } from "lucide-react";
 import {
   CartesianGrid,
@@ -126,3 +127,5 @@ const IntensityChart = () => {
 };
 
 export default IntensityChart;
+
+*/

@@ -1,7 +1,57 @@
+import { useEffect } from "react";
 import { ChevronRight, Target } from "lucide-react";
 import QuickLogExercise from "./QuickLogExercise";
+import { initDB } from "../lib/db";
+import usePointsStore from "../stores/pointsStore";
+import { calculateTier } from "../lib/globalFunctions";
 
-const Home = () => {
+const getTotalPoints = async () => {
+  // fetch all exercise logs from IndexedD
+  // return total points from all logs
+  const db = await initDB();
+  const exercises = await db.getAll("exerciseLogs");
+  // console.log("Fetched exercise logs:", exercises);
+
+  const totalPoints = exercises.reduce(
+    (sum, log) => sum + (log.pointsEarned || 0),
+    0
+  );
+  return totalPoints;
+};
+
+type HomeProps = {
+  setDisplay: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const Home = ({ setDisplay }: HomeProps) => {
+  const totalPoints = usePointsStore((state) => state.totalPoints);
+  const setTotalPoints = usePointsStore((state) => state.setTotalPoints);
+
+  const tierInfo = calculateTier(totalPoints);
+
+  // const clearExerciseLogs = async () => {
+  //   const db = await initDB();
+  //   await db.clear("exerciseLogs");
+  // };
+
+  // clearExerciseLogs(); // for testing purposes only
+
+  useEffect(() => {
+    // console.log("Home component mounted");
+    const fetchData = async () => {
+      const points = await getTotalPoints();
+      // const db = await initDB();
+
+      // const currentSession = await db.getAll("activitySessions");
+      // console.log("Current Active Session:", currentSession);
+
+      // const exercises = await db.getAll("activitySessions");
+      // console.log(exercises);
+      setTotalPoints(points);
+    };
+    fetchData();
+  }, [setTotalPoints]);
+
   return (
     <div className='  flex-1 overflow-auto text-zinc-500 pt-4 mx-4 '>
       <div className='flex justify-center flex-col  md:flex-row gap-8 mb-8 '>
@@ -17,8 +67,11 @@ const Home = () => {
             </p>
           </div>
           <div className=' flex flex-col md:flex-row font-bold gap-10'>
-            <button className='btn bg-white text-zinc-800 rounded-full hover:bg-cyan-400 py-3 px-8 flex  gap-2 items-center justify-center'>
-              ENTER GYM <ChevronRight size={24} />
+            <button
+              className='btn bg-white text-zinc-800 rounded-full hover:bg-cyan-400 py-3 px-8 flex  gap-2 items-center justify-center uppercase'
+              onClick={() => setDisplay("Workouts")}
+            >
+              Begin Training <ChevronRight size={24} />
             </button>
             <button className='text-white bg-zinc-800 rounded-full hover:bg-zinc-700  py-3 px-8 flex gap-2 items-center justify-center'>
               LOG OBJECTIVE <Target size={16} />
@@ -29,18 +82,25 @@ const Home = () => {
         <div className='right-banner flex-1 flex flex-col gap-2 border rounded-xl p-4 font-bold bg-zinc-900'>
           <p className='text-xs '>PHYSICAL RANK</p>
           <div>
-            <h1 className='text-4xl  italic font-bold'>NOVICE</h1>
-            <p className='text-sm'>570 TOTAL PTS</p>
+            <h1 className='text-4xl  italic font-bold '>
+              {tierInfo?.userRank}
+            </h1>
+            <p className='text-sm'>{totalPoints} TOTAL PTS</p>
           </div>
 
-          <div className='progress-bar '>
-            <div className='flex justify-between text-sm'>
-              <span>PROGRESS TO ADEPT</span> <span>60%</span>
+          <div className='progress-bar mt-4'>
+            <div className='flex justify-between text-xs italic mb-1'>
+              <span>
+                {tierInfo?.nextTier != null
+                  ? `PROGRESS TO ${tierInfo?.nextTier}`
+                  : "🏆ELITE"}
+              </span>{" "}
+              <span>{tierInfo?.progressToNextTier}%</span>
             </div>
             <div className='w-full bg-grey-200 rounded-full h-1'>
               <div
                 className='bg-blue-500 h-2 rounded-full '
-                style={{ width: "60%" }}
+                style={{ width: `${tierInfo?.progressToNextTier}%` }}
               ></div>
             </div>
           </div>
