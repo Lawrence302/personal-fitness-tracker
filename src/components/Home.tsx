@@ -5,8 +5,10 @@ import { initDB } from "../lib/db";
 import usePointsStore from "../stores/pointsStore";
 import { calculateTier } from "../lib/globalFunctions";
 
+import { DateTime } from "luxon";
+
 const getTotalPoints = async () => {
-  // fetch all exercise logs from IndexedDB
+  // fetch all exercise logs from IndexedD
   // return total points from all logs
   const db = await initDB();
   const exercises = await db.getAll("exerciseLogs");
@@ -33,18 +35,23 @@ const Home = () => {
   // clearExerciseLogs(); // for testing purposes only
 
   const now = new Date().toISOString();
-  console.log(now, new Date(now).getTime());
+  console.log(" normal date");
+  console.log(now);
+
+  const luxonNow = DateTime.now();
+  console.log("Luxon Now date: ");
+  console.log(luxonNow.toISO());
 
   useEffect(() => {
-    console.log("Home component mounted");
+    // console.log("Home component mounted");
     const fetchData = async () => {
       const points = await getTotalPoints();
 
       // const currentSession = await getCurrentSession();
       // console.log("Current Active Session:", currentSession);
-      const db = await initDB();
-      const exercises = await db.getAll("activitySessions");
-      console.log(exercises);
+      // const db = await initDB();
+      // const exercises = await db.getAll("activitySessions");
+      // console.log(exercises);
       setTotalPoints(points);
     };
     fetchData();

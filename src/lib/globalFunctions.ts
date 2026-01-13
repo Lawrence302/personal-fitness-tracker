@@ -1,6 +1,7 @@
 import { initDB } from "./db";
 import { v4 as uuid } from "uuid";
 import type { ActivitySession } from "./types";
+import { DateTime } from "luxon";
 
 const tiers = [
   { rank: "BEGINNER", min: 0, max: 10 },
@@ -44,21 +45,19 @@ export function calculateTier(totalPoints: number) {
 // Calculate time passed since session started
 // const dateString = "2026-01-11T18:18:22.928Z";
 
-const activeSessionTime = async (
-  dateString: string,
-  session: ActivitySession
-) => {
-  const past = new Date(dateString).getTime();
-  const now = Date.now();
-  const minutes = Math.floor((now - past) / 60000); // minutes difference
+const activeSessionTime = async (session: ActivitySession) => {
+  const start = DateTime.fromISO(session.startTime, { zone: "utc" });
+  const end = DateTime.fromISO(session.endTime, { zone: "utc" });
+  const now = DateTime.now().toUTC();
+  const minutesElapsed = Math.floor(now.diff(start, "minutes").minutes); // minutes difference
 
-  if (minutes >= 5) {
+  if (now >= end) {
     const db = await initDB();
     session.active = 0;
     await db.put("activitySessions", session);
     return false;
   }
-  console.log(minutes, " passed");
+  console.log(minutesElapsed, " passed");
   return true;
 };
 
@@ -71,10 +70,8 @@ export const getCurrentSession = async () => {
   const activeSession = await index.get(1); // get all active sessions
 
   // update streak stats last active date
-  const todayDate = new Date().toISOString().split("T")[0];
-  const yesterdayDate = new Date(Date.now() - 86400000)
-    .toISOString()
-    .split("T")[0];
+  const todayDate = DateTime.now().toISODate();
+  const yesterdayDate = DateTime.now().minus({ days: 1 }).toISODate();
 
   if (streakStats) {
     const lastActive = streakStats.lastActiveDate;
@@ -105,13 +102,14 @@ export const getCurrentSession = async () => {
 
   // function to create a new activity session
   async function createNewActivitySession() {
-    const startTime = new Date().toISOString();
-    const endTime = new Date(startTime).getTime() + 5 * 60 * 1000;
+    const startTime = DateTime.now().toUTC();
+    const endTime = startTime.plus({ minutes: 5 });
     const db = await initDB();
     const newActivitySession = {
       id: uuid(),
-      startTime: startTime,
-      endTime: endTime,
+      startTime: startTime.toISO(),
+      endTime: endTime.toISO(),
+      timeZone: DateTime.now().zoneName,
       exerciseLogIds: [],
       totalPoints: 0,
       active: 1,
@@ -134,10 +132,7 @@ export const getCurrentSession = async () => {
   }
 
   // check if the session is still active
-  const isSessionActive = await activeSessionTime(
-    activeSession.startTime,
-    activeSession
-  );
+  const isSessionActive = await activeSessionTime(activeSession.startTime);
 
   if (isSessionActive) {
     return activeSession;

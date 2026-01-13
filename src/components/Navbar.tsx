@@ -20,7 +20,7 @@ const Navbar = () => {
   const [activitySessions, setActivitySessions] = useState<number>(0);
 
   useEffect(() => {
-    console.log("Home component mounted");
+    // console.log("Home component mounted");
     const fetchData = async () => {
       const streakinfo = await getStreakStats();
       if (streakinfo) {
@@ -31,7 +31,7 @@ const Navbar = () => {
       // console.log("Current Active Session:", currentSession);
       const db = await initDB();
       const exercises = await db.getAll("activitySessions");
-      console.log(exercises);
+      // console.log(exercises);
       setActivitySessions(exercises.length);
     };
     fetchData();

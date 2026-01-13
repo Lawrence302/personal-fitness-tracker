@@ -5,6 +5,7 @@ import { initDB } from "../../lib/db";
 import { getCurrentSession } from "../../lib/globalFunctions";
 import { v4 as uuid } from "uuid";
 import usePointsStore from "../../stores/pointsStore";
+import { DateTime } from "luxon";
 
 type RecordExerciseModalProps = {
   closeModal: () => void;
@@ -51,8 +52,10 @@ const RecordExerciseModal = ({
         // extraWeightUsed: undefined, // can be extended later
       })),
       pointsEarned: total * exercise.unitPoint,
-      date: new Date().toISOString().split("T")[0], // YYYY-MM-DD
-      dateTime: new Date().toISOString(),
+      // date: new Date().toISOString().split("T")[0], // YYYY-MM-DD
+      date: DateTime.now().toISODate(), // YYYY-MM-DD from luxon
+      globalDateTime: DateTime.now().toUTC().toISO(),
+      timeZone: DateTime.now().zoneName,
     };
 
     const newAddedLog = await db.put("exerciseLogs", newLog);
