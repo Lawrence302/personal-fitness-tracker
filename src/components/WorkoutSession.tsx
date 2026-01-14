@@ -69,6 +69,10 @@ const getCurrentTrainingWorkoutLog = async () => {
       currentWorkoutLog.endTime = now.toISO();
       currentWorkoutLog.active = 0;
 
+      if (currentWorkoutLog.progress >= 100) {
+        currentWorkoutLog.completed = 1;
+      }
+
       await db.put("trainingWorkoutLogs", currentWorkoutLog);
 
       // return undefined to indicate no active session
