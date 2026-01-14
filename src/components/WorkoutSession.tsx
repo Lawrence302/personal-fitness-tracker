@@ -133,24 +133,27 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
 
   const handleCheckEvent = async (exerciseId: string) => {
     if (workoutTrainingSession) {
-      const db = await initDB();
-      console.log("Checked exercise at index:", exerciseId);
-      // Check if exercise is tracked. making sure user can't mark as done if not tracked
+      if (workoutTrainingSession.exercisesAtempted.includes(exerciseId)) {
+        const db = await initDB();
+        // console.log("Checked exercise at index:", exerciseId);
+        // Check if exercise is tracked. making sure user can't mark as done if not tracked
 
-      if (!completedExercisese.includes(exerciseId)) {
-        setCompletedExercises([...completedExercisese, exerciseId]);
+        if (!completedExercisese.includes(exerciseId)) {
+          setCompletedExercises([...completedExercisese, exerciseId]);
 
-        const log: TrainingWorkoutLog = { ...workoutTrainingSession };
-        if (!log.completedExercises.includes(exerciseId)) {
-          log.completedExercises.push(exerciseId);
-          log.progress =
-            (log.completedExercises.length / currentSession.exercises.length) *
-            100;
-        }
+          const log: TrainingWorkoutLog = { ...workoutTrainingSession };
+          if (!log.completedExercises.includes(exerciseId)) {
+            log.completedExercises.push(exerciseId);
+            log.progress =
+              (log.completedExercises.length /
+                currentSession.exercises.length) *
+              100;
+          }
 
-        const updatedLog = await db.put("trainingWorkoutLogs", log);
-        if (updatedLog) {
-          setWorkoutTrainingSession(log);
+          const updatedLog = await db.put("trainingWorkoutLogs", log);
+          if (updatedLog) {
+            setWorkoutTrainingSession(log);
+          }
         }
       } else {
         alert("Exercise not done yet! Complete it before marking as done.");
