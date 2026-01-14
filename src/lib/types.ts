@@ -94,7 +94,7 @@ export type StreakStats = {
 export type TrainingWorkoutLog = {
   id: string;
   routineName: string;
-  routineId: string;
+  workoutId: string;
   started: 0 | 1;
   active: 0 | 1;
   completed: 0 | 1;

@@ -5,6 +5,7 @@ import RecordExerciseModal from "./modals/RecordExerciseModal.tsx";
 import { initDB } from "../lib/db.ts";
 import { v4 as uuid } from "uuid";
 import { DateTime } from "luxon";
+import { workoutPrograms } from "../lib/defaultData.ts";
 
 ///
 // export type TrainingWorkoutLog = {
@@ -25,12 +26,12 @@ import { DateTime } from "luxon";
 //
 const createNewTrainingWorkoutSession = (session: Workout) => {
   // const endTime = startTime.plus({minutes: 2})
-  console.log(session);
+  // console.log(session);
 
   const newTrainingSession: TrainingWorkoutLog = {
     id: uuid(),
     routineName: session.name,
-    routineId: session.id,
+    workoutId: session.id,
     started: 0,
     active: 0,
     completed: 0,
@@ -86,6 +87,7 @@ type WorkoutSessionProps = {
   closeSession: () => void;
 };
 const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
+  const [currentSession, setCurrentSession] = useState<Workout>(session);
   const [sessionActive, setSessionActive] = useState<boolean>(false);
   const [completedExercisese, setCompletedExercises] = useState<string[]>([]);
   // dummy for session presentation for now
@@ -144,11 +146,18 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
     async function getData() {
       const trainingSession = await getCurrentTrainingWorkoutLog();
 
-      if (trainingSession) {
-        setWorkoutTrainingSession(trainingSession);
-        setCompletedExercises(trainingSession.completedExercises);
-        setSessionActive(true);
+      if (!trainingSession) return;
+      const workout = workoutPrograms.find(
+        (s) => s.id === trainingSession.workoutId
+      );
+
+      if (workout) {
+        setCurrentSession(workout);
       }
+
+      setWorkoutTrainingSession(trainingSession);
+      setCompletedExercises(trainingSession.completedExercises);
+      setSessionActive(true);
     }
     getData();
   }, []);
@@ -169,7 +178,7 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
           </div>
           <div>
             <h1 className='font-bold italic tracking-tighter text-lg lg:text-xl uppercase'>
-              In Progress: {session.name}
+              In Progress: {currentSession.name}
             </h1>
             <p className='text-sm text-blue-500'>
               Status: Keep going, Focus on Form
@@ -186,7 +195,7 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
             ) : (
               <button
                 className=' bg-blue-500 px-3 md:px-6 py-2 font-bold uppercase rounded-lg cursor-pointer hover:bg-blue-400 text-sm'
-                onClick={() => startSession(session)}
+                onClick={() => startSession(currentSession)}
               >
                 Start Session
               </button>
@@ -206,7 +215,7 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
           </div>
         </div>
         <div className=' grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
-          {session.exercises.map((exercise) => {
+          {currentSession.exercises.map((exercise) => {
             return (
               <div
                 key={exercise.id}
