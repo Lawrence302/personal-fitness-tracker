@@ -7,8 +7,12 @@ import { openDB } from "idb";
 
 // Define an async function called initDB to initialize or open our database
 export const initDB = async () => {
-  const db = await openDB("calitrackDB", 2, {
+  const db = await openDB("calitrackDB", 12, {
     upgrade(db) {
+      // // 1️⃣ Delete ONLY the broken store
+      // if (db.objectStoreNames.contains("trainingWorkoutLogs")) {
+      //   db.deleteObjectStore("trainingWorkoutLogs");
+      // }
       // we only create the stors if it does not already exist to avoid error
       if (!db.objectStoreNames.contains("exerciseLogs")) {
         const store = db.createObjectStore("exerciseLogs", { keyPath: "id" });
@@ -17,6 +21,8 @@ export const initDB = async () => {
         // Index allows fast lookups by exercise name
         store.createIndex("name", "name", { unique: false });
       }
+
+      // activity sessions are for the global sesssions
       if (!db.objectStoreNames.contains("activitySessions")) {
         const store = db.createObjectStore("activitySessions", {
           keyPath: "id",
@@ -26,8 +32,12 @@ export const initDB = async () => {
         store.createIndex("active", "active", { unique: false });
       }
 
-      if (!db.objectStoreNames.contains("streakStats")) {
-        db.createObjectStore("streakStats", { keyPath: "id" });
+      // workout training sessions: this is for the trainings in workout module
+      if (!db.objectStoreNames.contains("trainingWorkoutLogs")) {
+        const store = db.createObjectStore("trainingWorkoutLogs", {
+          keyPath: "id",
+        });
+        store.createIndex("active", "active", { unique: false });
       }
     },
   });

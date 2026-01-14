@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { X, Trash, Plus, Save } from "lucide-react";
-import type { Exercise } from "../../lib/types";
+import type { Exercise, TrainingWorkoutLog } from "../../lib/types";
 import { initDB } from "../../lib/db";
 import { getCurrentSession } from "../../lib/globalFunctions";
 import { v4 as uuid } from "uuid";
@@ -12,16 +12,20 @@ type RecordExerciseModalProps = {
   exercise: Exercise;
   mode: "quickLog" | "sessionExerciseLog";
   recordInTrack?: React.Dispatch<React.SetStateAction<string[]>>;
-  exerciseId?: string;
+  trainingSession?: TrainingWorkoutLog;
+  updateTrainingSession?: React.Dispatch<
+    React.SetStateAction<TrainingWorkoutLog | undefined>
+  >;
+
   workoutId?: string;
 };
 const RecordExerciseModal = ({
   closeModal,
   exercise,
   mode,
-  recordInTrack,
-  exerciseId,
   workoutId,
+  trainingSession,
+  updateTrainingSession,
 }: RecordExerciseModalProps) => {
   const [logInputs, setLogInputs] = useState<number[]>([0]);
   const addPoints = usePointsStore((state) => state.incrementPoints);
@@ -85,6 +89,7 @@ const RecordExerciseModal = ({
   };
 
   const saveWorkout = async () => {
+    const db = await initDB();
     if (mode === "sessionExerciseLog") {
       // additional logic for session exercise log
       if (total === 0) {
@@ -101,15 +106,49 @@ const RecordExerciseModal = ({
         addPoints(savedLog.pointsEarned);
       }
 
-      // mark exercise as tracked in session
-      if (recordInTrack && savedLog && exerciseId !== undefined) {
-        recordInTrack((prev) => {
-          if (prev.includes(exerciseId)) {
-            return prev; // already tracked
+      // update the TrainingSessionLog
+      if (trainingSession) {
+        const temporalTrainingSession: TrainingWorkoutLog = {
+          ...trainingSession,
+        };
+        if (trainingSession.started == 0) {
+          const startTime = DateTime.fromISO(trainingSession.startTime, {
+            zone: "utc",
+          });
+          const estimatedDuration = trainingSession.estimatedTime;
+          temporalTrainingSession.started = 1;
+          temporalTrainingSession.active = 1;
+          temporalTrainingSession.endTime =
+            startTime.plus({ minute: estimatedDuration }).toISO() ?? undefined;
+        }
+        temporalTrainingSession.exerciseLogs.push(savedLog.id);
+        temporalTrainingSession.totalPoints += savedLog.pointsEarned;
+
+        if (!temporalTrainingSession.exercisesAtempted.includes(exercise.id)) {
+          temporalTrainingSession.exercisesAtempted.push(exercise.id);
+        }
+
+        const modifiedTrainingSession = await db.put(
+          "trainingWorkoutLogs",
+          temporalTrainingSession
+        );
+
+        if (updateTrainingSession) {
+          if (modifiedTrainingSession) {
+            updateTrainingSession(temporalTrainingSession);
           }
-          return [...prev, exerciseId];
-        }); // mark as tracked
+        }
       }
+      // mark exercise as tracked in session
+      // if (recordInTrack && savedLog && exercise.id !== undefined) {
+      //   recordInTrack((prev) => {
+      //     if (prev.includes(exercise.id)) {
+      //       return prev; // already tracked
+      //     }
+      //     const currentTrack = [...prev, exercise.id]
+      //     return currentTrack;
+      //   }); // mark as tracked
+      // }
     }
 
     if (mode === "quickLog") {
