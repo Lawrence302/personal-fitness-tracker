@@ -7,7 +7,7 @@ import { openDB } from "idb";
 
 // Define an async function called initDB to initialize or open our database
 export const initDB = async () => {
-  const db = await openDB("calitrackDB", 12, {
+  const db = await openDB("calitrackDB", 14, {
     upgrade(db) {
       // // 1️⃣ Delete ONLY the broken store
       // if (db.objectStoreNames.contains("trainingWorkoutLogs")) {
@@ -38,6 +38,10 @@ export const initDB = async () => {
           keyPath: "id",
         });
         store.createIndex("active", "active", { unique: false });
+      }
+
+      if (!db.objectStoreNames.contains("streakStats")) {
+        db.createObjectStore("streakStats", { keyPath: "id" });
       }
     },
   });
