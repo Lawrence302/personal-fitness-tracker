@@ -113,17 +113,43 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
     setSessionActive(true);
   };
 
-  const handleCloseSession = () => {
-    // check if all exercises are completed before closing session
-    if (completedExercisese.length < session.exercises.length) {
-      const confirmClose = confirm(
-        "You have not completed all exercises. Are you sure you want to finish the session?"
-      );
-      if (confirmClose) {
-        closeSession();
+  // closing a workout Training Session
+  const handleCloseSession = async () => {
+    if (workoutTrainingSession) {
+      const saveCurrentWorkoutTrainingSession = async () => {
+        const closingSession: TrainingWorkoutLog = {
+          ...workoutTrainingSession,
+        };
+
+        closingSession.active = 0;
+        closingSession.endTime = DateTime.now().toUTC().toISO();
+
+        if (
+          closingSession.completedExercises.length >=
+            currentSession.exercises.length &&
+          closingSession.progress === 100
+        ) {
+          closingSession.completed = 1;
+        }
+        const db = await initDB();
+        const saved = await db.put("trainingWorkoutLogs", closingSession);
+
+        if (saved) {
+          closeSession();
+        }
+      };
+
+      // check if all exercises are completed before closing session
+      if (completedExercisese.length < session.exercises.length) {
+        const confirmClose = confirm(
+          "You have not completed all exercises. Are you sure you want to finish the session?"
+        );
+        if (confirmClose) {
+          await saveCurrentWorkoutTrainingSession();
+        }
+      } else {
+        await saveCurrentWorkoutTrainingSession();
       }
-    } else {
-      closeSession();
     }
   };
 
