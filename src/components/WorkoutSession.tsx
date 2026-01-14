@@ -101,9 +101,9 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
   // const [selectedExerciseId, setSelectedExerciseId] = useState<string>();
 
   // tracking the progress of the workout session
-  const progress = Math.round(
-    (completedExercisese.length / session.exercises.length) * 100
-  );
+  // const progress = Math.round(
+  //   (completedExercisese.length / session.exercises.length) * 100
+  // );
 
   const startSession = (session: Workout) => {
     const newWorkoutSession = createNewTrainingWorkoutSession(session);
@@ -131,14 +131,30 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
     setShowRecordExerciseModal(false);
   };
 
-  const handleCheckEvent = (exerciseId: string) => {
-    console.log("Checked exercise at index:", exerciseId);
-    // Check if exercise is tracked. making sure user can't mark as done if not tracked
+  const handleCheckEvent = async (exerciseId: string) => {
+    if (workoutTrainingSession) {
+      const db = await initDB();
+      console.log("Checked exercise at index:", exerciseId);
+      // Check if exercise is tracked. making sure user can't mark as done if not tracked
 
-    if (!completedExercisese.includes(exerciseId)) {
-      setCompletedExercises([...completedExercisese, exerciseId]);
-    } else {
-      alert("Exercise not done yet! Complete it before marking as done.");
+      if (!completedExercisese.includes(exerciseId)) {
+        setCompletedExercises([...completedExercisese, exerciseId]);
+
+        const log: TrainingWorkoutLog = { ...workoutTrainingSession };
+        if (!log.completedExercises.includes(exerciseId)) {
+          log.completedExercises.push(exerciseId);
+          log.progress =
+            (log.completedExercises.length / currentSession.exercises.length) *
+            100;
+        }
+
+        const updatedLog = await db.put("trainingWorkoutLogs", log);
+        if (updatedLog) {
+          setWorkoutTrainingSession(log);
+        }
+      } else {
+        alert("Exercise not done yet! Complete it before marking as done.");
+      }
     }
   };
 
@@ -205,12 +221,16 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
         {/* showing the progress made in the session */}
         <div className='my-4'>
           <h2 className='flex text-sm gap-4 italic tracking-tighter font-bold text-zinc-500 pl-4 mb-1'>
-            progress made so far <span>{progress}%</span>{" "}
+            progress made so far{" "}
+            <span>{workoutTrainingSession?.progress}%</span>{" "}
           </h2>
           <div className='border border-zinc-800 h-3 py-1 rounded-full flex items-center bg-black'>
             <div
               className=' h-2 rounded-full'
-              style={{ backgroundColor: "cyan", width: `${progress}%` }}
+              style={{
+                backgroundColor: "cyan",
+                width: `${workoutTrainingSession?.progress}%`,
+              }}
             ></div>
           </div>
         </div>
