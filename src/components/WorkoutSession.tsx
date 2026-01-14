@@ -251,7 +251,7 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
         <div className='my-4'>
           <h2 className='flex text-sm gap-4 italic tracking-tighter font-bold text-zinc-500 pl-4 mb-1'>
             progress made so far{" "}
-            <span>{workoutTrainingSession?.progress}%</span>{" "}
+            <span>{workoutTrainingSession?.progress ?? 0}%</span>{" "}
           </h2>
           <div className='border border-zinc-800 h-3 py-1 rounded-full flex items-center bg-black'>
             <div
@@ -263,7 +263,19 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
             ></div>
           </div>
         </div>
-        <div className=' grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
+        <div className='text-center font-bold italic mb-2'>
+          {sessionActive
+            ? "Workout Session started"
+            : " Click Start Session To get Started"}
+        </div>
+        {/* Listing the exercises in the session */}
+        <div
+          className={` grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 ${
+            sessionActive
+              ? ""
+              : "disabled:opacity-50 bg-zinc-900 pointer-events-none cursor-not-allowed"
+          } `}
+        >
           {currentSession.exercises.map((exercise) => {
             return (
               <div
