@@ -49,7 +49,9 @@ const activeSessionTime = async (session: ActivitySession) => {
   const start = DateTime.fromISO(session.startTime, { zone: "utc" });
   const end = DateTime.fromISO(session.endTime, { zone: "utc" });
   const now = DateTime.now().toUTC();
-  const minutesElapsed = Math.floor(now.diff(start, "minutes").minutes); // minutes difference
+
+  const minutesElapsed = Math.floor(now.diff(start).as("minutes"));
+  // minutes difference
 
   if (now >= end) {
     const db = await initDB();
@@ -132,7 +134,7 @@ export const getCurrentSession = async () => {
   }
 
   // check if the session is still active
-  const isSessionActive = await activeSessionTime(activeSession.startTime);
+  const isSessionActive = await activeSessionTime(activeSession);
 
   if (isSessionActive) {
     return activeSession;

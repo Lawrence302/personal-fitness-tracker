@@ -1,7 +1,84 @@
 import { useEffect, useState } from "react";
 import { Play, Timer } from "lucide-react";
-import type { Exercise, Workout } from "../lib/types.ts";
+import type { Exercise, Workout, TrainingWorkoutLog } from "../lib/types.ts";
 import RecordExerciseModal from "./modals/RecordExerciseModal.tsx";
+import { initDB } from "../lib/db.ts";
+import { v4 as uuid } from "uuid";
+import { DateTime } from "luxon";
+
+///
+// export type TrainingWorkoutLog = {
+//   id: string;
+//   routineName: string;
+//   routineId: string;
+//   started: 0 | 1;
+//   completed: 0 | 1;
+//   startTime: string;
+//   endTime: string;
+//   estimatedTime: number; // in minutes
+//   exerciseLogs: string[]; // ids of exerciselogs
+//   progress: number;
+//   totalPoints: number;
+// };
+/////
+
+//
+const createNewTrainingWorkoutSession = (session: Workout) => {
+  // const endTime = startTime.plus({minutes: 2})
+  console.log(session);
+
+  const newTrainingSession: TrainingWorkoutLog = {
+    id: uuid(),
+    routineName: session.name,
+    routineId: session.id,
+    started: 0,
+    active: 0,
+    completed: 0,
+    startTime: DateTime.now().toUTC().toISO(),
+    endTime: undefined,
+    // estimatedTime: session.estimatedTime, // in minutes
+    estimatedTime: 2, // in minutes
+    exerciseLogs: [], // ids of exerciselogs
+    exercisesAtempted: [], // ids of individual exercises in the session
+    completedExercises: [],
+    progress: 0,
+    totalPoints: 0,
+  };
+  return newTrainingSession;
+};
+
+const getCurrentTrainingWorkoutLog = async () => {
+  const db = await initDB();
+  const currentWorkoutLog = await db.getFromIndex(
+    "trainingWorkoutLogs",
+    "active",
+    1
+  );
+
+  if (currentWorkoutLog) {
+    const startTime = currentWorkoutLog.startTime;
+
+    const start = DateTime.fromISO(startTime, { zone: "utc" });
+    const estimatedEnd = start.plus({
+      minutes: currentWorkoutLog.estimatedTime,
+    });
+    const now = DateTime.now().toUTC();
+
+    if (now > estimatedEnd) {
+      currentWorkoutLog.endTime = now.toISO();
+      currentWorkoutLog.active = 0;
+
+      await db.put("trainingWorkoutLogs", currentWorkoutLog);
+
+      // return undefined to indicate no active session
+      return undefined;
+    }
+
+    return currentWorkoutLog;
+  }
+
+  return undefined;
+};
 
 // Workout Session Component
 type WorkoutSessionProps = {
@@ -9,22 +86,34 @@ type WorkoutSessionProps = {
   closeSession: () => void;
 };
 const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
+  const [sessionActive, setSessionActive] = useState<boolean>(false);
   const [completedExercisese, setCompletedExercises] = useState<string[]>([]);
+  // dummy for session presentation for now
+  const [workoutTrainingSession, setWorkoutTrainingSession] =
+    useState<TrainingWorkoutLog>();
 
-  const [exercisesTrack, setExercisesTrack] = useState<string[]>([]);
+  // const [exercisesTrack, setExercisesTrack] = useState<string[]>([]);
   const [showRecordExerciseModal, setShowRecordExerciseModal] =
     useState<boolean>(false);
   const [selectedExercise, setSelectedExercise] = useState<Exercise>();
-  const [selectedExerciseId, setSelectedExerciseId] = useState<string>();
+  // const [selectedExerciseId, setSelectedExerciseId] = useState<string>();
 
   // tracking the progress of the workout session
   const progress = Math.round(
-    (exercisesTrack.length / session.exercises.length) * 100
+    (completedExercisese.length / session.exercises.length) * 100
   );
+
+  const startSession = (session: Workout) => {
+    const newWorkoutSession = createNewTrainingWorkoutSession(session);
+    console.log(" new session ", newWorkoutSession);
+    setWorkoutTrainingSession(newWorkoutSession);
+
+    setSessionActive(true);
+  };
 
   const handleCloseSession = () => {
     // check if all exercises are completed before closing session
-    if (exercisesTrack.length < session.exercises.length) {
+    if (completedExercisese.length < session.exercises.length) {
       const confirmClose = confirm(
         "You have not completed all exercises. Are you sure you want to finish the session?"
       );
@@ -43,19 +132,31 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
   const handleCheckEvent = (exerciseId: string) => {
     console.log("Checked exercise at index:", exerciseId);
     // Check if exercise is tracked. making sure user can't mark as done if not tracked
-    if (exercisesTrack.includes(exerciseId)) {
-      if (!completedExercisese.includes(exerciseId)) {
-        setCompletedExercises([...completedExercisese, exerciseId]);
-      }
-      console.log(completedExercisese);
+
+    if (!completedExercisese.includes(exerciseId)) {
+      setCompletedExercises([...completedExercisese, exerciseId]);
     } else {
       alert("Exercise not done yet! Complete it before marking as done.");
     }
   };
 
   useEffect(() => {
-    console.log("Exercises tracked in session:", exercisesTrack);
-  }, [exercisesTrack]);
+    async function getData() {
+      const trainingSession = await getCurrentTrainingWorkoutLog();
+
+      if (trainingSession) {
+        setWorkoutTrainingSession(trainingSession);
+        setCompletedExercises(trainingSession.completedExercises);
+        setSessionActive(true);
+      }
+    }
+    getData();
+  }, []);
+
+  useEffect(() => {
+    console.log(" this is the workout session ", workoutTrainingSession);
+    // console.log("Exercises tracked in session:", exercisesTrack);
+  }, [workoutTrainingSession]);
 
   return (
     <div>
@@ -75,12 +176,21 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
             </p>
           </div>
           <div>
-            <button
-              className=' bg-blue-500 px-3 md:px-6 py-2 font-bold uppercase rounded-lg cursor-pointer hover:bg-blue-400 text-sm'
-              onClick={() => handleCloseSession()}
-            >
-              Finish Session
-            </button>
+            {sessionActive ? (
+              <button
+                className=' bg-blue-500 px-3 md:px-6 py-2 font-bold uppercase rounded-lg cursor-pointer hover:bg-blue-400 text-sm'
+                onClick={() => handleCloseSession()}
+              >
+                Finish Session
+              </button>
+            ) : (
+              <button
+                className=' bg-blue-500 px-3 md:px-6 py-2 font-bold uppercase rounded-lg cursor-pointer hover:bg-blue-400 text-sm'
+                onClick={() => startSession(session)}
+              >
+                Start Session
+              </button>
+            )}
           </div>
         </div>
         {/* showing the progress made in the session */}
@@ -136,10 +246,6 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
                   onClick={() => {
                     setSelectedExercise(exercise);
                     setShowRecordExerciseModal(true);
-                    // setSelectedExerciseIndex(index);
-                    if (!exercisesTrack.includes(exercise.id)) {
-                      setSelectedExerciseId(exercise.id);
-                    }
                   }}
                 >
                   <Play className='text-green-500 ' size={24} />
@@ -178,9 +284,9 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
           closeModal={closeRecordExerciseModal}
           exercise={selectedExercise}
           mode='sessionExerciseLog'
-          recordInTrack={setExercisesTrack}
-          exerciseId={selectedExerciseId}
           workoutId={session.id}
+          trainingSession={workoutTrainingSession}
+          updateTrainingSession={setWorkoutTrainingSession}
         />
       )}
     </div>

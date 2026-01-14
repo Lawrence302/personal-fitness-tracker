@@ -91,16 +91,19 @@ export type StreakStats = {
   lastActiveDate: string; // date of last activity
 };
 
-export type TrainingWorkoutLogs = {
+export type TrainingWorkoutLog = {
   id: string;
   routineName: string;
   routineId: string;
   started: 0 | 1;
+  active: 0 | 1;
   completed: 0 | 1;
   startTime: string;
-  endTime: string;
+  endTime: string | undefined;
   estimatedTime: number; // in minutes
   exerciseLogs: string[]; // ids of exerciselogs
+  completedExercises: string[]; // ids of completed exercises
+  exercisesAtempted: string[]; // ids of individual exercises in the session
   progress: number;
   totalPoints: number;
 };

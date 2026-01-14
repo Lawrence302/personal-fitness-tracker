@@ -42,7 +42,7 @@ const Home = ({ setDisplay }: HomeProps) => {
       const points = await getTotalPoints();
       // const db = await initDB();
 
-      // const currentSession = await db.getAll("activitySessions");
+      // const currentSession = await db.getAll("trainingWorkoutLogs");
       // console.log("Current Active Session:", currentSession);
 
       // const exercises = await db.getAll("activitySessions");
