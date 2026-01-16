@@ -4,7 +4,6 @@ import QuickLogExercise from "./QuickLogExercise";
 import { initDB } from "../lib/db";
 import usePointsStore from "../stores/pointsStore";
 import { calculateTier } from "../lib/globalFunctions";
-import useExerciseStore from "../stores/exerciseStore";
 
 const getTotalPoints = async () => {
   // fetch all exercise logs from IndexedD
@@ -20,12 +19,6 @@ const getTotalPoints = async () => {
   return totalPoints;
 };
 
-const getCurrentStreak = async () => {
-  const db = await initDB();
-  const streakStats = await db.get("streakStats", "currentStreak");
-  return streakStats?.currentStreak || 0;
-};
-
 type HomeProps = {
   setDisplay: React.Dispatch<React.SetStateAction<string>>;
 };
@@ -33,10 +26,6 @@ type HomeProps = {
 const Home = ({ setDisplay }: HomeProps) => {
   const totalPoints = usePointsStore((state) => state.totalPoints);
   const setTotalPoints = usePointsStore((state) => state.setTotalPoints);
-
-  const updateCurrentStreak = useExerciseStore(
-    (state) => state.updateCurrentStreak
-  );
 
   const tierInfo = calculateTier(totalPoints);
 
@@ -51,7 +40,7 @@ const Home = ({ setDisplay }: HomeProps) => {
     // console.log("Home component mounted");
     const fetchData = async () => {
       const points = await getTotalPoints();
-      const currentStreak = await getCurrentStreak();
+
       // const db = await initDB();
 
       // const currentSession = await db.getAll("trainingWorkoutLogs");
@@ -60,10 +49,9 @@ const Home = ({ setDisplay }: HomeProps) => {
       // const exercises = await db.getAll("activitySessions");
       // console.log(exercises);
       setTotalPoints(points);
-      updateCurrentStreak(currentStreak);
     };
     fetchData();
-  }, [setTotalPoints, updateCurrentStreak]);
+  }, [setTotalPoints]);
 
   return (
     <div className='  flex-1 overflow-auto text-zinc-500 pt-4 mx-4 '>
