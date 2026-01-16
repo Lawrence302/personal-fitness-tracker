@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ChevronRight, Target, Info } from "lucide-react";
 import QuickLogExercise from "./QuickLogExercise";
 import { initDB } from "../lib/db";
 import usePointsStore from "../stores/pointsStore";
 import { calculateTier } from "../lib/globalFunctions";
+import { quotes } from "../lib/quotes";
+import { get } from "http";
 
 const getTotalPoints = async () => {
   // fetch all exercise logs from IndexedD
@@ -23,11 +25,25 @@ type HomeProps = {
   setDisplay: React.Dispatch<React.SetStateAction<string>>;
 };
 
+const getRandomIndex = (length: number) => {
+  console.log("length is ", length);
+  return Math.floor(Math.random() * length);
+};
+
 const Home = ({ setDisplay }: HomeProps) => {
   const totalPoints = usePointsStore((state) => state.totalPoints);
   const setTotalPoints = usePointsStore((state) => state.setTotalPoints);
+  const [randomQuote, setRandomQuote] = useState<string>(
+    () => quotes[getRandomIndex(quotes.length)]
+  );
 
   const tierInfo = calculateTier(totalPoints);
+
+  const getRandomQuote = () => {
+    const index = Math.floor(Math.random() * quotes.length);
+
+    return index;
+  };
 
   // const clearExerciseLogs = async () => {
   //   const db = await initDB();
@@ -50,14 +66,25 @@ const Home = ({ setDisplay }: HomeProps) => {
       // console.log(exercises);
       setTotalPoints(points);
     };
+
     fetchData();
   }, [setTotalPoints]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const randomIndex = getRandomQuote();
+      console.log(randomIndex);
+      setRandomQuote(quotes[randomIndex]);
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className='  flex-1 overflow-auto text-zinc-500 pt-4 mx-4 '>
       <div className='   mb-4 w-full flex justify-center '>
-        <p className='bg-zinc-800 px-4 w-fit text-sm md:text-base rounded italic text-white font-semibold'>
-          You don't rush progress — you respect it.
+        <p className='bg-zinc-800 px-4 py-1 w-fit text-sm md:text-base rounded italic text-white font-semibold'>
+          {randomQuote}
         </p>
       </div>
       <div className='flex justify-center flex-col  md:flex-row gap-8 mb-8 '>
