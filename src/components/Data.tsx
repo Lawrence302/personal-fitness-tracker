@@ -35,7 +35,7 @@ const Data = () => {
               </div>
               <div>
                 <p className='text-sm text-zinc-500 font-bold'>CURRENT RANK</p>
-                <h1 className='tracking-tighter text-3xl italic font-bold text-zinc-500'>
+                <h1 className='tracking-tighter text-2xl md:text-3xl italic font-bold text-zinc-500'>
                   {tierInfo?.userRank}
                 </h1>
                 <p className='text-xs text-zinc-400 italic '>
@@ -44,14 +44,11 @@ const Data = () => {
               </div>
             </div>
             <div>
-              <p className='uppercase text-sm font-bold tracking-wider text-zinc-400'>
+              <p className='uppercase text-[10px] font-bold tracking-wider text-zinc-400'>
                 TOTAL SCORE
               </p>
-              <h2 className='font-bold text-cyan-500'>
-                <span className='text-white text-2xl italic'>
-                  {totalPoints}
-                </span>{" "}
-                PTS
+              <h2 className='font-bold text-lg md:text-2xl text-cyan-500'>
+                <span className='text-white  italic'>{totalPoints}</span> PTS
               </h2>
             </div>
           </div>
