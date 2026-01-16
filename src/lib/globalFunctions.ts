@@ -2,7 +2,8 @@ import { initDB } from "./db";
 import { v4 as uuid } from "uuid";
 import type { ActivitySession } from "./types";
 import { DateTime } from "luxon";
-import usePointsStore from "../stores/pointsStore";
+// import usePointsStore from "../stores/pointsStore";
+import useExerciseStore from "../stores/exerciseStore";
 
 const tiers = [
   { rank: "BEGINNER", min: 0, max: 10 },
@@ -88,7 +89,9 @@ export const getCurrentSession = async () => {
       }
 
       // update streak in zustand store
-      usePointsStore.getState().updateCurrentStreak(streakStats.currentStreak);
+      useExerciseStore
+        .getState()
+        .updateCurrentStreak(streakStats.currentStreak);
 
       // save streak stats to indexedDB
       await db.put("streakStats", streakStats);
@@ -98,7 +101,9 @@ export const getCurrentSession = async () => {
       streakStats.currentStreak = 1;
 
       // update streak in zustand store
-      usePointsStore.getState().updateCurrentStreak(streakStats.currentStreak);
+      useExerciseStore
+        .getState()
+        .updateCurrentStreak(streakStats.currentStreak);
 
       // save streak stats to indexedDB
       await db.put("streakStats", streakStats);
@@ -112,7 +117,7 @@ export const getCurrentSession = async () => {
     };
 
     // update streak in zustand store
-    usePointsStore.getState().updateCurrentStreak(streakStats.currentStreak);
+    useExerciseStore.getState().updateCurrentStreak(streakStats.currentStreak);
 
     // save streak stats to indexedDB
     await db.put("streakStats", newStreakStats);

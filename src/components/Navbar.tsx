@@ -1,7 +1,7 @@
 import { Dumbbell, CircleCheck, Flame } from "lucide-react";
 import { initDB } from "../lib/db";
-import usePointsStore from "../stores/pointsStore";
 import { useEffect, useState } from "react";
+import useExerciseStore from "../stores/exerciseStore";
 
 const getStreakStats = async () => {
   const db = await initDB();
@@ -9,11 +9,11 @@ const getStreakStats = async () => {
   return streakStats;
 };
 const Navbar = () => {
-  const currentStreak = usePointsStore((state) => state.currentStreak);
-  const setHighestStreak = usePointsStore(
-    (state) => state.updatelonghestStreak
+  const currentStreak = useExerciseStore((state) => state.currentStreak);
+  const setHighestStreak = useExerciseStore(
+    (state) => state.updateLongestStreak
   );
-  const setCurrrentStreak = usePointsStore(
+  const setCurrrentStreak = useExerciseStore(
     (state) => state.updateCurrentStreak
   );
 
