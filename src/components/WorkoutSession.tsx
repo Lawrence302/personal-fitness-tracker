@@ -7,26 +7,9 @@ import { v4 as uuid } from "uuid";
 import { DateTime } from "luxon";
 import { workoutPrograms } from "../lib/defaultData.ts";
 
-///
-// export type TrainingWorkoutLog = {
-//   id: string;
-//   routineName: string;
-//   routineId: string;
-//   started: 0 | 1;
-//   completed: 0 | 1;
-//   startTime: string;
-//   endTime: string;
-//   estimatedTime: number; // in minutes
-//   exerciseLogs: string[]; // ids of exerciselogs
-//   progress: number;
-//   totalPoints: number;
-// };
-/////
-
 //
 const createNewTrainingWorkoutSession = (session: Workout) => {
   // const endTime = startTime.plus({minutes: 2})
-  // console.log(session);
 
   const newTrainingSession: TrainingWorkoutLog = {
     id: uuid(),
@@ -102,16 +85,10 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
   const [showRecordExerciseModal, setShowRecordExerciseModal] =
     useState<boolean>(false);
   const [selectedExercise, setSelectedExercise] = useState<Exercise>();
-  // const [selectedExerciseId, setSelectedExerciseId] = useState<string>();
-
-  // tracking the progress of the workout session
-  // const progress = Math.round(
-  //   (completedExercisese.length / session.exercises.length) * 100
-  // );
 
   const startSession = (session: Workout) => {
     const newWorkoutSession = createNewTrainingWorkoutSession(session);
-    console.log(" new session ", newWorkoutSession);
+    // console.log(" new session ", newWorkoutSession);
     setWorkoutTrainingSession(newWorkoutSession);
 
     setSessionActive(true);
@@ -166,7 +143,6 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
       if (workoutTrainingSession.exercisesAtempted.includes(exerciseId)) {
         const db = await initDB();
         // console.log("Checked exercise at index:", exerciseId);
-        // Check if exercise is tracked. making sure user can't mark as done if not tracked
 
         if (!completedExercisese.includes(exerciseId)) {
           setCompletedExercises([...completedExercisese, exerciseId]);
@@ -210,11 +186,6 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
     }
     getData();
   }, []);
-
-  useEffect(() => {
-    console.log(" this is the workout session ", workoutTrainingSession);
-    // console.log("Exercises tracked in session:", exercisesTrack);
-  }, [workoutTrainingSession]);
 
   return (
     <div>
@@ -334,7 +305,7 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
                   text-xs text-white whitespace-nowrap
                 '
                   >
-                    click play button to log excercise progress{" "}
+                    click play button to log excercise progress
                   </div>
                 </div>
                 <div className='flxe-1 flex gap-1 italic font-bold text-sm '>

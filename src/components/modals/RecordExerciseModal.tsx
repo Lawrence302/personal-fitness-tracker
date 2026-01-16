@@ -100,7 +100,7 @@ const RecordExerciseModal = ({
 
       // add the new exercise log
       const savedLog = await addExerciseLog();
-      console.log("Saved Exercise Log:", savedLog);
+      // console.log("Saved Exercise Log:", savedLog);
       // add points to global store
       if (savedLog?.pointsEarned) {
         addPoints(savedLog.pointsEarned);

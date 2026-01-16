@@ -5,7 +5,6 @@ import { initDB } from "../lib/db";
 import usePointsStore from "../stores/pointsStore";
 import { calculateTier } from "../lib/globalFunctions";
 import { quotes } from "../lib/quotes";
-import { get } from "http";
 
 const getTotalPoints = async () => {
   // fetch all exercise logs from IndexedD
@@ -26,7 +25,7 @@ type HomeProps = {
 };
 
 const getRandomIndex = (length: number) => {
-  console.log("length is ", length);
+  // console.log("length is ", length);
   return Math.floor(Math.random() * length);
 };
 
@@ -73,7 +72,7 @@ const Home = ({ setDisplay }: HomeProps) => {
   useEffect(() => {
     const interval = setInterval(() => {
       const randomIndex = getRandomQuote();
-      console.log(randomIndex);
+      // console.log(randomIndex);
       setRandomQuote(quotes[randomIndex]);
     }, 10000);
 
