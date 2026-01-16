@@ -10,6 +10,8 @@ import Exercises from "./components/Exercises.tsx";
 import Data from "./components/Data.tsx";
 import Coach from "./components/Coach.tsx";
 
+import InfoPage from "./components/InfoPage.tsx";
+
 function App() {
   const [display, setDisplay] = useState("Home");
   // console.log(display);
@@ -25,6 +27,7 @@ function App() {
           {display == "Exercises" && <Exercises />}
           {display == "Data" && <Data />}
           {display == "Coach" && <Coach />}
+          {display == "Info" && <InfoPage />}
         </div>
       </div>
 

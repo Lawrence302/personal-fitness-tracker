@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { ChevronRight, Target } from "lucide-react";
+import { ChevronRight, Target, Info } from "lucide-react";
 import QuickLogExercise from "./QuickLogExercise";
 import { initDB } from "../lib/db";
 import usePointsStore from "../stores/pointsStore";
@@ -55,11 +55,22 @@ const Home = ({ setDisplay }: HomeProps) => {
 
   return (
     <div className='  flex-1 overflow-auto text-zinc-500 pt-4 mx-4 '>
+      <div className='   mb-4 w-full flex justify-center '>
+        <p className='bg-zinc-800 px-4 w-fit text-sm md:text-base rounded italic text-white font-semibold'>
+          You don't rush progress — you respect it.
+        </p>
+      </div>
       <div className='flex justify-center flex-col  md:flex-row gap-8 mb-8 '>
         <div className='left-banner border flex-3 rounded-xl p-4 bg-zinc-900'>
-          <div className='text-3xl font-bold italic tracking-tighter text-white'>
+          <div className='text-3xl font-bold italic tracking-tighter text-white relative'>
             GRAVITY IS A <br />
             <span className='text-cyan-500'>CHOICE</span>
+            <div
+              className='absolute top-0 right-0 items-center mb-2 ml-2 text-white cursor-pointer hover:text-blue-500 '
+              onClick={() => setDisplay("Info")}
+            >
+              <Info size={24} />
+            </div>
           </div>
           <div className='py-4'>
             <p className='text-sm'>
