@@ -1,4 +1,12 @@
 type ExerciseLevel = "beginner" | "intermediate" | "advanced";
+type MovementPatternType =
+  | "push"
+  | "pull"
+  | "legs"
+  | "core"
+  | "isometric"
+  | "explosive"
+  | "full-body";
 
 export type UserRank =
   | "BEGINNER"
@@ -19,7 +27,10 @@ export type Exercise = {
   name: string; //  e.g., "Pull-up"
   level: ExerciseLevel;
   measurement: "reps" | "seconds";
-  type: "strength" | "flexibility" | "mobility";
+  type: "strength" | "flexibility" | "mobility" | "conditioning" | "cardio";
+  movementPattern: MovementPatternType;
+  tags: string[]; // e.g., ["bodyweight", "upper-body", "vertical-pull"]
+  mistakes: string[]; // common mistakes to avoid
   description: string; // Optional description or tips
   targetMuscleGroups: string[]; // e.g., ["back", "biceps"]
   equipment?: string[]; // Optional, e.g., ["pull-up bar", "rings"], empty if bodyweight
@@ -29,6 +40,7 @@ export type Exercise = {
     value: number;
     unit: "kg" | "lb";
   };
+  progression: string[]; // e.g., ["negative pull-up", "assisted pull-up", "pull-up"]
   dateCreated: string; // When exercise was added
   lastPerformed?: string; // Optional last performed date
 };

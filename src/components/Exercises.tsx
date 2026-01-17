@@ -2,7 +2,7 @@ import { Plus, Search } from "lucide-react";
 import ExerciseCard from "./ExerciseCard";
 
 // importing default exercises data
-import { exercises } from "../lib/defaultData.ts";
+import { exercises } from "../lib/exercises";
 
 const Exercises = () => {
   return (
