@@ -1,13 +1,47 @@
-import { Users, MessageSquare } from "lucide-react";
+import { Users, MessageSquare, Timer, Mic, CheckCircle } from "lucide-react";
 import { useState } from "react";
+import ReactMarkdown from "react-markdown";
 
 // import { getAIFitnessAdvice } from './services/gemini';
 
 const Coach = () => {
   const [aiPrompt, setAiPrompt] = useState("");
-  //   const [aiResponse, setAiResponse] = useState("");
-  //   const [aiLoading, setAiLoading] = useState(false);
+  const [result, setResult] = useState("");
+  const [aiLoading, setAiLoading] = useState(false);
   // /
+  const askCoach = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setAiLoading(true);
+
+    if (!aiPrompt.trim()) {
+      setResult("Please enter a valid question.");
+      setAiLoading(false);
+      return;
+    }
+
+    try {
+      const res = await fetch("https://calitrack-backend.vercel.app/api/ai", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ prompt: aiPrompt }),
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        setResult(data.text);
+      } else {
+        setResult(`Error: ${data.error}`);
+      }
+    } catch (err) {
+      console.error(err);
+      setResult("Network error");
+    } finally {
+      setAiLoading(false);
+    }
+  };
+
   return (
     <div className='text-white mt-8'>
       <div className='space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-2xl mx-auto'>
@@ -41,21 +75,20 @@ const Coach = () => {
               />
 
               <button
-                // onClick={askCoach}
-
+                onClick={askCoach}
                 className='bg-cyan-600 hover:bg-cyan-500 text-white font-black py-4 rounded-2xl flex items-center justify-center gap-3 transition-all disabled:opacity-50 uppercase tracking-widest text-xs'
               >
-                {/* {aiLoading ? (
+                {aiLoading ? (
                   <Timer className='animate-spin w-4 h-4' />
                 ) : (
                   <Mic size={16} />
                 )}
-                {aiLoading ? "Thinking..." : "Get Advice"} */}
+                {aiLoading ? "Thinking..." : "Get Advice"}
               </button>
             </div>
           </div>
 
-          {/* {aiResponse && (
+          {result && (
             <div className='p-8 bg-zinc-900 rounded-3xl border border-zinc-800 animate-in fade-in duration-700'>
               <div className='flex items-center gap-3 mb-4 border-b border-zinc-800 pb-3'>
                 <CheckCircle className='text-emerald-500 w-5 h-5' />
@@ -64,10 +97,10 @@ const Coach = () => {
                 </h4>
               </div>
               <div className='prose prose-invert max-w-none text-zinc-300 whitespace-pre-line text-sm leading-relaxed'>
-                {aiResponse}
+                <ReactMarkdown>{result}</ReactMarkdown>
               </div>
             </div>
-          )} */}
+          )}
         </div>
       </div>
     </div>
