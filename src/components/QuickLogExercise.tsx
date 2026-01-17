@@ -4,7 +4,7 @@ import { useState } from "react";
 import type { Exercise } from "../lib/types";
 //
 // Importing default exercises data
-import { exercises } from "../lib/defaultData";
+import { exercises } from "../lib/exercises";
 
 const QuickLogExercise = () => {
   const [showRecordExercisesModal, setShowRecordExerciseModal] =
