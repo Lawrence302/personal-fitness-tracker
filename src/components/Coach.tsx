@@ -31,6 +31,7 @@ const Coach = () => {
       const data = await res.json();
       if (res.ok) {
         setResult(data.text);
+        setAiPrompt("");
       } else {
         setResult(`Error: ${data.error}`);
       }
