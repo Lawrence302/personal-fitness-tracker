@@ -1,10 +1,9 @@
 import { Plus } from "lucide-react";
 import RecordExerciseModal from "./modals/RecordExerciseModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Exercise } from "../lib/types";
 //
 // Importing default exercises data
-import { exercises } from "../lib/exercises";
 
 import FilterExercise from "./FilterExercise";
 
@@ -12,16 +11,21 @@ const QuickLogExercise = () => {
   const [showRecordExercisesModal, setShowRecordExerciseModal] =
     useState(false);
   const [currentExercise, setCurrentExercise] = useState<Exercise>();
+  const [filteredExercises, setFilteredExercises] = useState<Exercise[]>([]);
 
   const closeRecordExerciseModal = () => {
     setShowRecordExerciseModal(false);
   };
+
+  useEffect(() => {
+    console.log(filteredExercises);
+  }, [filteredExercises]);
   return (
     <div>
       <h2 className='font-bold py-4'>QUICK LOG EXERCISE</h2>
-      <FilterExercise />
+      <FilterExercise setFilteredExercises={setFilteredExercises} />
       <div className='flex flex-wrap text-white gap-2'>
-        {exercises.map((exercise, index) => {
+        {filteredExercises.map((exercise, index) => {
           return (
             <button
               onClick={() => {

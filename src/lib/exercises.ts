@@ -1,5 +1,4 @@
 import { Exercise } from "./types";
-
 export const exercises: Exercise[] = [
   {
     id: "plank",
@@ -12,6 +11,7 @@ export const exercises: Exercise[] = [
     description:
       "Maintain a straight line from head to heels while keeping your core tight and hips level.",
     targetMuscleGroups: ["Core", "Shoulders", "Glutes"],
+    bodyRegion: "core",
     mistakes: [
       "Sagging hips",
       "Piking hips too high",
@@ -33,6 +33,7 @@ export const exercises: Exercise[] = [
     description:
       "Lie on your side, lift hips off the ground, maintain a straight line from head to feet, supporting on one arm.",
     targetMuscleGroups: ["Obliques", "Core", "Shoulders", "Glutes"],
+    bodyRegion: "core",
     mistakes: ["Hips sagging", "Rotating torso", "Neck misalignment"],
     progression: [], // beginner already
     unitPoint: 1,
@@ -49,6 +50,7 @@ export const exercises: Exercise[] = [
     description:
       "Lie on your back, lift arms and legs off the floor, creating a hollow shape with your body while keeping lower back pressed down.",
     targetMuscleGroups: ["Core", "Hip Flexors"],
+    bodyRegion: "core",
     mistakes: ["Arching lower back", "Neck tension", "Legs too low or high"],
     progression: ["dead-bug"], // easier version
     unitPoint: 2,
@@ -65,6 +67,7 @@ export const exercises: Exercise[] = [
     description:
       "From a push-up position, alternate driving knees toward your chest quickly while keeping your back straight.",
     targetMuscleGroups: ["Core", "Shoulders", "Legs", "Hip Flexors"],
+    bodyRegion: "full-body",
     mistakes: ["Hips sagging or piking", "Not engaging core", "Bouncing hands"],
     progression: [], // beginner-friendly
     unitPoint: 1,
@@ -81,6 +84,7 @@ export const exercises: Exercise[] = [
     description:
       "Lie on your back, lift legs toward the ceiling while keeping lower back pressed to the floor, then slowly lower.",
     targetMuscleGroups: ["Lower Abs", "Hip Flexors", "Core"],
+    bodyRegion: "core",
     mistakes: [
       "Arching lower back",
       "Swinging legs",
@@ -98,6 +102,7 @@ export const exercises: Exercise[] = [
     type: "conditioning",
     movementPattern: "full-body",
     tags: ["explosive", "cardio", "bodyweight", "full-body"],
+    bodyRegion: "full-body",
     description:
       "From standing, drop into a squat, kick feet back into a push-up, return to squat, then jump up explosively.",
     targetMuscleGroups: ["Legs", "Core", "Chest", "Shoulders", "Arms"],
@@ -121,6 +126,7 @@ export const exercises: Exercise[] = [
     description:
       "Perform a squat and explode upwards into a jump, landing softly and returning to squat position.",
     targetMuscleGroups: ["Quadriceps", "Glutes", "Hamstrings", "Calves"],
+    bodyRegion: "lower-body",
     mistakes: [
       "Knees collapsing inward",
       "Landing stiffly",
@@ -130,22 +136,7 @@ export const exercises: Exercise[] = [
     unitPoint: 2,
     dateCreated: new Date().toISOString(),
   },
-  {
-    id: "push-up-variation",
-    name: "Push-up Variation",
-    level: "beginner",
-    measurement: "reps",
-    type: "strength",
-    movementPattern: "push",
-    tags: ["upper-body", "core", "bodyweight", "push"],
-    description:
-      "Standard push-up or modified versions like knee push-ups, diamond push-ups, or incline push-ups.",
-    targetMuscleGroups: ["Chest", "Shoulders", "Triceps", "Core"],
-    mistakes: ["Sagging hips", "Flared elbows", "Partial range of motion"],
-    progression: ["knee-push-up"], // easier version
-    unitPoint: 1,
-    dateCreated: new Date().toISOString(),
-  },
+
   {
     id: "pullup",
     name: "Pull-up",
@@ -157,6 +148,7 @@ export const exercises: Exercise[] = [
     description:
       "From a dead hang, pull your chin over the bar using an overhand grip, keeping core tight.",
     targetMuscleGroups: ["Back", "Biceps", "Shoulders", "Core"],
+    bodyRegion: "upper-body",
     mistakes: ["Kipping/momentum", "Partial range", "Shrugging shoulders"],
     progression: ["assisted-pull-up", "band-assisted-pull-up"],
     unitPoint: 2,
@@ -170,6 +162,7 @@ export const exercises: Exercise[] = [
     type: "strength",
     movementPattern: "pull",
     tags: ["upper-body", "back", "biceps", "bodyweight", "vertical-pull"],
+    bodyRegion: "upper-body",
     description:
       "From a dead hang, pull your chin over the bar using an underhand grip, keeping core tight.",
     targetMuscleGroups: ["Biceps", "Back", "Shoulders", "Core"],
@@ -186,6 +179,7 @@ export const exercises: Exercise[] = [
     type: "strength",
     movementPattern: "push",
     tags: ["bodyweight", "upper-body", "horizontal-push", "core-stability"],
+    bodyRegion: "upper-body",
     description:
       "Keep your core tight, body in a straight line, and elbows at about a 45-degree angle as you lower and push up.",
     targetMuscleGroups: ["Chest", "Shoulders", "Triceps", "Core"],
@@ -208,6 +202,7 @@ export const exercises: Exercise[] = [
     type: "strength",
     movementPattern: "legs",
     tags: ["bodyweight", "lower-body", "knee-dominant", "mobility"],
+    bodyRegion: "lower-body",
     description:
       "Keep your chest up and back neutral as you lower your hips until your thighs are parallel to the ground.",
     targetMuscleGroups: ["Quadriceps", "Glutes", "Hamstrings", "Core"],
@@ -230,6 +225,7 @@ export const exercises: Exercise[] = [
     type: "strength",
     movementPattern: "isometric",
     tags: ["grip", "shoulder-health", "scapular-control", "isometric"],
+    bodyRegion: "upper-body",
     description:
       "Hang from the bar with straight arms, relaxed shoulders, and controlled breathing.",
     targetMuscleGroups: ["Forearms", "Grip", "Shoulders"],
@@ -252,6 +248,7 @@ export const exercises: Exercise[] = [
     type: "strength",
     movementPattern: "core",
     tags: ["core", "isometric", "anti-extension", "spine-stability"],
+    bodyRegion: "core",
     description:
       "Maintain a straight line from head to heels while keeping your core tight and hips level.",
     targetMuscleGroups: ["Core", "Shoulders", "Glutes"],
@@ -273,6 +270,7 @@ export const exercises: Exercise[] = [
     type: "strength",
     movementPattern: "legs",
     tags: ["isometric", "lower-body", "stance", "mobility"],
+    bodyRegion: "lower-body",
     description:
       "Stand with feet wider than shoulders, knees bent, hips low, and back straight. Hold the position.",
     targetMuscleGroups: [
@@ -310,6 +308,7 @@ export const exercises: Exercise[] = [
     description:
       "Perform a push-up using one arm while keeping your body aligned. The other arm may rest on your back or side for balance.",
     targetMuscleGroups: ["Chest", "Shoulders", "Triceps", "Core"],
+    bodyRegion: "upper-body",
     mistakes: [
       "Hip sagging",
       "Rotating torso excessively",
@@ -338,6 +337,7 @@ export const exercises: Exercise[] = [
     description:
       "Perform a push-up while extending one arm straight to the side, shifting most weight to the other arm.",
     targetMuscleGroups: ["Chest", "Shoulders", "Triceps", "Core"],
+    bodyRegion: "upper-body",
     mistakes: [
       "Sagging hips",
       "Elbow flaring",
@@ -357,6 +357,7 @@ export const exercises: Exercise[] = [
     type: "strength",
     movementPattern: "push",
     tags: ["bodyweight", "upper-body", "horizontal-push", "triceps-focus"],
+    bodyRegion: "upper-body",
     description:
       "Place your hands close together under your chest forming a diamond shape with thumbs and index fingers. Lower and push up keeping elbows close.",
     targetMuscleGroups: ["Triceps", "Chest", "Shoulders", "Core"],
@@ -379,6 +380,7 @@ export const exercises: Exercise[] = [
     type: "strength",
     movementPattern: "isometric",
     tags: ["core", "obliques", "bodyweight", "flag", "advanced-skill"],
+    bodyRegion: "full-body",
     description:
       "Grip a vertical pole and hold your body horizontally, parallel to the ground, using obliques, lats, and core.",
     targetMuscleGroups: ["Obliques", "Lats", "Shoulders", "Core", "Forearms"],
@@ -400,6 +402,7 @@ export const exercises: Exercise[] = [
     type: "strength",
     movementPattern: "core",
     tags: ["core", "bodyweight", "isometric", "anti-extension", "abs"],
+    bodyRegion: "core",
     description:
       "Lie on your back, lift your legs and shoulders slightly off the ground, keep lower back pressed into the floor, arms extended overhead.",
     targetMuscleGroups: ["Core", "Hip Flexors", "Shoulders"],
@@ -417,6 +420,7 @@ export const exercises: Exercise[] = [
     type: "strength",
     movementPattern: "explosive",
     tags: ["core", "cardio", "bodyweight", "full-body"],
+    bodyRegion: "full-body",
     description:
       "From a plank position, alternate driving knees toward your chest at a quick pace while keeping core tight.",
     targetMuscleGroups: [
@@ -436,13 +440,14 @@ export const exercises: Exercise[] = [
     dateCreated: new Date().toISOString(),
   },
   {
-    id: "muscleup",
+    id: "muscle-up",
     name: "Muscle-up",
     level: "advanced",
     measurement: "reps",
     type: "strength",
     movementPattern: "pull",
     tags: ["upper-body", "bodyweight", "pull", "explosive", "bar"],
+    bodyRegion: "upper-body",
     description:
       "Pull up explosively over a bar and transition into a dip position at the top.",
     targetMuscleGroups: [
@@ -472,6 +477,7 @@ export const exercises: Exercise[] = [
     type: "strength",
     movementPattern: "legs",
     tags: ["quadriceps", "bodyweight", "knee-dominant"],
+    bodyRegion: "lower-body",
     description:
       "Lean back while keeping hips extended and knees forward, lowering your body, and then return upright.",
     targetMuscleGroups: ["Quadriceps", "Core"],
@@ -496,6 +502,7 @@ export const exercises: Exercise[] = [
     description:
       "Squat on one leg while the other leg is extended in front, lowering until the thigh is parallel to the floor.",
     targetMuscleGroups: ["Quadriceps", "Glutes", "Hamstrings", "Core"],
+    bodyRegion: "lower-body",
     mistakes: [
       "Knee valgus",
       "Leaning forward",
@@ -519,6 +526,7 @@ export const exercises: Exercise[] = [
     type: "strength",
     movementPattern: "core",
     tags: ["abs", "bodyweight", "pull", "hanging"],
+    bodyRegion: "core",
     description:
       "Hang from a bar and lift knees toward your chest using your core muscles.",
     targetMuscleGroups: ["Lower Abs", "Hip Flexors", "Grip", "Forearms"],
@@ -536,6 +544,7 @@ export const exercises: Exercise[] = [
     type: "strength",
     movementPattern: "core",
     tags: ["core", "bodyweight", "isometric", "shoulder-stability"],
+    bodyRegion: "core",
     description:
       "Place feet on an elevated surface and hands on the floor, forming an inverted 'V'. Hold the position while keeping shoulders and core tight.",
     targetMuscleGroups: ["Shoulders", "Core", "Glutes", "Hamstrings"],
@@ -557,6 +566,7 @@ export const exercises: Exercise[] = [
     type: "strength",
     movementPattern: "push",
     tags: ["upper-body", "bodyweight", "horizontal-push", "beginner-friendly"],
+    bodyRegion: "upper-body",
     description:
       "Hands on an elevated surface, perform a push-up while keeping core tight and elbows at 45 degrees.",
     targetMuscleGroups: ["Chest", "Shoulders", "Triceps", "Core"],
@@ -580,6 +590,7 @@ export const exercises: Exercise[] = [
       "triceps-focus",
       "chest",
     ],
+    bodyRegion: "upper-body",
     description:
       "Lower your body between parallel bars until shoulders are below elbows, then push back up.",
     targetMuscleGroups: ["Triceps", "Chest", "Shoulders", "Core"],
@@ -602,6 +613,7 @@ export const exercises: Exercise[] = [
     type: "cardio",
     movementPattern: "explosive",
     tags: ["full-body", "cardio", "plyometric", "coordination"],
+    bodyRegion: "full-body",
     description:
       "Jump over a rope continuously, landing softly on your feet and maintaining rhythm.",
     targetMuscleGroups: [
@@ -630,6 +642,7 @@ export const exercises: Exercise[] = [
     type: "strength",
     movementPattern: "isometric",
     tags: ["grip", "shoulder-health", "scapular-control", "isometric"],
+    bodyRegion: "upper-body",
     description:
       "Hang from a bar with straight arms, relaxed shoulders, and controlled breathing.",
     targetMuscleGroups: ["Forearms", "Grip", "Shoulders"],
@@ -652,6 +665,7 @@ export const exercises: Exercise[] = [
     type: "strength",
     movementPattern: "isometric",
     tags: ["grip", "shoulder-health", "scapular-control", "bodyweight"],
+    bodyRegion: "upper-body",
     description:
       "Hang from a bar while engaging the shoulders (pulling them down and back) and keeping core tight.",
     targetMuscleGroups: ["Shoulders", "Lats", "Forearms", "Core"],
@@ -669,6 +683,7 @@ export const exercises: Exercise[] = [
     type: "strength",
     movementPattern: "isometric",
     tags: ["grip", "shoulder-relaxation", "bodyweight"],
+    bodyRegion: "upper-body",
     description:
       "Hang from a bar with relaxed shoulders and arms fully extended, allowing the body to hang freely.",
     targetMuscleGroups: ["Forearms", "Shoulders", "Grip"],
@@ -686,6 +701,7 @@ export const exercises: Exercise[] = [
     type: "strength",
     movementPattern: "isometric",
     tags: ["core", "shoulders", "triceps", "support-hold"],
+    bodyRegion: "upper-body",
     description:
       "Hold yourself on parallel bars or floor in a straight-arm position with tight core and neutral spine.",
     targetMuscleGroups: ["Core", "Shoulders", "Triceps", "Chest"],
@@ -703,6 +719,7 @@ export const exercises: Exercise[] = [
     type: "strength",
     movementPattern: "isometric",
     tags: ["core", "obliques", "support-hold"],
+    bodyRegion: "upper-body",
     description:
       "Hold yourself on one hand or elbow in a straight-arm side support position, keeping hips lifted.",
     targetMuscleGroups: ["Obliques", "Shoulders", "Core", "Glutes"],
@@ -720,6 +737,7 @@ export const exercises: Exercise[] = [
     type: "strength",
     movementPattern: "isometric",
     tags: ["core", "posterior-chain", "support-hold"],
+    bodyRegion: "upper-body",
     description:
       "Hold your body on hands and feet facing up, keeping shoulders, glutes, and core engaged.",
     targetMuscleGroups: ["Back", "Glutes", "Shoulders", "Core"],
@@ -737,6 +755,7 @@ export const exercises: Exercise[] = [
     type: "strength",
     movementPattern: "isometric",
     tags: ["core", "shoulders", "arms", "support-hold"],
+    bodyRegion: "upper-body",
     description:
       "Support your body vertically on rings, parallettes, or bars with arms extended and body tight.",
     targetMuscleGroups: ["Shoulders", "Triceps", "Core", "Chest"],
@@ -753,6 +772,7 @@ export const exercises: Exercise[] = [
     type: "strength",
     movementPattern: "explosive",
     tags: ["cardio", "core", "lower-body", "bodyweight", "calorie-burn"],
+    bodyRegion: "lower-body",
     description:
       "Run in place while driving knees up towards your chest as fast as possible, keeping core tight.",
     targetMuscleGroups: [
@@ -780,6 +800,7 @@ export const exercises: Exercise[] = [
     type: "strength",
     movementPattern: "explosive",
     tags: ["lower-body", "plyometric", "cardio", "glutes", "quads"],
+    bodyRegion: "lower-body",
     description:
       "Alternate jumping lunges by switching legs mid-air, landing softly with knees at 90 degrees.",
     targetMuscleGroups: [
@@ -807,6 +828,7 @@ export const exercises: Exercise[] = [
     type: "strength",
     movementPattern: "legs",
     tags: ["lower-body", "quads", "glutes", "balance", "bodyweight"],
+    bodyRegion: "lower-body",
     description:
       "Step one foot forward, lower back knee towards the ground while keeping chest up, then return to start.",
     targetMuscleGroups: ["Quadriceps", "Glutes", "Hamstrings", "Core"],
@@ -835,6 +857,7 @@ export const exercises: Exercise[] = [
       "bodyweight",
       "planche-progression",
     ],
+    bodyRegion: "upper-body",
     description:
       "Lean forward while performing a push-up, hands near hips, keeping core tight and elbows tucked.",
     targetMuscleGroups: ["Chest", "Shoulders", "Triceps", "Core"],
@@ -860,6 +883,7 @@ export const exercises: Exercise[] = [
     description:
       "Place your feet on an elevated surface and hands on the floor, lower your chest and push back up.",
     targetMuscleGroups: ["Chest", "Shoulders", "Triceps", "Core"],
+    bodyRegion: "upper-body",
     mistakes: [
       "Sagging hips",
       "Partial range",
@@ -882,6 +906,7 @@ export const exercises: Exercise[] = [
     description:
       "Sit with knees bent, lean back slightly, rotate torso side to side, touching floor or hands each side.",
     targetMuscleGroups: ["Obliques", "Core", "Hip Flexors"],
+    bodyRegion: "core",
     mistakes: [
       "Rounding back",
       "Using momentum",
@@ -903,6 +928,7 @@ export const exercises: Exercise[] = [
     description:
       "Lie on your back, lift shoulders and legs, bring opposite elbow to knee while extending the other leg, alternate sides.",
     targetMuscleGroups: ["Core", "Obliques", "Hip Flexors"],
+    bodyRegion: "core",
     mistakes: [
       "Pulling neck with hands",
       "Not fully extending leg",
@@ -925,6 +951,7 @@ export const exercises: Exercise[] = [
       "Lie flat, lift legs and torso simultaneously to form a V-shape, reaching hands toward toes.",
     targetMuscleGroups: ["Core", "Hip Flexors", "Rectus Abdominis"],
     mistakes: ["Rounding back", "Using momentum", "Partial range"],
+    bodyRegion: "core",
     progression: ["tuck-ups", "single-leg-v-ups"],
     unitPoint: 2,
     dateCreated: new Date().toISOString(),
@@ -941,6 +968,7 @@ export const exercises: Exercise[] = [
     description:
       "From a side plank, lower hips toward the ground and lift back up slowly, keeping core tight.",
     targetMuscleGroups: ["Obliques", "Core", "Shoulders", "Glutes"],
+    bodyRegion: "core",
     mistakes: [
       "Hips sagging",
       "Torso rotation",
