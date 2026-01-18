@@ -15,7 +15,7 @@ const getTotalPoints = async () => {
 
   const totalPoints = exercises.reduce(
     (sum, log) => sum + (log.pointsEarned || 0),
-    0
+    0,
   );
   return totalPoints;
 };
@@ -33,7 +33,7 @@ const Home = ({ setDisplay }: HomeProps) => {
   const totalPoints = usePointsStore((state) => state.totalPoints);
   const setTotalPoints = usePointsStore((state) => state.setTotalPoints);
   const [randomQuote, setRandomQuote] = useState<string>(
-    () => quotes[getRandomIndex(quotes.length)]
+    () => quotes[getRandomIndex(quotes.length)],
   );
 
   const tierInfo = calculateTier(totalPoints);

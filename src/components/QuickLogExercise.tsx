@@ -6,6 +6,8 @@ import type { Exercise } from "../lib/types";
 // Importing default exercises data
 import { exercises } from "../lib/exercises";
 
+import FilterExercise from "./FilterExercise";
+
 const QuickLogExercise = () => {
   const [showRecordExercisesModal, setShowRecordExerciseModal] =
     useState(false);
@@ -16,7 +18,8 @@ const QuickLogExercise = () => {
   };
   return (
     <div>
-      <h2 className='font-bold py-4'>QUICK LOG EXERCISE</h2>{" "}
+      <h2 className='font-bold py-4'>QUICK LOG EXERCISE</h2>
+      <FilterExercise />
       <div className='flex flex-wrap text-white gap-2'>
         {exercises.map((exercise, index) => {
           return (

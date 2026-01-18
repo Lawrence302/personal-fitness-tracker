@@ -3,6 +3,36 @@
 import type { Workout } from "./types"; // assuming your Exercise type is defined in types.ts
 import { exercises } from "./exercises"; // assuming you have a separate file for exercises
 
+export const muscleGroups = [
+  // Core & trunk
+  "Core",
+  "Abs",
+  "Lower Abs",
+  "Obliques",
+  "Hip Flexors",
+
+  // Upper body – push
+  "Chest",
+  "Shoulders",
+  "Triceps",
+
+  // Upper body – pull
+  "Back",
+  "Lats",
+  "Biceps",
+
+  // Lower body
+  "Quadriceps",
+  "Glutes",
+  "Hamstrings",
+  "Calves",
+  "Adductors",
+
+  // Grip & support
+  "Forearms",
+  "Grip",
+];
+
 // Default workouts combining the above exercises
 export const workoutPrograms: Workout[] = [
   {
