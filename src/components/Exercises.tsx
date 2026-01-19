@@ -33,7 +33,7 @@ const Exercises = () => {
             Study the mechanics of bodyweight mastery.
           </p>
         </div>
-        <SearchExercise />
+        <SearchExercise setFilteredExercises={setFilteredExercises} />
         <div className='mt'>
           <FilterExercise setFilteredExercises={setFilteredExercises} />
         </div>
