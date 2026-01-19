@@ -29,11 +29,13 @@ const QuickLogExercise = () => {
   useEffect(() => {
     // console.log(filteredExercises);
   }, [filteredExercises, visibleExercises]);
+
   return (
     <div>
       <h2 className='font-bold pt-4'>QUICK LOG EXERCISE</h2>
 
       <FilterExercise setFilteredExercises={setFilteredExercises} />
+      <div className='text-white'>Results: {visibleExercises.length}</div>
       <div
         className={`${filteredExercises.length > 20 ? "bg-gradient-to-t from-zinc-700 from-0% to-zinc-950 to-30% border-none" : ""} pt-4 px-2 md:px-6 rounded`}
       >

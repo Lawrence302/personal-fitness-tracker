@@ -43,6 +43,7 @@ const Exercises = () => {
         <div className='mt'>
           <FilterExercise setFilteredExercises={setFilteredExercises} />
         </div>
+        <div className='text-white'>Results: {visibleExercises.length}</div>
       </div>
 
       {/* displaying exercises */}
