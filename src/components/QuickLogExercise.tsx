@@ -32,9 +32,7 @@ const QuickLogExercise = () => {
   return (
     <div>
       <h2 className='font-bold pt-4'>QUICK LOG EXERCISE</h2>
-      <p className='text-sm md:text-base pb-3'>
-        Quickly find an exercise using the filters.
-      </p>
+
       <FilterExercise setFilteredExercises={setFilteredExercises} />
       <div
         className={`${filteredExercises.length > 20 ? "bg-gradient-to-t from-zinc-700 from-0% to-zinc-950 to-30% border-none" : ""} pt-4 px-2 md:px-6 rounded`}

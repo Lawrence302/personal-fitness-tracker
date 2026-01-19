@@ -102,8 +102,10 @@ const FilterExercise = ({ setFilteredExercises }: FilterExerciseProps) => {
   }, [filterExercise, filter]);
 
   return (
-    <div>
-      {" "}
+    <div className='mt-2'>
+      <p className='text-zinc-500 text-sm md:text-base pb-3'>
+        Quickly find an exercise using the filters below.
+      </p>
       <div className='flex gap-2 mb-6 flex-wrap'>
         <SelectDropdown
           filterOptions={movementPatterns}
