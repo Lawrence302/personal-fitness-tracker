@@ -12,7 +12,7 @@ const SearchExercise = ({ setFilteredExercises }: SearchExerciseProps) => {
   const [searchText, setSearchText] = useState("");
   const filterExercise = (text: string) => {
     const query = text.toLowerCase().replace(/[-\s]/g, ""); // remove - and spaces;
-    console.log(query);
+    // console.log(query);
     const results = exercises.filter(
       (exercise) =>
         exercise.tags.some((text) =>
