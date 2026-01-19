@@ -1,5 +1,5 @@
-type ExerciseLevel = "beginner" | "intermediate" | "advanced";
-type MovementPatternType =
+export type ExerciseLevel = "beginner" | "intermediate" | "advanced";
+export type MovementPatternType =
   | "push"
   | "pull"
   | "legs"
@@ -14,6 +14,8 @@ export type UserRank =
   | "ADVANCED"
   | "EXPERT"
   | "ELITE";
+
+export type bodyRegion = "core" | "upper-body" | "lower-body" | "full-body";
 
 export type TierInfo = {
   userRank: UserRank;
@@ -33,6 +35,7 @@ export type Exercise = {
   mistakes: string[]; // common mistakes to avoid
   description: string; // Optional description or tips
   targetMuscleGroups: string[]; // e.g., ["back", "biceps"]
+  bodyRegion: bodyRegion;
   equipment?: string[]; // Optional, e.g., ["pull-up bar", "rings"], empty if bodyweight
   unitPoint: number; // points awarded per unit (rep or second)
   extraWeight?: {

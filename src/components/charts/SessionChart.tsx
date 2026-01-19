@@ -85,7 +85,7 @@ async function getAllSessions() {
 
   // sort by data in ascending order
   sessionsPerDa.sort(
-    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
   );
 
   return sessionsPerDa;
@@ -101,7 +101,7 @@ const SessionChart = () => {
   useEffect(() => {
     async function fetchData() {
       const data = await getAllSessions();
-      console.log("sessions per chart sessions ", data);
+      // console.log("sessions per chart sessions ", data);
       setSessionsPerDayData(data);
     }
 

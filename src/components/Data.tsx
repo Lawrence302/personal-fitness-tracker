@@ -13,7 +13,7 @@ const Data = () => {
   const totalPoints = usePointsStore((state) => state.totalPoints);
 
   const tierInfo = calculateTier(totalPoints);
-  console.log("this is tier info ", tierInfo);
+  // console.log("this is tier info ", tierInfo);
 
   return (
     <div className='text-white m-2 md:m-6'>
