@@ -108,16 +108,19 @@ const FilterExercise = ({ setFilteredExercises }: FilterExerciseProps) => {
         <SelectDropdown
           filterOptions={movementPatterns}
           filterName='movementPattern'
+          label='Movement Pattern'
           setChoice={setFilter}
         />
         <SelectDropdown
           filterOptions={bodyRegions}
           filterName='bodyRegion'
+          label='Body Region'
           setChoice={setFilter}
         />
         <SelectDropdown
           filterOptions={exerciseLevel}
           filterName='level'
+          label='Level'
           setChoice={setFilter}
         />
 
