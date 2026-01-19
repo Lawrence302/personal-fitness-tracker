@@ -27,13 +27,18 @@ const QuickLogExercise = () => {
     : filteredExercises.slice(0, 20);
 
   useEffect(() => {
-    console.log(filteredExercises);
+    // console.log(filteredExercises);
   }, [filteredExercises, visibleExercises]);
   return (
     <div>
-      <h2 className='font-bold py-4'>QUICK LOG EXERCISE</h2>
+      <h2 className='font-bold pt-4'>QUICK LOG EXERCISE</h2>
+      <p className='text-sm md:text-base pb-3'>
+        Quickly find an exercise using the filters.
+      </p>
       <FilterExercise setFilteredExercises={setFilteredExercises} />
-      <div className='bg-gradient-to-t from-zinc-700 from-0% to-zinc-950 to-30% border-none pt-4 px-2 md:px-6 rounded'>
+      <div
+        className={`${filteredExercises.length > 20 ? "bg-gradient-to-t from-zinc-700 from-0% to-zinc-950 to-30% border-none" : ""} pt-4 px-2 md:px-6 rounded`}
+      >
         <div className='flex flex-wrap text-white gap-2 '>
           {visibleExercises.map((exercise, index) => {
             return (
@@ -52,14 +57,16 @@ const QuickLogExercise = () => {
           })}
         </div>
         {/* button to control list of exercises display, more or less */}
-        <div className='mb-6 py-4 text-center'>
-          <button
-            className='bg-zinc-800 hover:bg-zinc-900 px-6 py-2 text-white cursor-pointer rounded-full shadow-sm shadow-zinc-500/50 hover:shadow-md transition'
-            onClick={handleShowMoreOrLess}
-          >
-            {visibleExercises.length < 21 ? "Show More..." : "Show less"}
-          </button>
-        </div>
+        {filteredExercises.length > 20 && (
+          <div className='mb-6 py-4 text-center'>
+            <button
+              className='bg-zinc-800 hover:bg-zinc-900 px-6 py-2 text-white cursor-pointer rounded-full shadow-sm shadow-zinc-500/50 hover:shadow-md transition'
+              onClick={handleShowMoreOrLess}
+            >
+              {visibleExercises.length < 21 ? "Show More..." : "Show less"}
+            </button>
+          </div>
+        )}
       </div>
       {/* Exercise Log modal */}
       <div>
