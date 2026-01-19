@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { Search } from "lucide-react";
+
 import ExerciseCard from "./ExerciseCard";
 
 // importing default exercises data
 
 import FilterExercise from "./FilterExercise";
 import { Exercise } from "../lib/types";
+import SearchExercise from "./Search/SearchExercise";
 
 const Exercises = () => {
   const [filteredExercises, setFilteredExercises] = useState<Exercise[]>([]);
@@ -32,14 +33,7 @@ const Exercises = () => {
             Study the mechanics of bodyweight mastery.
           </p>
         </div>
-        <div className='flex border border-zinc-800 bg-zinc-900 w-full h-fit md:w-64  rounded-full gap-2 pl-2 items-center'>
-          <Search className='text-white' />
-          <input
-            className='border border-zinc-800  text-white focus:border-cyan-500 outline-none w-full   rounded-r-full px-2 py-2'
-            type='search'
-            placeholder='Search exercise...'
-          />
-        </div>
+        <SearchExercise />
         <div className='mt'>
           <FilterExercise setFilteredExercises={setFilteredExercises} />
         </div>
