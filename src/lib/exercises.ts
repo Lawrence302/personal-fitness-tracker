@@ -1,28 +1,6 @@
 import { Exercise } from "./types";
 export const exercises: Exercise[] = [
   {
-    id: "plank",
-    name: "Plank",
-    level: "beginner",
-    measurement: "seconds",
-    type: "strength",
-    movementPattern: "core",
-    tags: ["core", "isometric", "anti-extension", "spine-stability"],
-    description:
-      "Maintain a straight line from head to heels while keeping your core tight and hips level.",
-    targetMuscleGroups: ["Core", "Shoulders", "Glutes"],
-    bodyRegion: "core",
-    mistakes: [
-      "Sagging hips",
-      "Piking hips too high",
-      "Holding breath",
-      "Neck not aligned with spine",
-    ],
-    progression: [], // beginner already
-    unitPoint: 1,
-    dateCreated: new Date().toISOString(),
-  },
-  {
     id: "side-plank",
     name: "Side Plank",
     level: "beginner",
@@ -39,40 +17,7 @@ export const exercises: Exercise[] = [
     unitPoint: 1,
     dateCreated: new Date().toISOString(),
   },
-  {
-    id: "hollow-body-hold",
-    name: "Hollow Body Hold",
-    level: "intermediate",
-    measurement: "seconds",
-    type: "strength",
-    movementPattern: "core",
-    tags: ["core", "isometric", "abs", "bodyweight"],
-    description:
-      "Lie on your back, lift arms and legs off the floor, creating a hollow shape with your body while keeping lower back pressed down.",
-    targetMuscleGroups: ["Core", "Hip Flexors"],
-    bodyRegion: "core",
-    mistakes: ["Arching lower back", "Neck tension", "Legs too low or high"],
-    progression: ["dead-bug"], // easier version
-    unitPoint: 2,
-    dateCreated: new Date().toISOString(),
-  },
-  {
-    id: "mountain-climbers",
-    name: "Mountain Climbers",
-    level: "beginner",
-    measurement: "reps",
-    type: "conditioning",
-    movementPattern: "core",
-    tags: ["core", "cardio", "dynamic", "bodyweight"],
-    description:
-      "From a push-up position, alternate driving knees toward your chest quickly while keeping your back straight.",
-    targetMuscleGroups: ["Core", "Shoulders", "Legs", "Hip Flexors"],
-    bodyRegion: "full-body",
-    mistakes: ["Hips sagging or piking", "Not engaging core", "Bouncing hands"],
-    progression: [], // beginner-friendly
-    unitPoint: 1,
-    dateCreated: new Date().toISOString(),
-  },
+
   {
     id: "leg-raises",
     name: "Leg Raises",
@@ -411,6 +356,37 @@ export const exercises: Exercise[] = [
     unitPoint: 1,
     dateCreated: new Date().toISOString(),
   },
+  {
+    id: "dead-bug",
+    name: "Dead Bug",
+    level: "beginner",
+    measurement: "reps",
+    type: "strength",
+    movementPattern: "core",
+    tags: ["core", "stability", "bodyweight", "anti-extension"],
+    bodyRegion: "core",
+    description:
+      "Lie on your back with arms extended toward the ceiling and knees bent at 90°. Slowly lower opposite arm and leg toward the floor while keeping your lower back pressed into the ground, then return to start. Alternate sides.",
+    targetMuscleGroups: [
+      "Core",
+      "Rectus Abdominis",
+      "Obliques",
+      "Hip Flexors",
+      "Lower Back",
+    ],
+    mistakes: [
+      "Lower back arching off the floor",
+      "Rushing the movement instead of controlled",
+      "Neck straining",
+    ],
+    progression: [
+      "dead-bug-arm-only",
+      "dead-bug-leg-only",
+      "weighted-dead-bug",
+    ],
+    unitPoint: 1,
+    dateCreated: new Date().toISOString(),
+  },
 
   {
     id: "mountain-climbers",
@@ -635,29 +611,6 @@ export const exercises: Exercise[] = [
   },
 
   {
-    id: "dead-hang",
-    name: "Dead Hang",
-    level: "beginner",
-    measurement: "seconds",
-    type: "strength",
-    movementPattern: "isometric",
-    tags: ["grip", "shoulder-health", "scapular-control", "isometric"],
-    bodyRegion: "upper-body",
-    description:
-      "Hang from a bar with straight arms, relaxed shoulders, and controlled breathing.",
-    targetMuscleGroups: ["Forearms", "Grip", "Shoulders"],
-    mistakes: [
-      "Shrugging shoulders",
-      "Bending arms",
-      "Holding breath",
-      "Poor grip",
-    ],
-    progression: ["scapular-hang"],
-    unitPoint: 1,
-    dateCreated: new Date().toISOString(),
-  },
-
-  {
     id: "active-hang",
     name: "Active Hang",
     level: "beginner",
@@ -674,7 +627,6 @@ export const exercises: Exercise[] = [
     unitPoint: 1,
     dateCreated: new Date().toISOString(),
   },
-
   {
     id: "passive-hang",
     name: "Passive Hang",
