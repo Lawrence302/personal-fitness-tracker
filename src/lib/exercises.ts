@@ -14,7 +14,7 @@ export const exercises: Exercise[] = [
     bodyRegion: "core",
     mistakes: ["Hips sagging", "Rotating torso", "Neck misalignment"],
     progression: [], // beginner already
-    unitPoint: 1,
+    unitPoint: 0.4,
     dateCreated: new Date().toISOString(),
   },
 
@@ -36,7 +36,7 @@ export const exercises: Exercise[] = [
       "Not controlling descent",
     ],
     progression: ["bent-knee-leg-raises"], // easier
-    unitPoint: 2,
+    unitPoint: 1,
     dateCreated: new Date().toISOString(),
   },
   {
@@ -57,7 +57,7 @@ export const exercises: Exercise[] = [
       "Sagging hips during plank portion",
     ],
     progression: ["squat-thrusts"], // easier version
-    unitPoint: 3,
+    unitPoint: 2,
     dateCreated: new Date().toISOString(),
   },
   {
@@ -78,7 +78,7 @@ export const exercises: Exercise[] = [
       "Shallow squat depth",
     ],
     progression: ["air-squat"], // easier version
-    unitPoint: 2,
+    unitPoint: 0.75,
     dateCreated: new Date().toISOString(),
   },
 
@@ -96,7 +96,7 @@ export const exercises: Exercise[] = [
     bodyRegion: "upper-body",
     mistakes: ["Kipping/momentum", "Partial range", "Shrugging shoulders"],
     progression: ["assisted-pull-up", "band-assisted-pull-up"],
-    unitPoint: 2,
+    unitPoint: 3,
     dateCreated: new Date().toISOString(),
   },
   {
@@ -113,7 +113,7 @@ export const exercises: Exercise[] = [
     targetMuscleGroups: ["Biceps", "Back", "Shoulders", "Core"],
     mistakes: ["Elbow flaring", "Jerky motion", "Partial range"],
     progression: ["negative-chin-up", "assisted-chin-up"],
-    unitPoint: 2,
+    unitPoint: 2.5,
     dateCreated: new Date().toISOString(),
   },
   {
@@ -158,7 +158,7 @@ export const exercises: Exercise[] = [
       "Shallow depth",
     ],
     progression: ["assisted-wall-squat", "box-squat"], // easier variations
-    unitPoint: 1,
+    unitPoint: 0.5,
     dateCreated: new Date().toISOString(),
   },
 
@@ -181,7 +181,7 @@ export const exercises: Exercise[] = [
       "Losing grip due to poor hand placement",
     ],
     progression: ["scapular-hang"], // easier scapular-focused hang before full dead hang
-    unitPoint: 1,
+    unitPoint: 0.23,
     dateCreated: new Date().toISOString(),
   },
 
@@ -204,7 +204,7 @@ export const exercises: Exercise[] = [
       "Neck not aligned with spine",
     ],
     progression: ["knee-plank", "elbow-plank", "side-plank"], // easier → standard → advanced variations
-    unitPoint: 1,
+    unitPoint: 0.33,
     dateCreated: new Date().toISOString(),
   },
   {
@@ -232,7 +232,7 @@ export const exercises: Exercise[] = [
       "Leaning forward",
     ],
     progression: ["wall-squat", "deeper-horse-stance", "weighted-horse-stance"],
-    unitPoint: 1,
+    unitPoint: 0.16,
     dateCreated: new Date().toISOString(),
   },
 
@@ -261,7 +261,7 @@ export const exercises: Exercise[] = [
       "Elbow flaring",
     ],
     progression: ["archer-pushup", "uneven-pushup", "assisted-one-arm-pushup"],
-    unitPoint: 3,
+    unitPoint: 3.5,
     dateCreated: new Date().toISOString(),
   },
 
@@ -290,7 +290,7 @@ export const exercises: Exercise[] = [
       "Rotating torso",
     ],
     progression: ["standard-pushup", "incline-archer-pushup", "one-arm-pushup"],
-    unitPoint: 2,
+    unitPoint: 1.8,
     dateCreated: new Date().toISOString(),
   },
 
@@ -313,7 +313,7 @@ export const exercises: Exercise[] = [
       "Head dropping",
     ],
     progression: ["standard-pushup", "close-grip-pushup", "archer-pushup"],
-    unitPoint: 2,
+    unitPoint: 1.3,
     dateCreated: new Date().toISOString(),
   },
 
@@ -335,7 +335,7 @@ export const exercises: Exercise[] = [
       "tuck-human-flag",
       "straddle-human-flag",
     ],
-    unitPoint: 4,
+    unitPoint: 3.3,
     dateCreated: new Date().toISOString(),
   },
 
@@ -353,7 +353,7 @@ export const exercises: Exercise[] = [
     targetMuscleGroups: ["Core", "Hip Flexors", "Shoulders"],
     mistakes: ["Arching lower back", "Raising legs too high", "Neck tension"],
     progression: ["tuck-hollow-hold", "single-leg-hollow-hold"],
-    unitPoint: 1,
+    unitPoint: 0.5,
     dateCreated: new Date().toISOString(),
   },
   {
@@ -384,7 +384,7 @@ export const exercises: Exercise[] = [
       "dead-bug-leg-only",
       "weighted-dead-bug",
     ],
-    unitPoint: 1,
+    unitPoint: 0.5,
     dateCreated: new Date().toISOString(),
   },
 
@@ -412,7 +412,7 @@ export const exercises: Exercise[] = [
       "Poor arm alignment",
     ],
     progression: ["slow-mountain-climbers", "high-knees-mountain-climbers"],
-    unitPoint: 1,
+    unitPoint: 0.7,
     dateCreated: new Date().toISOString(),
   },
   {
@@ -441,7 +441,7 @@ export const exercises: Exercise[] = [
       "Lack of control on descent",
     ],
     progression: ["pull-up", "chest-to-bar pull-up", "explosive pull-up"],
-    unitPoint: 4,
+    unitPoint: 5,
     dateCreated: new Date().toISOString(),
   },
 
@@ -463,7 +463,7 @@ export const exercises: Exercise[] = [
       "Arching lower back",
     ],
     progression: ["assisted-sissy-squat", "wall-squat"],
-    unitPoint: 2,
+    unitPoint: 0.75,
     dateCreated: new Date().toISOString(),
   },
 
@@ -490,7 +490,7 @@ export const exercises: Exercise[] = [
       "box-pistol-squat",
       "partial-range-pistol",
     ],
-    unitPoint: 3,
+    unitPoint: 1.5,
     dateCreated: new Date().toISOString(),
   },
 
@@ -508,7 +508,7 @@ export const exercises: Exercise[] = [
     targetMuscleGroups: ["Lower Abs", "Hip Flexors", "Grip", "Forearms"],
     mistakes: ["Swinging body", "Not controlling legs", "Arching back"],
     progression: ["tuck-knee-raise", "single-leg-knee-raise"],
-    unitPoint: 1,
+    unitPoint: 0.5,
     dateCreated: new Date().toISOString(),
   },
 
@@ -530,7 +530,7 @@ export const exercises: Exercise[] = [
       "elevated-pike-hold",
       "pike-to-handstand-progressions",
     ],
-    unitPoint: 2,
+    unitPoint: 0.5,
     dateCreated: new Date().toISOString(),
   },
 
@@ -548,7 +548,7 @@ export const exercises: Exercise[] = [
     targetMuscleGroups: ["Chest", "Shoulders", "Triceps", "Core"],
     mistakes: ["Sagging hips", "Partial range", "Flared elbows"],
     progression: ["wall-pushup", "incline-pushup", "standard-pushup"],
-    unitPoint: 1,
+    unitPoint: 0.7,
     dateCreated: new Date().toISOString(),
   },
 
@@ -606,7 +606,7 @@ export const exercises: Exercise[] = [
       "alternating-feet-skip",
       "double-unders",
     ],
-    unitPoint: 1,
+    unitPoint: 0.1,
     dateCreated: new Date().toISOString(),
   },
 
@@ -624,7 +624,7 @@ export const exercises: Exercise[] = [
     targetMuscleGroups: ["Shoulders", "Lats", "Forearms", "Core"],
     mistakes: ["Shrugging shoulders", "Bent elbows", "Loose core"],
     progression: ["scapular-hang", "dead-hang"],
-    unitPoint: 1,
+    unitPoint: 0.33,
     dateCreated: new Date().toISOString(),
   },
   {
@@ -641,7 +641,7 @@ export const exercises: Exercise[] = [
     targetMuscleGroups: ["Forearms", "Shoulders", "Grip"],
     mistakes: ["Tensing shoulders", "Bent arms", "Swinging"],
     progression: ["dead-hang", "active-hang"],
-    unitPoint: 1,
+    unitPoint: 0.23,
     dateCreated: new Date().toISOString(),
   },
 
@@ -659,7 +659,7 @@ export const exercises: Exercise[] = [
     targetMuscleGroups: ["Core", "Shoulders", "Triceps", "Chest"],
     mistakes: ["Sagging hips", "Bent elbows", "Rounded shoulders"],
     progression: ["knee-front-support", "elevated-front-support"],
-    unitPoint: 1,
+    unitPoint: 0.33,
     dateCreated: new Date().toISOString(),
   },
 
@@ -677,7 +677,7 @@ export const exercises: Exercise[] = [
     targetMuscleGroups: ["Obliques", "Shoulders", "Core", "Glutes"],
     mistakes: ["Hips sagging", "Twisting torso", "Bent arm"],
     progression: ["knee-side-support", "elevated-side-support"],
-    unitPoint: 1,
+    unitPoint: 0.37,
     dateCreated: new Date().toISOString(),
   },
 
@@ -695,7 +695,7 @@ export const exercises: Exercise[] = [
     targetMuscleGroups: ["Back", "Glutes", "Shoulders", "Core"],
     mistakes: ["Sagging hips", "Loose core", "Rounded shoulders"],
     progression: ["knee-back-support", "elevated-back-support"],
-    unitPoint: 1,
+    unitPoint: 0.3,
     dateCreated: new Date().toISOString(),
   },
 
@@ -713,7 +713,7 @@ export const exercises: Exercise[] = [
     targetMuscleGroups: ["Shoulders", "Triceps", "Core", "Chest"],
     mistakes: ["Bent elbows", "Loose core", "Sagging hips"],
     progression: ["front-support", "elevated-vertical-support"],
-    unitPoint: 2,
+    unitPoint: 1,
     dateCreated: new Date().toISOString(),
   },
   {
@@ -740,7 +740,7 @@ export const exercises: Exercise[] = [
       "Bouncing excessively",
     ],
     progression: ["marching-high-knees", "fast-high-knees-sprints"],
-    unitPoint: 1,
+    unitPoint: 0.2,
     dateCreated: new Date().toISOString(),
   },
 
@@ -768,7 +768,7 @@ export const exercises: Exercise[] = [
       "Not going deep enough",
     ],
     progression: ["static-lunge", "alternating-step-lunge", "jumping-lunges"],
-    unitPoint: 2,
+    unitPoint: 0.8,
     dateCreated: new Date().toISOString(),
   },
 
@@ -790,7 +790,7 @@ export const exercises: Exercise[] = [
       "Back knee touching the ground forcefully",
     ],
     progression: ["assisted-split-squat", "lunge", "jumping-lunge"],
-    unitPoint: 1,
+    unitPoint: 0.75,
     dateCreated: new Date().toISOString(),
   },
 
@@ -820,7 +820,7 @@ export const exercises: Exercise[] = [
       "Using momentum",
     ],
     progression: ["standard-pushup", "decline-pushup", "pseudo-planche-pushup"],
-    unitPoint: 3,
+    unitPoint: 2.5,
     dateCreated: new Date().toISOString(),
   },
 
@@ -843,7 +843,7 @@ export const exercises: Exercise[] = [
       "Head dropping",
     ],
     progression: ["incline-pushup", "standard-pushup", "decline-pushup"],
-    unitPoint: 2,
+    unitPoint: 1.3,
     dateCreated: new Date().toISOString(),
   },
 
@@ -865,7 +865,7 @@ export const exercises: Exercise[] = [
       "Feet lifting off floor excessively",
     ],
     progression: ["seated-oblique-twist", "feet-elevated-russian-twist"],
-    unitPoint: 1,
+    unitPoint: 0.5,
     dateCreated: new Date().toISOString(),
   },
 
@@ -887,7 +887,7 @@ export const exercises: Exercise[] = [
       "Rushing movement",
     ],
     progression: ["slow-bicycle-crunch", "feet-on-ground-bicycle-crunch"],
-    unitPoint: 1,
+    unitPoint: 0.6,
     dateCreated: new Date().toISOString(),
   },
 
@@ -905,7 +905,7 @@ export const exercises: Exercise[] = [
     mistakes: ["Rounding back", "Using momentum", "Partial range"],
     bodyRegion: "core",
     progression: ["tuck-ups", "single-leg-v-ups"],
-    unitPoint: 2,
+    unitPoint: 1,
     dateCreated: new Date().toISOString(),
   },
 
@@ -928,7 +928,7 @@ export const exercises: Exercise[] = [
       "Neck alignment",
     ],
     progression: ["side-plank-hold", "side-hip-dip-knee-bent"],
-    unitPoint: 1,
+    unitPoint: 0.6,
     dateCreated: new Date().toISOString(),
   },
 
@@ -951,7 +951,7 @@ export const exercises: Exercise[] = [
       "Holding breath",
     ],
     progression: ["tuck-lsit-hang", "one-leg-lsit-hang", "full-lsit-hang"],
-    unitPoint: 1,
+    unitPoint: 0.5,
     dateCreated: new Date().toISOString(),
   },
   {
@@ -979,7 +979,7 @@ export const exercises: Exercise[] = [
       "Elbows bending",
     ],
     progression: ["tuck-lsit-hang", "one-leg-lsit-hang", "full-lsit-hang"],
-    unitPoint: 2,
+    unitPoint: 0.75,
     dateCreated: new Date().toISOString(),
   },
   {
@@ -1007,7 +1007,7 @@ export const exercises: Exercise[] = [
       "Breathing irregularly",
     ],
     progression: ["tuck-lsit-hang", "one-leg-lsit-hang", "full-lsit-hang"],
-    unitPoint: 3,
+    unitPoint: 1,
     dateCreated: new Date().toISOString(),
   },
   {
@@ -1029,7 +1029,7 @@ export const exercises: Exercise[] = [
       "Partial range of motion",
     ],
     progression: ["tuck-lsit-hang", "tuck-lsit-pullup", "full-lsit-pullup"],
-    unitPoint: 2,
+    unitPoint: 4,
     dateCreated: new Date().toISOString(),
   },
   {
@@ -1058,7 +1058,411 @@ export const exercises: Exercise[] = [
       "Shoulders shrugging",
     ],
     progression: ["tuck-lsit-hang", "one-leg-lsit-hang", "full-lsit-pullup"],
+    unitPoint: 6,
+    dateCreated: new Date().toISOString(),
+  },
+  {
+    id: "handstand",
+    name: "Handstand",
+    level: "advanced",
+    measurement: "seconds",
+    type: "strength",
+    movementPattern: "isometric",
+    tags: ["shoulders", "core", "balance", "bodyweight", "inverted"],
+    description:
+      "Hold a straight-body handstand, either freestanding or against a wall, keeping the body tight and aligned.",
+    targetMuscleGroups: [
+      "Shoulders",
+      "Core",
+      "Triceps",
+      "Upper Back",
+      "Glutes",
+    ],
+    bodyRegion: "upper-body",
+    mistakes: [
+      "Arching back",
+      "Bent elbows",
+      "Looking down or forward",
+      "Poor hand placement",
+    ],
+    progression: ["wall-supported-handstand", "handstand-kick-ups"],
+    unitPoint: 0.7,
+    dateCreated: new Date().toISOString(),
+  },
+
+  {
+    id: "wall-supported-handstand",
+    name: "Wall Supported Handstand",
+    level: "intermediate",
+    measurement: "seconds",
+    type: "strength",
+    movementPattern: "isometric",
+    tags: ["shoulders", "core", "balance", "bodyweight", "inverted"],
+    description:
+      "Hold a handstand with your back or chest against the wall for support, focusing on alignment and shoulder engagement.",
+    targetMuscleGroups: [
+      "Shoulders",
+      "Core",
+      "Triceps",
+      "Upper Back",
+      "Glutes",
+    ],
+    bodyRegion: "upper-body",
+    mistakes: [
+      "Overarching back",
+      "Bent elbows",
+      "Feet too far from wall",
+      "Neck misalignment",
+    ],
+    progression: ["handstand"],
+    unitPoint: 0.5,
+    dateCreated: new Date().toISOString(),
+  },
+
+  {
+    id: "handstand-pushup",
+    name: "Handstand Push-Up",
+    level: "expert",
+    measurement: "reps",
+    type: "strength",
+    movementPattern: "push",
+    tags: ["shoulders", "triceps", "core", "bodyweight", "inverted"],
+    description:
+      "From a handstand position, lower your head to the ground and press back up, maintaining core tension and shoulder alignment.",
+    targetMuscleGroups: ["Shoulders", "Triceps", "Core", "Upper Back"],
+    bodyRegion: "upper-body",
+    mistakes: [
+      "Arching back",
+      "Elbows flaring out",
+      "Incomplete range of motion",
+      "Head hitting the ground",
+    ],
+    progression: ["wall-supported-handstand", "handstand"],
+    unitPoint: 2.5,
+    dateCreated: new Date().toISOString(),
+  },
+
+  {
+    id: "planche",
+    name: "Planche",
+    level: "elite",
+    measurement: "seconds",
+    type: "strength",
+    movementPattern: "isometric",
+    tags: [
+      "shoulders",
+      "core",
+      "triceps",
+      "bodyweight",
+      "isometric",
+      "inverted",
+    ],
+    description:
+      "Hold your body parallel to the ground supported only by your hands, keeping arms straight and core tight.",
+    targetMuscleGroups: ["Shoulders", "Core", "Triceps", "Chest", "Lower Back"],
+    bodyRegion: "upper-body",
+    mistakes: [
+      "Hips sagging",
+      "Bent elbows",
+      "Arching back",
+      "Neck misalignment",
+    ],
+    progression: ["pseudo-planch-lean", "tuck-planche"],
+    unitPoint: 5,
+    dateCreated: new Date().toISOString(),
+  },
+
+  {
+    id: "pseudo-planche-lean",
+    name: "Pseudo Planche Lean",
+    level: "intermediate",
+    measurement: "seconds",
+    type: "strength",
+    movementPattern: "isometric",
+    tags: ["shoulders", "core", "triceps", "bodyweight", "isometric"],
+    description:
+      "Lean forward with hands on the floor while keeping arms straight and body tight, engaging core and shoulders to mimic planche hold.",
+    targetMuscleGroups: ["Shoulders", "Core", "Triceps", "Chest"],
+    bodyRegion: "upper-body",
+    mistakes: [
+      "Bent elbows",
+      "Hips too high or sagging",
+      "Not leaning enough",
+      "Neck misalignment",
+    ],
+    progression: ["planche", "tuck-planche"],
+    unitPoint: 1,
+    dateCreated: new Date().toISOString(),
+  },
+  {
+    id: "tuck-planche",
+    name: "Tuck Planche",
+    level: "advanced",
+    measurement: "seconds",
+    type: "strength",
+    movementPattern: "isometric",
+    tags: ["shoulders", "core", "triceps", "bodyweight", "isometric"],
+    description:
+      "Hold a planche with knees tucked to the chest, arms straight, and core tight, keeping the body parallel to the ground.",
+    targetMuscleGroups: ["Shoulders", "Core", "Triceps", "Chest"],
+    bodyRegion: "upper-body",
+    mistakes: [
+      "Hips sagging",
+      "Bent elbows",
+      "Arching back",
+      "Not keeping knees tucked",
+    ],
+    progression: ["pseudo-planche-lean", "advanced-tuck-planche"],
+    unitPoint: 1.8,
+    dateCreated: new Date().toISOString(),
+  },
+  {
+    id: "one-leg-tuck-planche",
+    name: "One-Leg Tuck Planche",
+    level: "advanced",
+    measurement: "seconds",
+    type: "strength",
+    movementPattern: "isometric",
+    tags: ["shoulders", "core", "triceps", "bodyweight", "isometric"],
+    description:
+      "From a tuck planche, extend one leg forward while keeping the other leg tucked, arms straight and body parallel to the ground.",
+    targetMuscleGroups: [
+      "Shoulders",
+      "Core",
+      "Triceps",
+      "Chest",
+      "Hip Flexors",
+    ],
+    bodyRegion: "upper-body",
+    mistakes: [
+      "Hips sagging",
+      "Bent elbows",
+      "Arching back",
+      "Not keeping tucked leg tight",
+      "Uneven leg extension",
+    ],
+    progression: ["tuck-planche", "advanced-tuck-planche"],
+    unitPoint: 2,
+    dateCreated: new Date().toISOString(),
+  },
+
+  {
+    id: "advanced-tuck-planche",
+    name: "Advanced Tuck Planche",
+    level: "advanced",
+    measurement: "seconds",
+    type: "strength",
+    movementPattern: "isometric",
+    tags: ["shoulders", "core", "triceps", "bodyweight", "isometric"],
+    description:
+      "From a tuck planche, extend hips slightly to increase difficulty while keeping knees tucked, arms straight, and body parallel.",
+    targetMuscleGroups: ["Shoulders", "Core", "Triceps", "Chest"],
+    bodyRegion: "upper-body",
+    mistakes: [
+      "Hips sagging or too high",
+      "Bent elbows",
+      "Arching back",
+      "Knees not tucked",
+    ],
+    progression: ["tuck-planche", "straddle-planche"],
+    unitPoint: 2.2,
+    dateCreated: new Date().toISOString(),
+  },
+
+  {
+    id: "straddle-planche",
+    name: "Straddle Planche",
+    level: "expert",
+    measurement: "seconds",
+    type: "strength",
+    movementPattern: "isometric",
+    tags: ["shoulders", "core", "triceps", "bodyweight", "isometric"],
+    description:
+      "Perform a planche with legs spread in a straddle position, arms straight, keeping the body parallel to the ground.",
+    targetMuscleGroups: [
+      "Shoulders",
+      "Core",
+      "Triceps",
+      "Chest",
+      "Hip Flexors",
+    ],
+    bodyRegion: "upper-body",
+    mistakes: [
+      "Hips sagging",
+      "Bent elbows",
+      "Arching back",
+      "Legs not fully straddled",
+    ],
+    progression: ["advanced-tuck-planche", "full-planche"],
+    unitPoint: 3,
+    dateCreated: new Date().toISOString(),
+  },
+  {
+    id: "tuck-front-lever",
+    name: "Tuck Front Lever",
+    level: "intermediate",
+    measurement: "seconds",
+    type: "strength",
+    movementPattern: "isometric",
+    tags: ["lats", "core", "shoulders", "bodyweight", "isometric"],
+    description:
+      "Hang from a pull-up bar and hold your body horizontal with knees tucked to the chest, arms straight and core tight.",
+    targetMuscleGroups: ["Lats", "Core", "Shoulders", "Upper Back", "Glutes"],
+    bodyRegion: "core",
+    mistakes: [
+      "Hips sagging",
+      "Bent arms",
+      "Arching back",
+      "Shoulders not engaged",
+    ],
+    progression: ["advanced-tuck-front-lever"],
+    unitPoint: 1.3,
+    dateCreated: new Date().toISOString(),
+  },
+
+  {
+    id: "advanced-tuck-front-lever",
+    name: "Advanced Tuck Front Lever",
+    level: "intermediate",
+    measurement: "seconds",
+    type: "strength",
+    movementPattern: "isometric",
+    tags: ["lats", "core", "shoulders", "bodyweight", "isometric"],
+    description:
+      "From a tuck front lever, extend hips slightly while keeping knees tucked, maintaining a straight arm hold and engaged core.",
+    targetMuscleGroups: ["Lats", "Core", "Shoulders", "Upper Back", "Glutes"],
+    bodyRegion: "core",
+    mistakes: ["Hips sagging", "Bent arms", "Arching back", "Knees not tucked"],
+    progression: ["one-leg-front-lever"],
+    unitPoint: 2,
+    dateCreated: new Date().toISOString(),
+  },
+
+  {
+    id: "one-leg-front-lever",
+    name: "One-Leg Front Lever",
+    level: "advanced",
+    measurement: "seconds",
+    type: "strength",
+    movementPattern: "isometric",
+    tags: ["lats", "core", "shoulders", "bodyweight", "isometric"],
+    description:
+      "From a tuck or advanced tuck front lever, extend one leg while keeping the other tucked, arms straight and body horizontal.",
+    targetMuscleGroups: ["Lats", "Core", "Shoulders", "Upper Back", "Glutes"],
+    bodyRegion: "core",
+    mistakes: [
+      "Hips sagging",
+      "Bent arms",
+      "Arching back",
+      "Uneven leg extension",
+    ],
+    progression: ["straddle-front-lever"],
+    unitPoint: 2.2,
+    dateCreated: new Date().toISOString(),
+  },
+
+  {
+    id: "straddle-front-lever",
+    name: "Straddle Front Lever",
+    level: "advanced",
+    measurement: "seconds",
+    type: "strength",
+    movementPattern: "isometric",
+    tags: ["lats", "core", "shoulders", "bodyweight", "isometric"],
+    description:
+      "Perform a front lever with legs spread in a straddle position, keeping arms straight and body horizontal.",
+    targetMuscleGroups: [
+      "Lats",
+      "Core",
+      "Shoulders",
+      "Upper Back",
+      "Glutes",
+      "Hip Flexors",
+    ],
+    bodyRegion: "core",
+    mistakes: [
+      "Hips sagging",
+      "Bent arms",
+      "Arching back",
+      "Legs not fully straddled",
+    ],
+    progression: ["full-front-lever"],
+    unitPoint: 2.8,
+    dateCreated: new Date().toISOString(),
+  },
+
+  {
+    id: "full-front-lever",
+    name: "Full Front Lever",
+    level: "expert",
+    measurement: "seconds",
+    type: "strength",
+    movementPattern: "isometric",
+    tags: ["lats", "core", "shoulders", "bodyweight", "isometric"],
+    description:
+      "Hang from a bar and hold your body fully horizontal with legs extended, arms straight, core engaged, and body parallel to the ground.",
+    targetMuscleGroups: [
+      "Lats",
+      "Core",
+      "Shoulders",
+      "Upper Back",
+      "Glutes",
+      "Hip Flexors",
+    ],
+    bodyRegion: "core",
+    mistakes: [
+      "Hips sagging",
+      "Bent arms",
+      "Arching back",
+      "Legs not fully extended",
+    ],
+    progression: [],
     unitPoint: 4,
+    dateCreated: new Date().toISOString(),
+  },
+  {
+    id: "one-arm-pullup",
+    name: "One-Arm Pull-Up",
+    level: "elite",
+    measurement: "reps",
+    type: "strength",
+    movementPattern: "pull",
+    tags: ["lats", "biceps", "forearms", "core", "bodyweight"],
+    description:
+      "Perform a pull-up using only one arm, keeping the body straight and controlled throughout the movement.",
+    targetMuscleGroups: ["Lats", "Biceps", "Forearms", "Core", "Shoulders"],
+    bodyRegion: "upper-body",
+    mistakes: [
+      "Swinging body",
+      "Bent elbow",
+      "Partial range of motion",
+      "Poor grip",
+    ],
+    progression: ["pullup", "tuck-front-lever-pullup"],
+    unitPoint: 10,
+    dateCreated: new Date().toISOString(),
+  },
+
+  {
+    id: "tuck-front-lever-pullup",
+    name: "Tuck Front Lever Pull-Up",
+    level: "advanced",
+    measurement: "reps",
+    type: "strength",
+    movementPattern: "isometric",
+    tags: ["lats", "core", "biceps", "shoulders", "bodyweight"],
+    description:
+      "From a tuck front lever hang, perform a pull-up while keeping the body horizontal with knees tucked, engaging core and upper back.",
+    targetMuscleGroups: ["Lats", "Core", "Biceps", "Shoulders", "Upper Back"],
+    bodyRegion: "core",
+    mistakes: [
+      "Hips sagging",
+      "Bent elbows",
+      "Swinging body",
+      "Knees not tucked",
+    ],
+    progression: ["tuck-front-lever", "one-arm-pullup"],
+    unitPoint: 4.5,
     dateCreated: new Date().toISOString(),
   },
 ];

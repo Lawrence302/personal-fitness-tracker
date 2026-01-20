@@ -1,4 +1,9 @@
-export type ExerciseLevel = "beginner" | "intermediate" | "advanced";
+export type ExerciseLevel =
+  | "beginner"
+  | "intermediate"
+  | "advanced"
+  | "expert"
+  | "elite";
 export type MovementPatternType =
   | "push"
   | "pull"
