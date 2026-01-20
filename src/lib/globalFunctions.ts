@@ -6,11 +6,13 @@ import { DateTime } from "luxon";
 import useExerciseStore from "../stores/exerciseStore";
 
 const tiers = [
-  { rank: "BEGINNER", min: 0, max: 10 },
-  { rank: "INTERMEDIATE", min: 10, max: 50 },
+  { rank: "NEWBIE", min: 0, max: 10 },
+  { rank: "BEGINNER", min: 10, max: 20 },
+  { rank: "INTERMEDIATE", min: 20, max: 50 },
   { rank: "ADVANCED", min: 50, max: 150 },
   { rank: "EXPERT", min: 150, max: 370 },
-  { rank: "ELITE", min: 370, max: Infinity },
+  { rank: "ELITE", min: 370, max: 799 },
+  { rank: "LEGEND", min: 800, max: Infinity },
 ];
 
 // Calculate user tier based on total points
@@ -37,7 +39,7 @@ export function calculateTier(totalPoints: number) {
         progressToNextTier: Math.floor(
           ((totalPoints - currentTier.min) /
             (currentTier.max - currentTier.min)) *
-            100
+            100,
         ),
       };
     }
@@ -117,7 +119,11 @@ export const getCurrentSession = async () => {
     };
 
     // update streak in zustand store
-    useExerciseStore.getState().updateCurrentStreak(streakStats.currentStreak);
+    if (streakStats && streakStats.currentStreak !== undefined) {
+      useExerciseStore
+        .getState()
+        .updateCurrentStreak(streakStats.currentStreak);
+    }
 
     // save streak stats to indexedDB
     await db.put("streakStats", newStreakStats);
@@ -140,7 +146,7 @@ export const getCurrentSession = async () => {
 
     const newActivitySessionId = await db.put(
       "activitySessions",
-      newActivitySession
+      newActivitySession,
     );
 
     const savedSession = await db.get("activitySessions", newActivitySessionId);

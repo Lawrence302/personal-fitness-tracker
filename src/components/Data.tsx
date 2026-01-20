@@ -56,21 +56,30 @@ const Data = () => {
           <div>
             <div className='flex justify-between px-4 mb-1 items-center'>
               <p className='tracking-widest text-zinc-500 text-xs font-bold italic'>
-                {tierInfo?.nextTier != null
-                  ? `PROGRESS TO ${tierInfo?.nextTier}`
-                  : "🏆ELITE "}
-                {Math.floor(tierInfo?.progressToNextTier || 100)}%
+                {tierInfo?.nextTier != null ? (
+                  `PROGRESS TO ${tierInfo?.nextTier} ${Math.floor(tierInfo?.progressToNextTier || 100)}%`
+                ) : (
+                  <p className=''>
+                    Legend Status Achieved 🏆 <br />
+                    You've Reached the Peak <br />
+                    Your journey now inspires others.
+                  </p>
+                )}
               </p>
-              <p className='italic tracking-tight text-sm '>
-                <span>{tierInfo?.pointsToNextTier}</span> pts remaining
-              </p>
+              {tierInfo?.nextTier != null && (
+                <p className='italic tracking-tight text-sm '>
+                  <span>{tierInfo?.pointsToNextTier}</span> pts remaining
+                </p>
+              )}
             </div>
-            <div className='border border-zinc-800 rounded-full p-[1px] bg-zinc-950 '>
-              <div
-                className='bg-zinc-500 h-2 rounded-full'
-                style={{ width: `${tierInfo?.progressToNextTier}%` }}
-              ></div>
-            </div>
+            {tierInfo?.nextTier != null && (
+              <div className='border border-zinc-800 rounded-full p-[1px] bg-zinc-950 '>
+                <div
+                  className='bg-zinc-500 h-2 rounded-full'
+                  style={{ width: `${tierInfo?.progressToNextTier}%` }}
+                ></div>
+              </div>
+            )}
           </div>
         </div>
 

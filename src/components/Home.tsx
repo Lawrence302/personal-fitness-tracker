@@ -99,20 +99,27 @@ const Home = ({ setDisplay }: HomeProps) => {
           </div>
 
           <div className='progress-bar mt-4'>
-            <div className='flex justify-between text-xs italic mb-1'>
-              <span>
-                {tierInfo?.nextTier != null
-                  ? `PROGRESS TO ${tierInfo?.nextTier}`
-                  : "🏆ELITE"}
-              </span>{" "}
-              <span>{tierInfo?.progressToNextTier}%</span>
-            </div>
-            <div className='w-full bg-grey-200 rounded-full h-1'>
-              <div
-                className='bg-blue-500 h-2 rounded-full '
-                style={{ width: `${tierInfo?.progressToNextTier}%` }}
-              ></div>
-            </div>
+            {tierInfo?.nextTier != null ? (
+              <div>
+                <div className='flex justify-between text-xs italic mb-1'>
+                  <span>
+                    {tierInfo?.nextTier != null &&
+                      `PROGRESS TO ${tierInfo?.nextTier}`}
+                  </span>{" "}
+                  <span>{tierInfo?.progressToNextTier}%</span>
+                </div>
+                <div className='w-full bg-black rounded-full h-2'>
+                  <div
+                    className='bg-blue-500 h-2 rounded-full '
+                    style={{ width: `${tierInfo?.progressToNextTier}%` }}
+                  ></div>
+                </div>
+              </div>
+            ) : (
+              <span className='text-cyan-500 text-xs italic'>
+                Legend Status Achieved 🏆
+              </span>
+            )}
           </div>
         </div>
       </div>

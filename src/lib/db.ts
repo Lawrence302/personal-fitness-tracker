@@ -7,7 +7,7 @@ import { openDB } from "idb";
 
 // Define an async function called initDB to initialize or open our database
 export const initDB = async () => {
-  const db = await openDB("calitrackDB", 14, {
+  const db = await openDB("calitrackDB", 1, {
     upgrade(db) {
       // // 1️⃣ Delete ONLY the broken store
       // if (db.objectStoreNames.contains("trainingWorkoutLogs")) {

@@ -14,6 +14,7 @@ export type MovementPatternType =
   | "full-body";
 
 export type UserRank =
+  | "NEWBIE"
   | "BEGINNER"
   | "INTERMEDIATE"
   | "ADVANCED"
