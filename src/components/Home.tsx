@@ -127,6 +127,23 @@ const Home = ({ setDisplay }: HomeProps) => {
         {/* Quick Log Exercise Section */}
         <QuickLogExercise />
       </div>
+
+      <div className='text-center my-8'>
+        <button
+          className='bg-zinc-900 p-2 rounded cursor-pointer hover:shadow-blue-500 '
+          onClick={() => setDisplay("pointsInfo")}
+        >
+          See More info about Points
+        </button>
+      </div>
+      <div className='text-center my-8'>
+        <button
+          className='bg-zinc-900 p-2 rounded cursor-pointer hover:shadow-blue-500 '
+          onClick={() => setDisplay("Info")}
+        >
+          Learn About this App and Calithenics
+        </button>
+      </div>
     </div>
   );
 };
