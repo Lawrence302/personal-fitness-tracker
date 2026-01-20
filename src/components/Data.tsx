@@ -101,24 +101,30 @@ const Data = ({ setDisplay }: DataComponentProps) => {
           <div>
             <div className='flex justify-between border-y border-zinc-400 text-sm '>
               <p className='text-zinc-400 capitalize'>beginner </p>
-              <p className=' '>+5-10 PTS</p>
+              <p className=' '>+0.1-11 PT</p>
             </div>
             <div className='flex justify-between border-y border-zinc-400 text-sm '>
               <p className='text-zinc-400 capitalize'>Intermediate </p>
-              <p className=' '>+11-15 PTS</p>
+              <p className=' '>+0.5-3 PTS</p>
             </div>
             <div className='flex justify-between border-y border-zinc-400 text-sm '>
               <p className='text-zinc-400 capitalize'>Advanced </p>
-              <p className=''>+16-25 PTS</p>
+              <p className=''>+0.7-6 PTS</p>
             </div>
             <div className='flex justify-between border-y border-zinc-400 text-sm '>
               <p className='text-zinc-400 capitalize'>Expert/Elite </p>
-              <p className='  '>+26-50 PTS</p>
+              <p className='  '>3-10+ PTS</p>
             </div>
           </div>
           <p className='text-sm italic pt-2 text-zinc-400'>
             Points are based on exercise difficulty, intensity, and required
-            skill.
+            skill.{" "}
+            <span
+              className='text-blue-500 cursor-pointer'
+              onClick={() => setDisplay("pointsInfo")}
+            >
+              See More..
+            </span>
           </p>
         </div>
       </div>
