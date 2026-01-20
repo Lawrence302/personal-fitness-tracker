@@ -9,8 +9,16 @@ import { Trophy } from "lucide-react";
 import usePointsStore from "../stores/pointsStore";
 import { calculateTier } from "../lib/globalFunctions";
 
-const Data = () => {
+type DataComponentProps = {
+  setDisplay: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const Data = ({ setDisplay }: DataComponentProps) => {
   const totalPoints = usePointsStore((state) => state.totalPoints);
+
+  const showPointsInfo = () => {
+    setDisplay("pointsInfo");
+  };
 
   const tierInfo = calculateTier(totalPoints);
   // console.log("this is tier info ", tierInfo);
@@ -121,6 +129,15 @@ const Data = () => {
 
       {/* Graph showing workout frequency. Most Frequent Exercises */}
       <ExerciseFrequencyChart />
+      {/* information about points */}
+      <div className='text-center mb-8'>
+        <button
+          className='bg-zinc-900 p-2 rounded cursor-pointer hover:shadow-blue-500 '
+          onClick={showPointsInfo}
+        >
+          See More info about Points
+        </button>
+      </div>
     </div>
   );
 };
