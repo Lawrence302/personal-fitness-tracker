@@ -95,7 +95,7 @@ const Home = ({ setDisplay }: HomeProps) => {
             <h1 className='text-4xl  italic font-bold '>
               {tierInfo?.userRank}
             </h1>
-            <p className='text-sm'>{totalPoints} TOTAL PTS</p>
+            <p className='text-sm'>{totalPoints.toFixed(2)} TOTAL PTS</p>
           </div>
 
           <div className='progress-bar mt-4'>
@@ -126,6 +126,23 @@ const Home = ({ setDisplay }: HomeProps) => {
       <div>
         {/* Quick Log Exercise Section */}
         <QuickLogExercise />
+      </div>
+
+      <div className='text-center my-8'>
+        <button
+          className='bg-zinc-900 p-2 rounded cursor-pointer hover:shadow-blue-500 '
+          onClick={() => setDisplay("pointsInfo")}
+        >
+          See More info about Points
+        </button>
+      </div>
+      <div className='text-center my-8'>
+        <button
+          className='bg-zinc-900 p-2 rounded cursor-pointer hover:shadow-blue-500 '
+          onClick={() => setDisplay("Info")}
+        >
+          Learn About this App and Calithenics
+        </button>
       </div>
     </div>
   );

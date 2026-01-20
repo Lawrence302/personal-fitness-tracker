@@ -6,13 +6,13 @@ import { DateTime } from "luxon";
 import useExerciseStore from "../stores/exerciseStore";
 
 const tiers = [
-  { rank: "NEWBIE", min: 0, max: 10 },
-  { rank: "BEGINNER", min: 10, max: 20 },
-  { rank: "INTERMEDIATE", min: 20, max: 50 },
-  { rank: "ADVANCED", min: 50, max: 150 },
-  { rank: "EXPERT", min: 150, max: 370 },
-  { rank: "ELITE", min: 370, max: 799 },
-  { rank: "LEGEND", min: 800, max: Infinity },
+  { rank: "NEWBIE", min: 0, max: 800 },
+  { rank: "BEGINNER", min: 801, max: 2499 },
+  { rank: "INTERMEDIATE", min: 2500, max: 6499 },
+  { rank: "ADVANCED", min: 6500, max: 12999 },
+  { rank: "EXPERT", min: 13000, max: 25999 },
+  { rank: "ELITE", min: 26000, max: 51999 },
+  { rank: "LEGENDARY", min: 52000, max: Infinity },
 ];
 
 // Calculate user tier based on total points

@@ -9,8 +9,16 @@ import { Trophy } from "lucide-react";
 import usePointsStore from "../stores/pointsStore";
 import { calculateTier } from "../lib/globalFunctions";
 
-const Data = () => {
+type DataComponentProps = {
+  setDisplay: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const Data = ({ setDisplay }: DataComponentProps) => {
   const totalPoints = usePointsStore((state) => state.totalPoints);
+
+  const showPointsInfo = () => {
+    setDisplay("pointsInfo");
+  };
 
   const tierInfo = calculateTier(totalPoints);
   // console.log("this is tier info ", tierInfo);
@@ -48,7 +56,10 @@ const Data = () => {
                 TOTAL SCORE
               </p>
               <h2 className='font-bold text-lg md:text-2xl text-cyan-500'>
-                <span className='text-white  italic'>{totalPoints}</span> PTS
+                <span className='text-white  italic'>
+                  {totalPoints.toFixed(2)}
+                </span>{" "}
+                PTS
               </h2>
             </div>
           </div>
@@ -68,7 +79,8 @@ const Data = () => {
               </p>
               {tierInfo?.nextTier != null && (
                 <p className='italic tracking-tight text-sm '>
-                  <span>{tierInfo?.pointsToNextTier}</span> pts remaining
+                  <span>{tierInfo?.pointsToNextTier.toFixed(2)}</span> pts
+                  remaining
                 </p>
               )}
             </div>
@@ -93,24 +105,30 @@ const Data = () => {
           <div>
             <div className='flex justify-between border-y border-zinc-400 text-sm '>
               <p className='text-zinc-400 capitalize'>beginner </p>
-              <p className=' '>+5-10 PTS</p>
+              <p className=' '>+0.1-11 PT</p>
             </div>
             <div className='flex justify-between border-y border-zinc-400 text-sm '>
               <p className='text-zinc-400 capitalize'>Intermediate </p>
-              <p className=' '>+11-15 PTS</p>
+              <p className=' '>+0.5-3 PTS</p>
             </div>
             <div className='flex justify-between border-y border-zinc-400 text-sm '>
               <p className='text-zinc-400 capitalize'>Advanced </p>
-              <p className=''>+16-25 PTS</p>
+              <p className=''>+0.7-6 PTS</p>
             </div>
             <div className='flex justify-between border-y border-zinc-400 text-sm '>
               <p className='text-zinc-400 capitalize'>Expert/Elite </p>
-              <p className='  '>+26-50 PTS</p>
+              <p className='  '>3-10+ PTS</p>
             </div>
           </div>
           <p className='text-sm italic pt-2 text-zinc-400'>
             Points are based on exercise difficulty, intensity, and required
-            skill.
+            skill.{" "}
+            <span
+              className='text-blue-500 cursor-pointer'
+              onClick={() => setDisplay("pointsInfo")}
+            >
+              See More..
+            </span>
           </p>
         </div>
       </div>
@@ -121,6 +139,15 @@ const Data = () => {
 
       {/* Graph showing workout frequency. Most Frequent Exercises */}
       <ExerciseFrequencyChart />
+      {/* information about points */}
+      <div className='text-center mb-8'>
+        <button
+          className='bg-zinc-900 p-2 rounded cursor-pointer hover:shadow-blue-500 '
+          onClick={showPointsInfo}
+        >
+          See More info about Points
+        </button>
+      </div>
     </div>
   );
 };

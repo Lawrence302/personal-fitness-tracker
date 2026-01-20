@@ -76,7 +76,7 @@ async function getAllSessions() {
   sessions.forEach((session) => {
     const day = session.startTime.split("T")[0];
     if (!result[day]) result[day] = 0;
-    result[day] += session.totalPoints;
+    result[day] += Number(session.totalPoints.toFixed(2));
   });
 
   // making the data into array of objects
@@ -87,7 +87,7 @@ async function getAllSessions() {
 
   // sort by data in ascending order
   pointsByDay.sort(
-    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
   );
 
   return pointsByDay;
@@ -103,7 +103,7 @@ const PointsPerDayChart = () => {
   useEffect(() => {
     async function fetchData() {
       const data = await getAllSessions();
-      console.log("points per chart sessions ", data);
+      // console.log("points per chart sessions ", data);
       setPointByDayData(data);
     }
 

@@ -11,6 +11,7 @@ import Data from "./components/Data.tsx";
 import Coach from "./components/Coach.tsx";
 
 import InfoPage from "./components/InfoPage.tsx";
+import PointsInfo from "./components/PointsInfo.tsx";
 
 function App() {
   const [display, setDisplay] = useState("Home");
@@ -25,9 +26,10 @@ function App() {
           {display == "Home" && <Home setDisplay={setDisplay} />}
           {display == "Workouts" && <Workouts />}
           {display == "Exercises" && <Exercises />}
-          {display == "Data" && <Data />}
+          {display == "Data" && <Data setDisplay={setDisplay} />}
           {display == "Coach" && <Coach />}
           {display == "Info" && <InfoPage />}
+          {display == "pointsInfo" && <PointsInfo />}
         </div>
       </div>
 
