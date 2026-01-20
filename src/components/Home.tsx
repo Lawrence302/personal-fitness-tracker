@@ -95,7 +95,7 @@ const Home = ({ setDisplay }: HomeProps) => {
             <h1 className='text-4xl  italic font-bold '>
               {tierInfo?.userRank}
             </h1>
-            <p className='text-sm'>{totalPoints} TOTAL PTS</p>
+            <p className='text-sm'>{totalPoints.toFixed(2)} TOTAL PTS</p>
           </div>
 
           <div className='progress-bar mt-4'>

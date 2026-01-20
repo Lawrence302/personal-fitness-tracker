@@ -7,34 +7,34 @@ const tiers = [
   },
   {
     tier: "Beginner",
-    points: "801 – 1,999",
+    points: "801 – 2,499",
     notes:
       "Starting to build strength and habit; slightly more challenging exercises",
   },
   {
     tier: "Intermediate",
-    points: "2,000 – 4,999",
+    points: "2,500 – 6,499",
     notes: "Consistent effort over weeks/months; noticeable gains",
   },
   {
     tier: "Advanced",
-    points: "5,000 – 9,999",
+    points: "6,500 – 12,999",
     notes:
       "High consistency, multiple sets/day, able to do intermediate → advanced exercises",
   },
   {
     tier: "Expert",
-    points: "10,000 – 19,999",
+    points: "13,000 – 25,999",
     notes: "Very dedicated, serious calisthenics practitioner",
   },
   {
     tier: "Elite",
-    points: "20,000 – 39,999",
+    points: "26,000 – 51,999",
     notes: "Extremely strong; capable of elite holds (planche, front lever)",
   },
   {
     tier: "Legendary",
-    points: "40,000+",
+    points: "52,000+",
     notes: "Rare mastery; almost professional-level calisthenics",
   },
 ];

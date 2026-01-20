@@ -11,15 +11,15 @@ const levelOrder = {
   legendary: 6,
 };
 const PointsInfo = () => {
-  const [sortBy, setSortBy] = useState("points"); // default sort by points
+  const [sortBy, setSortBy] = useState("points");
 
   const sortedExercises = [...exercises].sort((a, b) => {
     if (sortBy === "name") {
       return a.name.localeCompare(b.name);
     } else if (sortBy === "points") {
-      return b.unitPoint - a.unitPoint; // descending
+      return b.unitPoint - a.unitPoint;
     } else if (sortBy === "level") {
-      return levelOrder[a.level] - levelOrder[b.level]; // ascending: Newbie → Legendary
+      return levelOrder[a.level] - levelOrder[b.level]; //Newbie → Legendary
     }
     return 0;
   });
@@ -45,7 +45,7 @@ const PointsInfo = () => {
               Exercise Points System
             </h2>
             <p className='text-zinc-400 mb-4'>{exercises.length} exercises</p>
-            {/* filter and sort buttons */}
+
             {/* Sort Buttons */}
             <div className='flex gap-2 mb-4'>
               <button

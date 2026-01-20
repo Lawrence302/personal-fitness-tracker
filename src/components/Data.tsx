@@ -56,7 +56,10 @@ const Data = ({ setDisplay }: DataComponentProps) => {
                 TOTAL SCORE
               </p>
               <h2 className='font-bold text-lg md:text-2xl text-cyan-500'>
-                <span className='text-white  italic'>{totalPoints}</span> PTS
+                <span className='text-white  italic'>
+                  {totalPoints.toFixed(2)}
+                </span>{" "}
+                PTS
               </h2>
             </div>
           </div>
@@ -76,7 +79,8 @@ const Data = ({ setDisplay }: DataComponentProps) => {
               </p>
               {tierInfo?.nextTier != null && (
                 <p className='italic tracking-tight text-sm '>
-                  <span>{tierInfo?.pointsToNextTier}</span> pts remaining
+                  <span>{tierInfo?.pointsToNextTier.toFixed(2)}</span> pts
+                  remaining
                 </p>
               )}
             </div>
