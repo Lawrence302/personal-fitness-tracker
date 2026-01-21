@@ -99,12 +99,15 @@ export type ActivitySession = {
 export type UserInfo = {
   id: string;
   name: string;
-  age: number;
-  tierInfo: TierInfo;
-  totalPoints: number;
-  totalWorkouts: number;
-  totalExerciseLogs: number;
-  joinedDate: string;
+  age?: number;
+  height?: number; // in cm
+  weight?: number; // in kg
+  goals?: string;
+  // tierInfo: TierInfo;
+  // totalPoints: number;
+  // totalWorkouts: number;
+  // totalExerciseLogs: number;
+  joinedDate?: string | null;
 };
 
 export type StreakStats = {

@@ -1,14 +1,18 @@
 import { SignedIn, SignOutButton } from "@clerk/clerk-react";
 import usePointsStore from "../stores/pointsStore";
 import { useEffect, useState } from "react";
-import { openDB } from "idb";
+
 import { calculateTier } from "../lib/globalFunctions";
 import useExerciseStore from "../stores/exerciseStore";
 import ExerciseLogsHistory from "./modals/ExerciseLogsHistory";
+import EditProfileModal from "./modals/EditProfileModal";
+import { initDB } from "../lib/db";
+import { UserInfo } from "../lib/types";
 
 // import { Info, ChevronRight, Target } from "lucide-react";
 
 const UserAccount = () => {
+  const [userInfo, setUserInfo] = useState<UserInfo>();
   const totalPoints = usePointsStore((state) => state.totalPoints);
 
   const currentStreak = useExerciseStore((state) => state.currentStreak);
@@ -21,13 +25,14 @@ const UserAccount = () => {
   );
   const [workoutsCompleted, setWorkoutsCompleted] = useState(0);
   const [showLogsModal, setShowLogsModal] = useState(false);
+  const [showEditProfileModal, setShowEditProfileModal] = useState(false);
 
   const tierInfo = calculateTier(totalPoints);
 
   // Load DB info on mount
   useEffect(() => {
     const fetchStats = async () => {
-      const db = await openDB("calitrackDB", 1);
+      const db = await initDB();
 
       // Fetch streaks
       const streaks = await db.getAll("streakStats");
@@ -38,7 +43,11 @@ const UserAccount = () => {
       const logs = await db.getAll("trainingWorkoutLogs");
       setWorkoutsCompleted(logs.length);
 
-      // Fetch tier info (mocked here)
+      // Fetch userInfo
+      const user = await db.get("userInfo", "user");
+      if (user) {
+        setUserInfo(user);
+      }
     };
 
     fetchStats();
@@ -53,10 +62,14 @@ const UserAccount = () => {
         <div className='profile-card bg-zinc-900 rounded-xl p-6 flex-1 border'>
           <div className='flex items-center gap-4 mb-4'>
             <div className='w-20 h-20 bg-cyan-500 rounded-full flex items-center justify-center text-3xl font-bold text-white'>
-              U
+              {userInfo?.name?.trim()
+                ? userInfo?.name?.charAt(0).toUpperCase()
+                : "U"}
             </div>
             <div>
-              <h2 className='text-xl font-bold'>User Name</h2>
+              <h2 className='text-xl font-bold'>
+                {userInfo?.name?.trim() ? userInfo?.name : "User Name"}
+              </h2>
               <p className='text-sm text-zinc-400'>user@email.com</p>
             </div>
           </div>
@@ -75,6 +88,14 @@ const UserAccount = () => {
             <p className='text-sm'>Streaks:</p>
             <p>
               Current: {currentStreak} 🔥 | Longest: {longestStreak} 🏆
+            </p>
+          </div>
+          <div>
+            <p>Goals:</p>
+            <p className='italic text-zinc-400'>
+              {userInfo?.goals
+                ? userInfo.goals
+                : "Set your fitness goals to stay motivated!"}
             </p>
           </div>
 
@@ -112,7 +133,10 @@ const UserAccount = () => {
           <div className='mb-4'>
             <p className='text-sm'>Quick Actions:</p>
             <div className='flex gap-2 mt-2 flex-wrap'>
-              <button className='bg-zinc-800 hover:bg-zinc-700 text-white py-2 px-4 rounded'>
+              <button
+                className='bg-zinc-800 hover:bg-zinc-700 text-white py-2 px-4 rounded'
+                onClick={() => setShowEditProfileModal(true)}
+              >
                 Edit Profile
               </button>
               <button
@@ -134,6 +158,14 @@ const UserAccount = () => {
           <ExerciseLogsHistory
             isOpen={showLogsModal}
             onClose={() => setShowLogsModal(false)}
+          />
+        )}
+      </div>
+      <div>
+        {showEditProfileModal && (
+          <EditProfileModal
+            isOpen={showEditProfileModal}
+            onClose={() => setShowEditProfileModal(false)}
           />
         )}
       </div>
