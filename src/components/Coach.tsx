@@ -2,12 +2,18 @@ import { Users, MessageSquare, Timer, Mic, CheckCircle } from "lucide-react";
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 
-// import { getAIFitnessAdvice } from './services/gemini';
+import { SignedOut, SignOutButton } from "@clerk/clerk-react";
+import LoginPromptModal from "./modals/LoginPromptModal";
 
-const Coach = () => {
+// import { getAIFitnessAdvice } from './services/gemini';
+interface CoachPrompts {
+  setDisplay: React.Dispatch<React.SetStateAction<string>>;
+}
+const Coach = ({ setDisplay }: CoachPrompts) => {
   const [aiPrompt, setAiPrompt] = useState("");
   const [result, setResult] = useState("");
   const [aiLoading, setAiLoading] = useState(false);
+  // auth related
   // /
   const askCoach = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,11 +52,28 @@ const Coach = () => {
   return (
     <div className='text-white mt-8'>
       <div className='space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-2xl mx-auto'>
+        <div className='mx-6'>
+          {/* <SignedIn>
+            <UserButton />
+          </SignedIn> */}
+          <SignOutButton redirectUrl='/'>
+            <button className='px-4 py-2 bg-red-600 rounded hover:bg-red-700 text-white'>
+              Sign Out
+            </button>
+          </SignOutButton>
+          {/* <SignedOut>
+            <SignInButton>
+              <button className='bg-cyan-600 hover:bg-cyan-500 text-white font-black py-2 px-4 rounded-2xl flex items-center justify-center gap-3 transition-all uppercase tracking-widest text-xs'>
+                Sign In to Ask Your Coach
+              </button>
+            </SignInButton>
+          </SignedOut> */}
+        </div>
         <div className='text-center'>
           <div className='inline-flex items-center justify-center p-5 bg-cyan-600/10 rounded-3xl mb-5 text-cyan-500 border border-cyan-500/20'>
-            <Users className='w-12 h-12' />
+            <Users className='w-8 h-8' />
           </div>
-          <h2 className='text-4xl font-black mb-2 italic uppercase tracking-tighter text-white'>
+          <h2 className='text-3xl font-black mb-2 italic uppercase tracking-tighter text-white'>
             Ask Your Coach
           </h2>
           <p className='text-zinc-500 text-xs uppercase font-bold tracking-[0.2em]'>
@@ -58,7 +81,7 @@ const Coach = () => {
           </p>
         </div>
 
-        <div className='space-y-6'>
+        <div className='mx-2'>
           <div className='bg-zinc-900 border border-zinc-800 rounded-3xl p-6 shadow-xl relative overflow-hidden'>
             <div className='relative z-10 flex flex-col gap-4'>
               <div className='flex items-center justify-between border-b border-zinc-800 pb-3'>
@@ -72,7 +95,7 @@ const Coach = () => {
                 value={aiPrompt}
                 onChange={(e) => setAiPrompt(e.target.value)}
                 placeholder='Example: How do I improve my pull-ups? or What is good form for a push-up?'
-                className='w-full bg-zinc-950 border border-zinc-800 rounded-2xl p-5 text-sm text-white focus:border-cyan-500 outline-none min-h-[140px] transition-all resize-none placeholder:text-zinc-700 font-medium'
+                className='w-full bg-zinc-950 border border-zinc-800 rounded-2xl p-3 text-sm text-white focus:border-cyan-500 outline-none min-h-[140px] transition-all resize-none placeholder:text-zinc-700 font-medium'
               />
 
               <button
@@ -102,6 +125,11 @@ const Coach = () => {
               </div>
             </div>
           )}
+        </div>
+        <div>
+          <SignedOut>
+            <LoginPromptModal setDisplay={setDisplay} />
+          </SignedOut>
         </div>
       </div>
     </div>

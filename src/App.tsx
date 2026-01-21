@@ -27,7 +27,7 @@ function App() {
           {display == "Workouts" && <Workouts />}
           {display == "Exercises" && <Exercises />}
           {display == "Data" && <Data setDisplay={setDisplay} />}
-          {display == "Coach" && <Coach />}
+          {display == "Coach" && <Coach setDisplay={setDisplay} />}
           {display == "Info" && <InfoPage />}
           {display == "pointsInfo" && <PointsInfo />}
         </div>
