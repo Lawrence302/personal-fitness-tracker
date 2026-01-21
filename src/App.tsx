@@ -12,6 +12,7 @@ import Coach from "./components/Coach.tsx";
 
 import InfoPage from "./components/InfoPage.tsx";
 import PointsInfo from "./components/PointsInfo.tsx";
+import UserAccount from "./components/UserAccount.tsx";
 
 function App() {
   const [display, setDisplay] = useState("Home");
@@ -30,6 +31,7 @@ function App() {
           {display == "Coach" && <Coach setDisplay={setDisplay} />}
           {display == "Info" && <InfoPage />}
           {display == "pointsInfo" && <PointsInfo />}
+          {display == "UserAccount" && <UserAccount />}
         </div>
       </div>
 

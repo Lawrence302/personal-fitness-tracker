@@ -4,6 +4,7 @@ import {
   History,
   BrainCircuit,
   Dumbbell,
+  User,
 } from "lucide-react";
 
 type SidebarProps = {
@@ -49,6 +50,13 @@ const sidebar = ({ setDisplay }: SidebarProps) => {
           >
             <BrainCircuit size={24} strokeWidth={2.25} />
             <p>COACH</p>
+          </li>
+          <li
+            className='flex  flex-col items-center hover:text-white cursor-pointer'
+            onClick={() => setDisplay("UserAccount")}
+          >
+            <User size={24} strokeWidth={2.25} />
+            <p>User</p>
           </li>
         </ul>
       </div>
