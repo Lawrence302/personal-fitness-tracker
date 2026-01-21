@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { openDB } from "idb";
 import { calculateTier } from "../lib/globalFunctions";
 import useExerciseStore from "../stores/exerciseStore";
+import ExerciseLogsHistory from "./modals/ExerciseLogsHistory";
 
 // import { Info, ChevronRight, Target } from "lucide-react";
 
@@ -19,6 +20,7 @@ const UserAccount = () => {
     (state) => state.updateLongestStreak,
   );
   const [workoutsCompleted, setWorkoutsCompleted] = useState(0);
+  const [showLogsModal, setShowLogsModal] = useState(false);
 
   const tierInfo = calculateTier(totalPoints);
 
@@ -113,18 +115,27 @@ const UserAccount = () => {
               <button className='bg-zinc-800 hover:bg-zinc-700 text-white py-2 px-4 rounded'>
                 Edit Profile
               </button>
-              <button className='bg-cyan-500 hover:bg-cyan-400 text-white py-2 px-4 rounded'>
+              <button
+                className='bg-cyan-500 hover:bg-cyan-400 text-white py-2 px-4 rounded'
+                onClick={() => setShowLogsModal(true)}
+              >
                 View Workout Logs
               </button>
-              <button className='bg-zinc-800 hover:bg-zinc-700 text-white py-2 px-4 rounded'>
-                View Streak History
-              </button>
+
               <button className='bg-blue-600 hover:bg-blue-500 text-white py-2 px-4 rounded'>
                 Open AI Coach
               </button>
             </div>
           </div>
         </div>
+      </div>
+      <div>
+        {showLogsModal && (
+          <ExerciseLogsHistory
+            isOpen={showLogsModal}
+            onClose={() => setShowLogsModal(false)}
+          />
+        )}
       </div>
     </div>
   );
