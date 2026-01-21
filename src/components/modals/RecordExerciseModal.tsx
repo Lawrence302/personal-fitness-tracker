@@ -47,6 +47,7 @@ const RecordExerciseModal = ({
       activitySessionId: currentSession.id, // to be linked later
       exerciseId: exercise.id,
       exerciseName: exercise.name,
+      measurement: exercise.measurement,
       workoutRoutineId: workoutId, // can be extended later
       setsCompleted: logInputs.length,
       totalRepsOrDuration: total,
@@ -130,7 +131,7 @@ const RecordExerciseModal = ({
 
         const modifiedTrainingSession = await db.put(
           "trainingWorkoutLogs",
-          temporalTrainingSession
+          temporalTrainingSession,
         );
 
         if (updateTrainingSession) {

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { initDB } from "../../lib/db";
 import { X } from "lucide-react";
 import { ExerciseLog } from "../../lib/types";
+import { DateTime } from "luxon";
 
 interface WorkoutLogsModalProps {
   isOpen: boolean;
@@ -21,11 +22,13 @@ const ExerciseLogsHistory = ({ isOpen, onClose }: WorkoutLogsModalProps) => {
     const fetchLogs = async () => {
       const db = await initDB();
       const allLogs = await db.getAll("exerciseLogs");
+      console.log(allLogs);
 
       // Sort by most recent first
       const sortedLogs = allLogs.sort(
         (a: ExerciseLog, b: ExerciseLog) =>
-          new Date(b.dateTime).getTime() - new Date(a.dateTime).getTime(),
+          new Date(b.globalDateTime).getTime() -
+          new Date(a.globalDateTime).getTime(),
       );
 
       setLogs(sortedLogs);
@@ -62,13 +65,16 @@ const ExerciseLogsHistory = ({ isOpen, onClose }: WorkoutLogsModalProps) => {
                 <div>
                   <p className='font-bold text-white'>{log.exerciseName}</p>
                   <p className='text-sm text-zinc-400'>
-                    {new Date(log.date).toLocaleString()}
+                    {DateTime.fromISO(log.globalDateTime, {
+                      zone: log.timeZone,
+                    }).toLocaleString(DateTime.DATETIME_SHORT)}
                   </p>
                 </div>
                 {log.totalRepsOrDuration && (
                   <p className='text-sm text-cyan-500 mt-2 md:mt-0'>
-                    {/* {log.} */}
-                    Duration: {log.totalRepsOrDuration} min
+                    {log.measurement === "reps"
+                      ? `Count: ${log.totalRepsOrDuration} reps`
+                      : `Time: ${log.totalRepsOrDuration} sec`}
                   </p>
                 )}
                 {/* {log.notes && (
