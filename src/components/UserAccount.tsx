@@ -10,8 +10,10 @@ import { initDB } from "../lib/db";
 import { UserInfo } from "../lib/types";
 
 // import { Info, ChevronRight, Target } from "lucide-react";
-
-const UserAccount = () => {
+interface UserAccountProps {
+  setDisplay: React.Dispatch<React.SetStateAction<string>>;
+}
+const UserAccount = ({ setDisplay }: UserAccountProps) => {
   const [userData, setUserData] = useState<UserInfo | null>(null);
   const totalPoints = usePointsStore((state) => state.totalPoints);
 
@@ -53,7 +55,7 @@ const UserAccount = () => {
       const user = await db.get("userInfo", "user");
       if (user) {
         setUserData({ ...user });
-        console.log("Fetched user info:", user);
+        // console.log("Fetched user info:", user);
       }
     };
 
@@ -153,7 +155,10 @@ const UserAccount = () => {
                 View Workout Logs
               </button>
 
-              <button className='bg-blue-600 hover:bg-blue-500 text-white py-2 px-4 rounded'>
+              <button
+                className='bg-blue-600 hover:bg-blue-500 text-white py-2 px-4 rounded'
+                onClick={() => setDisplay("Coach")}
+              >
                 Open AI Coach
               </button>
             </div>

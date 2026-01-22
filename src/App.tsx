@@ -31,7 +31,7 @@ function App() {
           {display == "Coach" && <Coach setDisplay={setDisplay} />}
           {display == "Info" && <InfoPage />}
           {display == "pointsInfo" && <PointsInfo />}
-          {display == "UserAccount" && <UserAccount />}
+          {display == "UserAccount" && <UserAccount setDisplay={setDisplay} />}
         </div>
       </div>
 
