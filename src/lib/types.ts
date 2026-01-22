@@ -32,6 +32,7 @@ export type TierInfo = {
 
 export type Exercise = {
   id: string;
+  thumbnailUrl?: string; // Optional thumbnail image URL
   name: string; //  e.g., "Pull-up"
   level: ExerciseLevel;
   measurement: "reps" | "seconds";
@@ -52,6 +53,10 @@ export type Exercise = {
   progression: string[]; // e.g., ["negative pull-up", "assisted pull-up", "pull-up"]
   dateCreated: string; // When exercise was added
   lastPerformed?: string; // Optional last performed date
+  media?: {
+    type: "image" | "video";
+    url: string;
+  }[]; // Optional media links
 };
 
 export type Workout = {
