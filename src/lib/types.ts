@@ -32,6 +32,7 @@ export type TierInfo = {
 
 export type Exercise = {
   id: string;
+  thumbnailUrl?: string; // Optional thumbnail image URL
   name: string; //  e.g., "Pull-up"
   level: ExerciseLevel;
   measurement: "reps" | "seconds";

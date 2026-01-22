@@ -3,6 +3,7 @@ export const exercises: Exercise[] = [
   {
     id: "side-plank",
     name: "Side Plank",
+    thumbnailUrl: "/images/thumbnail/side-plank.webp",
     level: "beginner",
     measurement: "seconds",
     type: "strength",
@@ -21,6 +22,7 @@ export const exercises: Exercise[] = [
   {
     id: "leg-raises",
     name: "Leg Raises",
+    thumbnailUrl: "/images/thumbnail/leg-raise-gif.gif",
     level: "intermediate",
     measurement: "reps",
     type: "strength",
@@ -43,6 +45,7 @@ export const exercises: Exercise[] = [
     id: "burpees",
     name: "Burpees",
     level: "intermediate",
+    thumbnailUrl: "/images/thumbnail/burpees-gif.gif",
     measurement: "reps",
     type: "conditioning",
     movementPattern: "full-body",
@@ -64,6 +67,7 @@ export const exercises: Exercise[] = [
     id: "jump-squats",
     name: "Jump Squats",
     level: "beginner",
+    thumbnailUrl: "/images/thumbnail/jump-squat-gif.gif",
     measurement: "reps",
     type: "strength",
     movementPattern: "legs",
@@ -86,6 +90,7 @@ export const exercises: Exercise[] = [
     id: "pullup",
     name: "Pull-up",
     level: "intermediate",
+    thumbnailUrl: "/images/thumbnail/pullup-gif.gif",
     measurement: "reps",
     type: "strength",
     movementPattern: "pull",
@@ -100,9 +105,56 @@ export const exercises: Exercise[] = [
     dateCreated: new Date().toISOString(),
   },
   {
+    id: "pull-up-hold",
+    name: "Pull-up Hold",
+    thumbnailUrl: "/images/thumbnail/pull-up-hold.webp",
+    level: "intermediate",
+    measurement: "seconds",
+    type: "strength",
+    movementPattern: "pull",
+    tags: ["bodyweight", "upper-body", "back", "isometric"],
+    bodyRegion: "upper-body",
+    description:
+      "The Pull-up Hold is an isometric exercise where you pull yourself up on a bar and hold your chin above it for a specified time. This variation is done with an overhand grip, and it primarily targets the back and shoulders, improving grip strength and endurance in the upper body.",
+    targetMuscleGroups: ["Back", "Biceps", "Forearms", "Shoulders"],
+    mistakes: [
+      "Letting your shoulders shrug upwards",
+      "Using momentum or kipping to get into position",
+      "Not keeping the chest open and shoulder blades engaged",
+    ],
+    progression: ["negative-pull-up", "assisted-pull-up", "pull-up"],
+    unitPoint: 0.5,
+    dateCreated: new Date().toISOString(),
+  },
+
+  {
+    id: "chin-up-hold",
+    name: "Chin-up Hold",
+    thumbnailUrl: "/images/thumbnail/chin-up-hold.webp",
+    level: "intermediate",
+    measurement: "seconds",
+    type: "strength",
+    movementPattern: "pull",
+    tags: ["bodyweight", "upper-body", "biceps", "back", "isometric"],
+    bodyRegion: "upper-body",
+    description:
+      "The Chin-up Hold is performed by pulling yourself up on a bar and holding the top position with your chin above the bar. This exercise targets the biceps, forearms, and back muscles. It's an isometric exercise designed to improve your ability to hold your body weight and increase strength in the pulling muscles.",
+    targetMuscleGroups: ["Biceps", "Back", "Forearms", "Shoulders"],
+    mistakes: [
+      "Letting your shoulders shrug upwards",
+      "Swinging or kipping to maintain the hold",
+      "Not engaging the core properly",
+      "Not keeping the chin above the bar",
+    ],
+    progression: ["negative-chin-up", "assisted-chin-up", "chin-up"],
+    unitPoint: 0.5,
+    dateCreated: new Date().toISOString(),
+  },
+  {
     id: "chin-up",
     name: "Chin-up",
     level: "intermediate",
+    thumbnailUrl: "/images/thumbnail/chinup-gif.gif",
     measurement: "reps",
     type: "strength",
     movementPattern: "pull",
@@ -118,6 +170,7 @@ export const exercises: Exercise[] = [
   },
   {
     id: "pushup",
+    thumbnailUrl: "/images/thumbnail/pushup.webp",
     name: "Push-up",
     level: "beginner",
     measurement: "reps",
@@ -140,8 +193,9 @@ export const exercises: Exercise[] = [
   },
 
   {
-    id: "squat",
-    name: "Squat",
+    id: "bodyweight-squat",
+    name: "BodyWeight Squat",
+    thumbnailUrl: "/images/thumbnail/body-weight-squat-gif.gif",
     level: "beginner",
     measurement: "reps",
     type: "strength",
@@ -157,7 +211,7 @@ export const exercises: Exercise[] = [
       "Rounded lower back",
       "Shallow depth",
     ],
-    progression: ["assisted-wall-squat", "box-squat"], // easier variations
+    progression: ["box-squat", "assisted-wall-squat", "bodyweight-squat"], // easier variations
     unitPoint: 0.5,
     dateCreated: new Date().toISOString(),
   },
@@ -165,6 +219,7 @@ export const exercises: Exercise[] = [
   {
     id: "deadhang",
     name: "Dead Hang",
+    thumbnailUrl: "/images/thumbnail/deadhang.webp",
     level: "beginner",
     measurement: "seconds",
     type: "strength",
@@ -188,6 +243,7 @@ export const exercises: Exercise[] = [
   {
     id: "plank",
     name: "Plank",
+    thumbnailUrl: "/images/thumbnail/plank.webp",
     level: "beginner",
     measurement: "seconds",
     type: "strength",
@@ -210,6 +266,7 @@ export const exercises: Exercise[] = [
   {
     id: "horse-stance",
     name: "Horse Stance",
+    thumbnailUrl: "/images/thumbnail/horse-stance.webp",
     level: "beginner",
     measurement: "seconds",
     type: "strength",
@@ -239,6 +296,7 @@ export const exercises: Exercise[] = [
   {
     id: "one-arm-pushup",
     name: "One-Arm Push-up",
+    thumbnailUrl: "/images/thumbnail/one-arm-pushup.webp",
     level: "advanced",
     measurement: "reps",
     type: "strength",
@@ -268,6 +326,7 @@ export const exercises: Exercise[] = [
   {
     id: "archer-pushup",
     name: "Archer Push-up",
+    thumbnailUrl: "/images/thumbnail/archer-pushup-gif.gif",
     level: "intermediate",
     measurement: "reps",
     type: "strength",
@@ -297,6 +356,7 @@ export const exercises: Exercise[] = [
   {
     id: "diamond-pushup",
     name: "Diamond Push-up",
+    thumbnailUrl: "/images/thumbnail/diamond-pushup.webp",
     level: "intermediate",
     measurement: "reps",
     type: "strength",
@@ -320,6 +380,7 @@ export const exercises: Exercise[] = [
   {
     id: "human-flag",
     name: "Human Flag",
+    thumbnailUrl: "/images/thumbnail/human-flag.webp",
     level: "advanced",
     measurement: "seconds",
     type: "strength",
@@ -342,6 +403,7 @@ export const exercises: Exercise[] = [
   {
     id: "hollow-body-hold",
     name: "Hollow Body Hold",
+    thumbnailUrl: "/images/thumbnail/hollow-body-hold.webp",
     level: "beginner",
     measurement: "seconds",
     type: "strength",
@@ -360,6 +422,7 @@ export const exercises: Exercise[] = [
     id: "dead-bug",
     name: "Dead Bug",
     level: "beginner",
+    thumbnailUrl: "/images/thumbnail/dead-bug-gif.gif",
     measurement: "reps",
     type: "strength",
     movementPattern: "core",
@@ -391,6 +454,7 @@ export const exercises: Exercise[] = [
   {
     id: "mountain-climbers",
     name: "Mountain Climbers",
+    thumbnailUrl: "/images/thumbnail/mountain-climbers-gif.gif",
     level: "beginner",
     measurement: "seconds",
     type: "strength",
@@ -418,6 +482,7 @@ export const exercises: Exercise[] = [
   {
     id: "muscle-up",
     name: "Muscle-up",
+    thumbnailUrl: "/images/thumbnail/bar-muscle-up-gif.gif",
     level: "advanced",
     measurement: "reps",
     type: "strength",
@@ -470,6 +535,7 @@ export const exercises: Exercise[] = [
   {
     id: "pistol-squat",
     name: "Pistol Squat",
+    thumbnailUrl: "/images/thumbnail/pistol-squat-gif.gif",
     level: "advanced",
     measurement: "reps",
     type: "strength",
@@ -497,6 +563,7 @@ export const exercises: Exercise[] = [
   {
     id: "knee-raise",
     name: "Knee Raise",
+    thumbnailUrl: "/images/thumbnail/knee-raise-gif.gif",
     level: "beginner",
     measurement: "reps",
     type: "strength",
@@ -515,6 +582,7 @@ export const exercises: Exercise[] = [
   {
     id: "elevated-pike-hold",
     name: "Elevated Pike Hold",
+    thumbnailUrl: "/images/thumbnail/elevated-pike-hold.webp",
     level: "intermediate",
     measurement: "seconds",
     type: "strength",
@@ -537,6 +605,7 @@ export const exercises: Exercise[] = [
   {
     id: "incline-pushup",
     name: "Incline Push-up",
+    thumbnailUrl: "/images/thumbnail/incline-pushup.webp",
     level: "beginner",
     measurement: "reps",
     type: "strength",
@@ -555,6 +624,7 @@ export const exercises: Exercise[] = [
   {
     id: "dips",
     name: "Dips",
+    thumbnailUrl: "/images/thumbnail/dips-gif.gif",
     level: "intermediate",
     measurement: "reps",
     type: "strength",
@@ -584,6 +654,7 @@ export const exercises: Exercise[] = [
   {
     id: "rope-skip",
     name: "Rope Skip",
+    thumbnailUrl: "/images/thumbnail/rope-skip.webp",
     level: "beginner",
     measurement: "reps",
     type: "cardio",
@@ -613,6 +684,7 @@ export const exercises: Exercise[] = [
   {
     id: "active-hang",
     name: "Active Hang",
+    thumbnailUrl: "/images/thumbnail/active-hang.webp",
     level: "beginner",
     measurement: "seconds",
     type: "strength",
@@ -630,6 +702,7 @@ export const exercises: Exercise[] = [
   {
     id: "passive-hang",
     name: "Passive Hang",
+    thumbnailUrl: "/images/thumbnail/dead-hang.webp",
     level: "beginner",
     measurement: "seconds",
     type: "strength",
@@ -648,6 +721,7 @@ export const exercises: Exercise[] = [
   {
     id: "front-support",
     name: "Front Support",
+    thumbnailUrl: "/images/thumbnail/front-support.webp",
     level: "beginner",
     measurement: "seconds",
     type: "strength",
@@ -666,6 +740,7 @@ export const exercises: Exercise[] = [
   {
     id: "side-support",
     name: "Side Support",
+    thumbnailUrl: "/images/thumbnail/side-support.webp",
     level: "beginner",
     measurement: "seconds",
     type: "strength",
@@ -684,6 +759,7 @@ export const exercises: Exercise[] = [
   {
     id: "back-support",
     name: "Back Support",
+    thumbnailUrl: "/images/thumbnail/back-support.webp",
     level: "beginner",
     measurement: "seconds",
     type: "strength",
@@ -698,27 +774,10 @@ export const exercises: Exercise[] = [
     unitPoint: 0.3,
     dateCreated: new Date().toISOString(),
   },
-
-  {
-    id: "vertical-support",
-    name: "Vertical Support",
-    level: "intermediate",
-    measurement: "seconds",
-    type: "strength",
-    movementPattern: "isometric",
-    tags: ["core", "shoulders", "arms", "support-hold"],
-    bodyRegion: "upper-body",
-    description:
-      "Support your body vertically on rings, parallettes, or bars with arms extended and body tight.",
-    targetMuscleGroups: ["Shoulders", "Triceps", "Core", "Chest"],
-    mistakes: ["Bent elbows", "Loose core", "Sagging hips"],
-    progression: ["front-support", "elevated-vertical-support"],
-    unitPoint: 1,
-    dateCreated: new Date().toISOString(),
-  },
   {
     id: "high-knees",
     name: "High Knees",
+    thumbnailUrl: "/images/thumbnail/high-knees-gif.gif",
     level: "beginner",
     measurement: "seconds",
     type: "strength",
@@ -747,6 +806,7 @@ export const exercises: Exercise[] = [
   {
     id: "jumping-lunges",
     name: "Jumping Lunges",
+    thumbnailUrl: "/images/thumbnail/jumping-lunges-gif.gif",
     level: "intermediate",
     measurement: "reps",
     type: "strength",
@@ -775,6 +835,7 @@ export const exercises: Exercise[] = [
   {
     id: "split-squat",
     name: "Split Squat",
+    thumbnailUrl: "/images/thumbnail/split-squat-gif.gif",
     level: "beginner",
     measurement: "reps",
     type: "strength",
@@ -798,6 +859,7 @@ export const exercises: Exercise[] = [
     id: "pseudo-planche-pushup",
     name: "Pseudo Planche Push-up",
     level: "advanced",
+    thumbnailUrl: "/images/thumbnail/pseudo-planche-pushup-gif.gif",
     measurement: "reps",
     type: "strength",
     movementPattern: "push",
@@ -827,6 +889,7 @@ export const exercises: Exercise[] = [
   {
     id: "decline-pushup",
     name: "Decline Push-up",
+    thumbnailUrl: "/images/thumbnail/decline-pushup.webp",
     level: "intermediate",
     measurement: "reps",
     type: "strength",
@@ -850,6 +913,7 @@ export const exercises: Exercise[] = [
   {
     id: "russian-twists",
     name: "Russian Twists",
+    thumbnailUrl: "/images/thumbnail/russian-twists-gif.gif",
     level: "beginner",
     measurement: "reps",
     type: "strength",
@@ -872,6 +936,7 @@ export const exercises: Exercise[] = [
   {
     id: "bicycle-crunches",
     name: "Bicycle Crunches",
+    thumbnailUrl: "/images/thumbnail/bicycle-crunches-gif.gif",
     level: "beginner",
     measurement: "reps",
     type: "strength",
@@ -895,6 +960,7 @@ export const exercises: Exercise[] = [
     id: "v-ups",
     name: "V-Ups",
     level: "intermediate",
+    thumbnailUrl: "/images/thumbnail/v-ups-gif.gif",
     measurement: "reps",
     type: "strength",
     movementPattern: "core",
@@ -912,6 +978,7 @@ export const exercises: Exercise[] = [
   {
     id: "side-hip-dips",
     name: "Side Hip Dips",
+    thumbnailUrl: "/images/thumbnail/side-hip-dips-gif.gif",
     level: "intermediate",
     measurement: "reps",
     type: "strength",
@@ -931,11 +998,59 @@ export const exercises: Exercise[] = [
     unitPoint: 0.6,
     dateCreated: new Date().toISOString(),
   },
+  {
+    id: "l-sit",
+    name: "L-sit",
+    thumbnailUrl: "/images/thumbnail/l-sit.webp",
+    level: "intermediate",
+    measurement: "seconds",
+    type: "strength",
+    movementPattern: "isometric",
+    tags: ["core", "isometric", "hip-flexors", "full-body"],
+    bodyRegion: "core",
+    description:
+      "The L-sit is an advanced core strength exercise where you hold a seated position with your legs extended straight in front of you, creating an 'L' shape with your body. Keep your core tight and your legs fully extended without sagging.",
+    targetMuscleGroups: ["Core", "Hip Flexors", "Triceps", "Shoulders"],
+    mistakes: [
+      "Not engaging the core",
+      "Sagging in the lower back",
+      "Hips too low or too high",
+      "Not keeping legs straight",
+    ],
+    progression: ["tuck-l-sit", "assisted-l-sit", "l-sit-on-parallel-bars"], // Tuck L-sit → Assisted L-sit → Full L-sit
+    unitPoint: 1,
+    dateCreated: new Date().toISOString(),
+  },
 
   {
-    id: "tuck-lsit-hang",
-    name: "Tuck L-Sit Hang",
+    id: "tucked-l-sit",
+    name: "Tucked L-sit",
+    thumbnailUrl: "/images/thumbnail/tucked-l-sit.webp",
     level: "beginner",
+    measurement: "seconds",
+    type: "strength",
+    movementPattern: "isometric",
+    tags: ["core", "isometric", "hip-flexors"],
+    bodyRegion: "core",
+    description:
+      "The Tuck L-sit is a foundational core exercise where you sit with your legs tucked toward your chest and hold the position. This exercise builds core strength and is a precursor to the full L-sit, helping you develop the necessary strength to extend your legs in the L-sit.",
+    targetMuscleGroups: ["Core", "Hip Flexors", "Triceps", "Shoulders"],
+    mistakes: [
+      "Not keeping the core engaged",
+      "Allowing the lower back to sag",
+      "Hips sinking towards the ground",
+      "Not keeping legs bent tightly",
+    ],
+    progression: ["Tuck L-sit", "Full L-sit"], // Tuck L-sit → Full L-sit
+    unitPoint: 0.5,
+    dateCreated: new Date().toISOString(),
+  },
+
+  {
+    id: "tucked-lsit-hang",
+    name: "Tucked L-Sit Hang",
+    level: "beginner",
+    thumbnailUrl: "/images/thumbnail/tucked-lsit-hang.webp",
     measurement: "seconds",
     type: "strength",
     movementPattern: "isometric",
@@ -957,6 +1072,7 @@ export const exercises: Exercise[] = [
   {
     id: "one-leg-lsit-hang",
     name: "One-Leg L-Sit Hang",
+    thumbnailUrl: "/images/thumbnail/one-leg-lsit-hang.webp",
     level: "intermediate",
     measurement: "seconds",
     type: "strength",
@@ -985,6 +1101,7 @@ export const exercises: Exercise[] = [
   {
     id: "full-lsit-hang",
     name: "Full L-Sit Hang",
+    thumbnailUrl: "/images/thumbnail/full-lsit-hang.webp",
     level: "advanced",
     measurement: "seconds",
     type: "strength",
@@ -1035,6 +1152,7 @@ export const exercises: Exercise[] = [
   {
     id: "full-lsit-pullup",
     name: "Full L-Sit Pull-up",
+    thumbnailUrl: "/images/thumbnail/full-lsit-pullup-gif.gif",
     level: "advanced",
     measurement: "reps",
     type: "strength",
@@ -1064,6 +1182,7 @@ export const exercises: Exercise[] = [
   {
     id: "handstand",
     name: "Handstand",
+    thumbnailUrl: "/images/thumbnail/free-handstand.webp",
     level: "advanced",
     measurement: "seconds",
     type: "strength",
@@ -1093,6 +1212,7 @@ export const exercises: Exercise[] = [
   {
     id: "wall-supported-handstand",
     name: "Wall Supported Handstand",
+    thumbnailUrl: "/images/thumbnail/wall-supported-handstand.webp",
     level: "intermediate",
     measurement: "seconds",
     type: "strength",
@@ -1122,6 +1242,7 @@ export const exercises: Exercise[] = [
   {
     id: "handstand-pushup",
     name: "Handstand Push-Up",
+    thumbnailUrl: "/images/thumbnail/handstand-pushup-gif.gif",
     level: "expert",
     measurement: "reps",
     type: "strength",
@@ -1145,6 +1266,7 @@ export const exercises: Exercise[] = [
   {
     id: "planche",
     name: "Planche",
+    thumbnailUrl: "/images/thumbnail/full-planche.webp",
     level: "elite",
     measurement: "seconds",
     type: "strength",
@@ -1175,6 +1297,7 @@ export const exercises: Exercise[] = [
   {
     id: "pseudo-planche-lean",
     name: "Pseudo Planche Lean",
+    thumbnailUrl: "/images/thumbnail/pseudo-planche-lean.webp",
     level: "intermediate",
     measurement: "seconds",
     type: "strength",
@@ -1195,8 +1318,9 @@ export const exercises: Exercise[] = [
     dateCreated: new Date().toISOString(),
   },
   {
-    id: "tuck-planche",
-    name: "Tuck Planche",
+    id: "tucked-planche",
+    name: "Tucked Planche",
+    thumbnailUrl: "/images/thumbnail/tucked-planche-hold.webp",
     level: "advanced",
     measurement: "seconds",
     type: "strength",
@@ -1217,8 +1341,9 @@ export const exercises: Exercise[] = [
     dateCreated: new Date().toISOString(),
   },
   {
-    id: "one-leg-tuck-planche",
-    name: "One-Leg Tuck Planche",
+    id: "one-leg-tucked-planche",
+    name: "One-Leg Tucked Planche",
+    thumbnailUrl: "/images/thumbnail/one-leg-planche-hold.webp",
     level: "advanced",
     measurement: "seconds",
     type: "strength",
@@ -1247,8 +1372,9 @@ export const exercises: Exercise[] = [
   },
 
   {
-    id: "advanced-tuck-planche",
-    name: "Advanced Tuck Planche",
+    id: "advanced-tucked-planche",
+    name: "Advanced Tucked Planche",
+    thumbnailUrl: "/images/thumbnail/advanced-tucked-planche.webp",
     level: "advanced",
     measurement: "seconds",
     type: "strength",
@@ -1272,6 +1398,7 @@ export const exercises: Exercise[] = [
   {
     id: "straddle-planche",
     name: "Straddle Planche",
+    thumbnailUrl: "/images/thumbnail/straddle-planche.webp",
     level: "expert",
     measurement: "seconds",
     type: "strength",
@@ -1298,8 +1425,9 @@ export const exercises: Exercise[] = [
     dateCreated: new Date().toISOString(),
   },
   {
-    id: "tuck-front-lever",
-    name: "Tuck Front Lever",
+    id: "tucked-front-lever",
+    name: "Tucked Front Lever",
+    thumbnailUrl: "/images/thumbnail/tucked-front-lever.webp",
     level: "intermediate",
     measurement: "seconds",
     type: "strength",
@@ -1321,8 +1449,9 @@ export const exercises: Exercise[] = [
   },
 
   {
-    id: "advanced-tuck-front-lever",
-    name: "Advanced Tuck Front Lever",
+    id: "advanced-tucked-front-lever",
+    name: "Advanced Tucked Front Lever",
+    thumbnailUrl: "/images/thumbnail/advanced-tucked-front-lever.webp",
     level: "intermediate",
     measurement: "seconds",
     type: "strength",
@@ -1341,6 +1470,7 @@ export const exercises: Exercise[] = [
   {
     id: "one-leg-front-lever",
     name: "One-Leg Front Lever",
+    thumbnailUrl: "/images/thumbnail/one-leg-front-lever.webp",
     level: "advanced",
     measurement: "seconds",
     type: "strength",
@@ -1364,6 +1494,7 @@ export const exercises: Exercise[] = [
   {
     id: "straddle-front-lever",
     name: "Straddle Front Lever",
+    thumbnailUrl: "/images/thumbnail/straddle-front-lever.webp",
     level: "advanced",
     measurement: "seconds",
     type: "strength",
@@ -1394,6 +1525,7 @@ export const exercises: Exercise[] = [
   {
     id: "full-front-lever",
     name: "Full Front Lever",
+    thumbnailUrl: "/images/thumbnail/full-front-lever.webp",
     level: "expert",
     measurement: "seconds",
     type: "strength",
@@ -1421,8 +1553,36 @@ export const exercises: Exercise[] = [
     dateCreated: new Date().toISOString(),
   },
   {
+    id: "assisted-one-arm-pullup",
+    name: "Assisted One Arm Pull-up",
+    thumbnailUrl: "/images/thumbnail/assisted-one-arm-pullup.webp",
+    level: "advanced",
+    measurement: "reps",
+    type: "strength",
+    movementPattern: "pull",
+    tags: ["back", "biceps", "strength", "pulling", "advanced"],
+    bodyRegion: "upper-body",
+    description:
+      "The Assisted One Arm Pull-up is a challenging pulling exercise that targets the back and biceps, performed by using a resistance band or other assistive device to help support your weight while you perform the pull-up with one arm. This exercise is a progression to full one-arm pull-ups.",
+    targetMuscleGroups: ["Back", "Biceps", "Shoulders", "Core"],
+    mistakes: [
+      "Allowing the shoulder to shrug or rotate during the pull",
+      "Not engaging the core for stability",
+      "Using too much assistance and not relying enough on the pulling arm",
+      "Not controlling the descent",
+    ],
+    progression: [
+      "assisted-one-arm-pullup",
+      "negative-one-arm-pullup",
+      "one-arm-pullup",
+    ], // Assisted → Negative → Full One-arm Pull-up
+    unitPoint: 1.5,
+    dateCreated: new Date().toISOString(),
+  },
+  {
     id: "one-arm-pullup",
     name: "One-Arm Pull-Up",
+    thumbnailUrl: "/images/thumbnail/one-arm-pullup.webp",
     level: "elite",
     measurement: "reps",
     type: "strength",
@@ -1444,8 +1604,9 @@ export const exercises: Exercise[] = [
   },
 
   {
-    id: "tuck-front-lever-pullup",
-    name: "Tuck Front Lever Pull-Up",
+    id: "tucked-front-lever-row",
+    name: "Tucked Front Lever Row",
+    thumbnailUrl: "/images/thumbnail/tuck-front-lever-row-gif.gif",
     level: "advanced",
     measurement: "reps",
     type: "strength",
@@ -1469,6 +1630,7 @@ export const exercises: Exercise[] = [
   {
     id: "knee-pushups",
     name: "Knee Push-ups",
+    thumbnailUrl: "/images/thumbnail/knee-pushup-gif.gif",
     level: "beginner",
     measurement: "reps",
     type: "strength",
@@ -1490,6 +1652,7 @@ export const exercises: Exercise[] = [
   {
     id: "inverted-rows",
     name: "Inverted Rows",
+    thumbnailUrl: "/images/thumbnail/inverted-rows-gif.gif",
     level: "beginner",
     measurement: "reps",
     type: "strength",
@@ -1507,6 +1670,7 @@ export const exercises: Exercise[] = [
   {
     id: "wall-sit",
     name: "Wall Sit",
+    thumbnailUrl: "/images/thumbnail/wall-sit.webp",
     level: "beginner",
     measurement: "seconds",
     type: "strength",
@@ -1524,6 +1688,7 @@ export const exercises: Exercise[] = [
   {
     id: "jumping-jacks",
     name: "Jumping Jacks",
+    thumbnailUrl: "/images/thumbnail/jumping-jack-gif.gif",
     level: "beginner",
     measurement: "reps",
     type: "cardio",
@@ -1541,6 +1706,7 @@ export const exercises: Exercise[] = [
   {
     id: "reverse-crunches",
     name: "Reverse Crunches",
+    thumbnailUrl: "/images/thumbnail/reverse-crunches-gif.gif",
     level: "beginner",
     measurement: "reps",
     type: "strength",
@@ -1558,6 +1724,7 @@ export const exercises: Exercise[] = [
   {
     id: "calf-raises",
     name: "Calf Raises",
+    thumbnailUrl: "/images/thumbnail/calf-raise-gif.gif",
     level: "beginner",
     measurement: "reps",
     type: "strength",
@@ -1575,6 +1742,7 @@ export const exercises: Exercise[] = [
   {
     id: "seated-knee-tucks",
     name: "Seated Knee Tucks",
+    thumbnailUrl: "/images/thumbnail/seated-knee-tuck-gif.gif",
     level: "beginner",
     measurement: "reps",
     type: "strength",
@@ -1592,6 +1760,7 @@ export const exercises: Exercise[] = [
   {
     id: "crunches",
     name: "Crunches",
+    thumbnailUrl: "/images/thumbnail/crunches-gif.gif",
     level: "beginner",
     measurement: "reps",
     type: "strength",
@@ -1609,6 +1778,7 @@ export const exercises: Exercise[] = [
   {
     id: "scapular-pullups",
     name: "Scapular Pull-ups",
+    thumbnailUrl: "/images/thumbnail/scapular-pulls-gif.gif",
     level: "beginner",
     measurement: "reps",
     type: "strength",
@@ -1626,6 +1796,7 @@ export const exercises: Exercise[] = [
   {
     id: "scapular-pushups",
     name: "Scapular Push-ups",
+    thumbnailUrl: "/images/thumbnail/scapular-pushups-gif.gif",
     level: "beginner",
     measurement: "reps",
     type: "strength",
@@ -1643,6 +1814,7 @@ export const exercises: Exercise[] = [
   {
     id: "flutter-kicks",
     name: "Flutter Kicks",
+    thumbnailUrl: "/images/thumbnail/flutter-kicks-gif.gif",
     level: "beginner",
     measurement: "seconds",
     type: "strength",
@@ -1660,6 +1832,7 @@ export const exercises: Exercise[] = [
   {
     id: "bench-dips",
     name: "Bench Dips",
+    thumbnailUrl: "/images/thumbnail/bench-dips-gif.gif",
     level: "beginner",
     measurement: "reps",
     type: "strength",

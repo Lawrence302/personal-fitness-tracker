@@ -20,8 +20,16 @@ const ExerciseCard = ({ exercise, index }: ExerciseCardProps) => {
       className='card border border-zinc-800 bg-zinc-900 rounded-xl'
       key={index}
     >
-      <div className='h-40 lg:h-48 bg-zinc-800 rounded-btl-xl rounded-t-xl '>
-        <p className='border border-cyan-800 text-cyan-500 text-xs font-semibold w-fit p-1 m-2 float-right'>
+      <div
+        className={`h-40 lg:h-48 bg-zinc-800 rounded-btl-xl rounded-t-xl `}
+        style={{
+          backgroundImage: `url(/personal-fitness-tracker/${exercise.thumbnailUrl})`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          backgroundSize: "contain",
+        }}
+      >
+        <p className='border border-cyan-800 bg-zinc-900 text-cyan-500 text-xs font-semibold w-fit p-1 m-2 float-right'>
           {exercise.level}
         </p>
       </div>
