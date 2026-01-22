@@ -12,7 +12,7 @@ import { UserInfo } from "../lib/types";
 // import { Info, ChevronRight, Target } from "lucide-react";
 
 const UserAccount = () => {
-  const [userInfo, setUserInfo] = useState<UserInfo>();
+  const [userData, setUserData] = useState<UserInfo | null>(null);
   const totalPoints = usePointsStore((state) => state.totalPoints);
 
   const currentStreak = useExerciseStore((state) => state.currentStreak);
@@ -42,16 +42,23 @@ const UserAccount = () => {
       // Fetch workout logs
       const logs = await db.getAll("trainingWorkoutLogs");
       setWorkoutsCompleted(logs.length);
-
-      // Fetch userInfo
-      const user = await db.get("userInfo", "user");
-      if (user) {
-        setUserInfo(user);
-      }
     };
 
     fetchStats();
   }, [updateCurrentStreak, updateLongestStreak]);
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      const db = await initDB();
+      const user = await db.get("userInfo", "user");
+      if (user) {
+        setUserData({ ...user });
+        console.log("Fetched user info:", user);
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
 
   return (
     <div className='flex-1 overflow-auto p-6 text-zinc-300'>
@@ -62,13 +69,13 @@ const UserAccount = () => {
         <div className='profile-card bg-zinc-900 rounded-xl p-6 flex-1 border'>
           <div className='flex items-center gap-4 mb-4'>
             <div className='w-20 h-20 bg-cyan-500 rounded-full flex items-center justify-center text-3xl font-bold text-white'>
-              {userInfo?.name?.trim()
-                ? userInfo?.name?.charAt(0).toUpperCase()
+              {userData?.name?.trim()
+                ? userData?.name?.charAt(0).toUpperCase()
                 : "U"}
             </div>
             <div>
               <h2 className='text-xl font-bold'>
-                {userInfo?.name?.trim() ? userInfo?.name : "User Name"}
+                {userData?.name?.trim() ? userData?.name : "User Name"}
               </h2>
               <p className='text-sm text-zinc-400'>user@email.com</p>
             </div>
@@ -93,8 +100,8 @@ const UserAccount = () => {
           <div>
             <p>Goals:</p>
             <p className='italic text-zinc-400'>
-              {userInfo?.goals
-                ? userInfo.goals
+              {userData?.goals
+                ? userData.goals
                 : "Set your fitness goals to stay motivated!"}
             </p>
           </div>

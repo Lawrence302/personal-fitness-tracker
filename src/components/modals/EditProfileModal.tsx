@@ -67,6 +67,7 @@ const EditProfileModal = ({ isOpen, onClose }: EditProfileModalProps) => {
   const handleSave = async () => {
     const db = await initDB();
     await db.put("userInfo", profile);
+    // console.log("Profile saved:", profile);
     onClose();
   };
 
@@ -93,7 +94,7 @@ const EditProfileModal = ({ isOpen, onClose }: EditProfileModalProps) => {
             <div>
               <label className='text-sm text-zinc-400'>Display Name</label>
               <input
-                name='displayName'
+                name='name'
                 value={profile.name}
                 onChange={handleChange}
                 className='w-full mt-1 bg-zinc-900 text-white rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500'
@@ -144,7 +145,7 @@ const EditProfileModal = ({ isOpen, onClose }: EditProfileModalProps) => {
             <div>
               <label className='text-sm text-zinc-400'>Fitness Goal</label>
               <textarea
-                name='goal'
+                name='goals'
                 value={profile.goals}
                 onChange={handleChange}
                 rows={3}

@@ -32,7 +32,7 @@ const Home = ({ setDisplay }: HomeProps) => {
 
   // const clearExerciseLogs = async () => {
   //   const db = await initDB();
-  //   await db.clear("exerciseLogs");
+  //   await db.clear("userInfo");
   // };
 
   // clearExerciseLogs(); // for testing purposes only
@@ -43,7 +43,9 @@ const Home = ({ setDisplay }: HomeProps) => {
       const points = await getTotalPoints();
 
       // const db = await initDB();
+      // const user = await db.get("userInfo", "user");
 
+      // console.log("User Info:", user);
       // const currentSession = await db.getAll("trainingWorkoutLogs");
       // console.log("Current Active Session:", currentSession);
 

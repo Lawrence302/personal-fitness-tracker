@@ -98,7 +98,7 @@ export type ActivitySession = {
 
 export type UserInfo = {
   id: string;
-  name: string;
+  name?: string;
   age?: number;
   height?: number; // in cm
   weight?: number; // in kg
