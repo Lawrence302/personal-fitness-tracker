@@ -22,7 +22,7 @@ const ExerciseLogsHistory = ({ isOpen, onClose }: WorkoutLogsModalProps) => {
     const fetchLogs = async () => {
       const db = await initDB();
       const allLogs = await db.getAll("exerciseLogs");
-      console.log(allLogs);
+      // console.log(allLogs);
 
       // Sort by most recent first
       const sortedLogs = allLogs.sort(
