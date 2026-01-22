@@ -60,10 +60,10 @@ const Workouts = () => {
                       return (
                         <div key={index} className='flex justify-between'>
                           <p className='text-zinc-400  uppercase font-bold'>
-                            {exercise.name}
+                            {exercise?.name}
                           </p>
                           <p className='text-zinc-500 uppercase text-xs font-bold'>
-                            {exercise.level}
+                            {exercise?.level}
                           </p>
                         </div>
                       );
