@@ -55,7 +55,11 @@ const QuickLogExercise = () => {
         {filteredExercises.length > PAGE_SIZE && (
           <div className='mb-6 py-4 flex justify-around'>
             <button
-              className='bg-zinc-800 hover:bg-zinc-900 px-6 py-2 text-white cursor-pointer rounded-full shadow-sm shadow-zinc-500/50 hover:shadow-md transition'
+              className={`bg-zinc-800 hover:bg-zinc-900 px-6 py-2 text-white cursor-pointer rounded-full shadow-sm shadow-zinc-500/50 hover:shadow-md transition ${
+                visibleCount >= filteredExercises.length
+                  ? "opacity-50 cursor-not-allowed"
+                  : ""
+              }`}
               onClick={() => setVisibleCount((prev) => prev + PAGE_SIZE)}
             >
               Show More
