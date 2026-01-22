@@ -23,7 +23,7 @@ const Exercises = () => {
     // console.log(filteredExercises);
   }, [filteredExercises, visibleExercises]);
   return (
-    <div className='p-4 '>
+    <div className='p-4 relative'>
       <div className='md:flex justify-between items-center'>
         <div>
           <h1 className='text-white font-bold text-2xl md:text-3xl italic tracking-tighter '>
