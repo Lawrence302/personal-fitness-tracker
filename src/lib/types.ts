@@ -69,6 +69,7 @@ export type ExerciseLog = {
   activitySessionId: string;
   exerciseId: string;
   exerciseName: string;
+  measurement: string;
   workoutRoutineId?: string; // in case if was part of a workout session
   setsCompleted: number;
   totalRepsOrDuration: number; // reps or duration for this set
@@ -82,7 +83,8 @@ export type ExerciseLog = {
   }[]; // detailed breakdown per set
   pointsEarned: number;
   date: string; // when log was created
-  dateTime: string; // exact date and time when log was created
+  globalDateTime: string; // exact date and time when log was created
+  timeZone: string;
 };
 
 export type ActivitySession = {
@@ -96,13 +98,16 @@ export type ActivitySession = {
 
 export type UserInfo = {
   id: string;
-  name: string;
-  age: number;
-  tierInfo: TierInfo;
-  totalPoints: number;
-  totalWorkouts: number;
-  totalExerciseLogs: number;
-  joinedDate: string;
+  name?: string;
+  age?: number;
+  height?: number; // in cm
+  weight?: number; // in kg
+  goals?: string;
+  // tierInfo: TierInfo;
+  // totalPoints: number;
+  // totalWorkouts: number;
+  // totalExerciseLogs: number;
+  joinedDate?: string | null;
 };
 
 export type StreakStats = {

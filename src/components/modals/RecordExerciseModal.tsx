@@ -47,6 +47,7 @@ const RecordExerciseModal = ({
       activitySessionId: currentSession.id, // to be linked later
       exerciseId: exercise.id,
       exerciseName: exercise.name,
+      measurement: exercise.measurement,
       workoutRoutineId: workoutId, // can be extended later
       setsCompleted: logInputs.length,
       totalRepsOrDuration: total,
@@ -96,7 +97,7 @@ const RecordExerciseModal = ({
         alert("Please log at least one set before saving.");
         return;
       }
-      console.log("Logged for session exercise");
+      // console.log("Logged for session exercise");
 
       // add the new exercise log
       const savedLog = await addExerciseLog();
@@ -130,7 +131,7 @@ const RecordExerciseModal = ({
 
         const modifiedTrainingSession = await db.put(
           "trainingWorkoutLogs",
-          temporalTrainingSession
+          temporalTrainingSession,
         );
 
         if (updateTrainingSession) {
@@ -152,7 +153,7 @@ const RecordExerciseModal = ({
     }
 
     if (mode === "quickLog") {
-      console.log("Logged for quick log");
+      // console.log("Logged for quick log");
       // adding new exercise log
       const savedLog = await addExerciseLog();
 

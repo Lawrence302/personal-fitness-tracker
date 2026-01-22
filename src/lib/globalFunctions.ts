@@ -50,11 +50,11 @@ export function calculateTier(totalPoints: number) {
 // const dateString = "2026-01-11T18:18:22.928Z";
 
 const activeSessionTime = async (session: ActivitySession) => {
-  const start = DateTime.fromISO(session.startTime, { zone: "utc" });
+  // const start = DateTime.fromISO(session.startTime, { zone: "utc" });
   const end = DateTime.fromISO(session.endTime, { zone: "utc" });
   const now = DateTime.now().toUTC();
 
-  const minutesElapsed = Math.floor(now.diff(start).as("minutes"));
+  // const minutesElapsed = Math.floor(now.diff(start).as("minutes"));
   // minutes difference
 
   if (now >= end) {
@@ -63,7 +63,7 @@ const activeSessionTime = async (session: ActivitySession) => {
     await db.put("activitySessions", session);
     return false;
   }
-  console.log(minutesElapsed, " passed");
+  // console.log(minutesElapsed, " passed");
   return true;
 };
 

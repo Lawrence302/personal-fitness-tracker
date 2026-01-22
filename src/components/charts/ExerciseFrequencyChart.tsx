@@ -42,14 +42,14 @@ const ExerciseFrequencyChart = () => {
         ([name, count]) => ({
           name,
           count,
-        })
+        }),
       );
 
       setExerciseFrequencyData(frequenciesArray);
-      console.log(frequenciesArray);
+      // console.log(frequenciesArray);
     };
 
-    console.log(getExerciseFrequencies());
+    getExerciseFrequencies();
   }, []);
   return (
     <div className='bg-zinc-900 border border-zinc-800 rounded-xl my-6 py-8'>

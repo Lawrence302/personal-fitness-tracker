@@ -1,10 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ChevronRight, Target, Info } from "lucide-react";
 import QuickLogExercise from "./QuickLogExercise";
 import { initDB } from "../lib/db";
 import usePointsStore from "../stores/pointsStore";
 import { calculateTier } from "../lib/globalFunctions";
 import QuotesDisplay from "./QuotesDisplay";
+import GoalReminderModal from "./modals/GoalReminderModal";
 
 const getTotalPoints = async () => {
   // fetch all exercise logs from IndexedD
@@ -28,11 +29,22 @@ const Home = ({ setDisplay }: HomeProps) => {
   const totalPoints = usePointsStore((state) => state.totalPoints);
   const setTotalPoints = usePointsStore((state) => state.setTotalPoints);
 
+  const [showGoalModal, setShowGoalModal] = useState(false);
+  const [goal, setGoal] = useState<string | null>(null);
+
   const tierInfo = calculateTier(totalPoints);
+
+  const remindUserAboutGoal = () => {
+    if (!goal?.trim()) {
+      setDisplay("UserAccount");
+      return;
+    }
+    setShowGoalModal(true);
+  };
 
   // const clearExerciseLogs = async () => {
   //   const db = await initDB();
-  //   await db.clear("exerciseLogs");
+  //   await db.clear("userInfo");
   // };
 
   // clearExerciseLogs(); // for testing purposes only
@@ -42,8 +54,13 @@ const Home = ({ setDisplay }: HomeProps) => {
     const fetchData = async () => {
       const points = await getTotalPoints();
 
-      // const db = await initDB();
+      const db = await initDB();
+      const user = await db.get("userInfo", "user");
+      if (user) {
+        setGoal(user.goals);
+      }
 
+      // console.log("User Info:", user);
       // const currentSession = await db.getAll("trainingWorkoutLogs");
       // console.log("Current Active Session:", currentSession);
 
@@ -83,8 +100,12 @@ const Home = ({ setDisplay }: HomeProps) => {
             >
               Begin Training <ChevronRight size={24} />
             </button>
-            <button className='text-white bg-zinc-800 rounded-full hover:bg-zinc-700  py-3 px-8 flex gap-2 items-center justify-center'>
-              LOG OBJECTIVE <Target size={16} />
+            <button
+              className='text-white bg-zinc-800 rounded-full hover:bg-zinc-700  py-3 px-8 flex gap-2 items-center justify-center uppercase'
+              onClick={() => remindUserAboutGoal()}
+            >
+              {goal?.trim() ? "Don't forget your goal!" : "SET Your Goal"}
+              <Target size={16} />
             </button>
           </div>
         </div>
@@ -143,6 +164,15 @@ const Home = ({ setDisplay }: HomeProps) => {
         >
           Learn About this App and Calithenics
         </button>
+      </div>
+      <div>
+        {showGoalModal && (
+          <GoalReminderModal
+            isOpen={showGoalModal}
+            goal={goal}
+            onClose={() => setShowGoalModal(false)}
+          />
+        )}
       </div>
     </div>
   );
