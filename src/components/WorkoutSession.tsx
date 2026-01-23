@@ -21,7 +21,7 @@ const createNewTrainingWorkoutSession = (session: Workout) => {
     startTime: DateTime.now().toUTC().toISO(),
     endTime: undefined,
     // estimatedTime: session.estimatedTime, // in minutes
-    estimatedTime: 5, // in minutes
+    estimatedTime: session.estimatedTime, // in minutes
     exerciseLogs: [], // ids of exerciselogs
     exercisesAtempted: [], // ids of individual exercises in the session
     completedExercises: [],
@@ -202,6 +202,7 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
     getData();
   }, []);
 
+  // second useEffect mainly for timmer
   useEffect(() => {
     const interval = setInterval(() => {
       if (workoutTrainingSession) {
@@ -217,8 +218,16 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
 
         const minutes = Math.max(0, Math.floor(diff.minutes));
         const seconds = Math.max(0, Math.floor(diff.seconds));
+        let msg = "";
 
-        setMinutesLeft(`Time left: ${minutes} min ${Math.floor(seconds)} sec`);
+        if (minutes <= 0 && seconds <= 0) {
+          setSessionActive(false);
+          msg = " : Workout Time Expired";
+        }
+
+        setMinutesLeft(
+          `Time left: ${minutes} min ${Math.floor(seconds)} sec ${msg}`,
+        );
       }
     }, 1000);
 
