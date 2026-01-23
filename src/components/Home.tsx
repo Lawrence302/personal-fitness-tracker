@@ -90,7 +90,7 @@ const Home = ({ setDisplay }: HomeProps) => {
           <div className='py-4'>
             <p className='text-sm'>
               Accumulate points by mastering movements. Level up your physical
-              rank through consistency and intensity
+              rank through consistency and intensity.
             </p>
           </div>
           <div className=' flex flex-col md:flex-row font-bold gap-10'>

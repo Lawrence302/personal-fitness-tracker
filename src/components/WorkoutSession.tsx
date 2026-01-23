@@ -387,8 +387,76 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
             </button>
           )}
         </div>
-        {/* Modal for recording exercise progress */}
+        <div>
+          <h2 className='my-8'>Workout Program Details</h2>
+          <div className='text-zinc-400'>
+            <h2 className='text-center text-xl text-white font-bold'>
+              {currentSession.name}
+            </h2>
+            <p className='my-4'>{currentSession.description}</p>
+            <p className='text-white'>Below is the workout detail:</p>
+            <div className='my-4'>
+              <ul className='list-disc ml-5 flex flex-col gap-6'>
+                {currentSession.exercises.map((exercise, index) => {
+                  return (
+                    <div className='' key={index}>
+                      <li className=''>
+                        Exercise: {exercise.exercise.name}
+                        <ul className='list-dash ml-5'>
+                          <li className="before:content-['→'] before:mr-2 italic">
+                            {exercise.description}
+                          </li>
+                          {exercise.exercise.measurement === "reps" && (
+                            <li className="before:content-['→'] before:mr-2">
+                              For this workout, you have to do{" "}
+                              <span className='font-bold italic text-white'>
+                                {exercise.sets}
+                              </span>{" "}
+                              sets of{" "}
+                              <span className='font-bold italic text-white'>
+                                {exercise.reps}{" "}
+                              </span>
+                              reps
+                            </li>
+                          )}
+                          {exercise.exercise.measurement === "seconds" && (
+                            <li className="before:content-['→'] before:mr-2">
+                              For this workout, you have to do{" "}
+                              <span className='font-bold italic text-white'>
+                                {exercise.sets}{" "}
+                              </span>
+                              sets of{" "}
+                              <span className='font-bold italic text-white'>
+                                {exercise.reps}
+                              </span>{" "}
+                              reps
+                            </li>
+                          )}
+                          <li className="before:content-['→'] before:mr-2">
+                            Rest: At least
+                            <span className='font-bold italic text-blue-500'>
+                              {" "}
+                              60 to 120{" "}
+                            </span>{" "}
+                            seconds between sets{" "}
+                          </li>
+                        </ul>
+                      </li>
+                    </div>
+                  );
+                })}
+              </ul>
+            </div>
+            <p className='italic'>
+              <span className='text-white'>Note: </span> For Fair progress
+              tracking, only mark an exercise as done(Checkbox), only if you
+              have truly completed it. Don't cheat yourself. Remember "Self
+              growth is better than points"
+            </p>
+          </div>
+        </div>
       </div>
+      {/* Modal for recording exercise progress */}
       {showRecordExerciseModal && selectedExercise && (
         <RecordExerciseModal
           closeModal={closeRecordExerciseModal}
