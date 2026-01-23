@@ -1,1 +1,1 @@
-if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/personal-fitness-tracker/manifest.json', { scope: '/personal-fitness-tracker/' })})}
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/personal-fitness-tracker/sw.js', { scope: '/personal-fitness-tracker/' })})}
