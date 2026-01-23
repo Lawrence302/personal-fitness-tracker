@@ -18,7 +18,7 @@ export default defineConfig({
         theme_color: "#18181b",
         background_color: "#09090b",
         display: "standalone",
-        start_url: ".",
+        start_url: "/personal-fitness-tracker/",
         icons: [
           {
             src: "/android-chrome-192x192.png", // Should work since it's in the `public/` folder
