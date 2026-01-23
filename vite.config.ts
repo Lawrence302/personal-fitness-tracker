@@ -18,8 +18,8 @@ export default defineConfig({
         theme_color: "#18181b",
         background_color: "#09090b",
         display: "standalone",
-        start_url: ".",
-        scope: "/",
+        start_url: "/personal-fitness-tracker/",
+        scope: "/personal-fitness-tracker/",
         icons: [
           {
             src: "android-chrome-192x192.png", // Should work since it's in the `public/` folder
@@ -33,7 +33,6 @@ export default defineConfig({
           },
         ],
       },
-      filename: "manifest.json",
     }),
   ],
   base: "/personal-fitness-tracker/",
