@@ -5,10 +5,17 @@ import type { Workout } from "../lib/types";
 // importing default workouts programs data
 import { workoutPrograms } from "../lib/defaultData";
 
+// interface WorkoutsProps {
+//   setDisplay: React.Dispatch<React.SetStateAction<string>>;
+// }
+
+const PAGE_SIZE = 6;
+
 const Workouts = () => {
   const [showWorkouts, setShowWorkouts] = useState(true);
   const [showWorkoutSession, setShowWorkoutSession] = useState(false);
   const [selectedSession, setSelectedSession] = useState<Workout>();
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const closeWorkoutSession = () => {
     setShowWorkoutSession(false);
@@ -28,7 +35,7 @@ const Workouts = () => {
             </p>
           </div>
           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3  gap-4 '>
-            {workoutPrograms.map((program, index) => {
+            {workoutPrograms.slice(0, visibleCount).map((program, index) => {
               return (
                 <div
                   key={index}
@@ -83,6 +90,28 @@ const Workouts = () => {
                 </div>
               );
             })}
+          </div>
+          <div className='flex justify-around text-center my-6'>
+            {workoutPrograms.length >= PAGE_SIZE && (
+              <button
+                className={`bg-zinc-800 hover:bg-zinc-900 px-6 py-2 text-white cursor-pointer rounded-full shadow-sm shadow-zinc-500/50 hover:shadow-md transition ${
+                  visibleCount >= workoutPrograms.length
+                    ? "opacity-50 cursor-not-allowed"
+                    : ""
+                }`}
+                onClick={() => setVisibleCount((prev) => prev + PAGE_SIZE)}
+              >
+                Show More
+              </button>
+            )}
+            {visibleCount >= PAGE_SIZE * 2 && (
+              <button
+                className='bg-zinc-800 hover:bg-zinc-900 px-6 py-2 text-white cursor-pointer rounded-full shadow-sm shadow-zinc-500/50 hover:shadow-md transition'
+                onClick={() => setVisibleCount((prev) => prev - PAGE_SIZE)}
+              >
+                Show Less
+              </button>
+            )}
           </div>
         </div>
       )}

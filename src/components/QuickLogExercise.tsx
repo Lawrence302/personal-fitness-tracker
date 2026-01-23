@@ -64,7 +64,7 @@ const QuickLogExercise = () => {
             >
               Show More
             </button>
-            {visibleCount > PAGE_SIZE * 2 && (
+            {visibleCount >= PAGE_SIZE * 2 && (
               <button
                 className='bg-zinc-800 hover:bg-zinc-900 px-6 py-2 text-white cursor-pointer rounded-full shadow-sm shadow-zinc-500/50 hover:shadow-md transition'
                 onClick={() => setVisibleCount((prev) => prev - PAGE_SIZE)}

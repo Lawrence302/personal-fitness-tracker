@@ -98,14 +98,14 @@ export const workoutPrograms: Workout[] = [
           "A static hold to improve grip strength and shoulder stability while hanging from a bar.",
       },
       {
-        exercise: exercises.find((e) => e.name === "Wall Push-ups")!,
+        exercise: exercises.find((e) => e.name === "Incline Push-up")!,
         reps: "10-12",
         sets: 3,
         description:
           "A wall push-up to help you build chest, shoulder, and tricep strength safely and with lower intensity.",
       },
       {
-        exercise: exercises.find((e) => e.name === "Bodyweight Rows")!,
+        exercise: exercises.find((e) => e.name === "Inverted Rows")!,
         reps: "6-8",
         sets: 3,
         description:
@@ -447,11 +447,11 @@ export const workoutPrograms: Workout[] = [
           "An isometric hold to build endurance in the legs and improve balance.",
       },
       {
-        exercise: exercises.find((e) => e.name === "Glute Bridges")!,
-        reps: "12-15",
+        exercise: exercises.find((e) => e.name === "High Knees")!,
+        reps: "30 seconds",
         sets: 3,
         description:
-          "A simple exercise to activate and strengthen the glutes and lower back.",
+          "A cardio exercise to improve lower body endurance, warm up the muscles, and boost heart rate.",
       },
     ],
     description:

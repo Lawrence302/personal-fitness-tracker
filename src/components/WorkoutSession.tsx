@@ -36,7 +36,7 @@ const getCurrentTrainingWorkoutLog = async () => {
   const currentWorkoutLog = await db.getFromIndex(
     "trainingWorkoutLogs",
     "active",
-    1
+    1,
   );
 
   if (currentWorkoutLog) {
@@ -72,7 +72,9 @@ const getCurrentTrainingWorkoutLog = async () => {
 type WorkoutSessionProps = {
   session: Workout;
   closeSession: () => void;
+  // setDisplay: React.Dispatch<React.SetStateAction<string>>;
 };
+
 const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
   const [currentSession, setCurrentSession] = useState<Workout>(session);
   const [sessionActive, setSessionActive] = useState<boolean>(false);
@@ -123,7 +125,7 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
       // check if all exercises are completed before closing session
       if (completedExercisese.length < session.exercises.length) {
         const confirmClose = confirm(
-          "You have not completed all exercises. Are you sure you want to finish the session?"
+          "You have not completed all exercises. Are you sure you want to finish the session?",
         );
         if (confirmClose) {
           await saveCurrentWorkoutTrainingSession();
@@ -173,7 +175,7 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
 
       if (!trainingSession) return;
       const workout = workoutPrograms.find(
-        (s) => s.id === trainingSession.workoutId
+        (s) => s.id === trainingSession.workoutId,
       );
 
       if (workout) {
@@ -254,42 +256,44 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
           {currentSession.exercises.map((exercise) => {
             return (
               <div
-                key={exercise.id}
+                key={exercise.exercise.id}
                 className={`border border-zinc-800 py-3 px-4 rounded-lg flex justify-between items-center hover:border-zinc-700 cursor-pointer gap-3 ${
-                  completedExercisese.includes(exercise.id)
+                  completedExercisese.includes(exercise.exercise?.id)
                     ? "disabled:opacity-50 bg-zinc-900 pointer-events-none cursor-not-allowed"
                     : ""
                 }`}
               >
                 <div className=''>
                   <h3 className='font-bold italic capitalize mb-2 '>
-                    {completedExercisese.includes(exercise.id) ? (
+                    {completedExercisese.includes(exercise.exercise?.id) ? (
                       <span className='line-through text-gray-400'>
-                        {exercise.name}
+                        {exercise.exercise.name}
                       </span>
                     ) : (
-                      exercise.name
+                      exercise.exercise.name
                     )}
                   </h3>
 
                   <div className='flex gap-1 flex-wrap'>
-                    {exercise.targetMuscleGroups.map((muscle, index) => {
-                      return (
-                        <span
-                          key={index}
-                          className='text-[10px] text-zinc-500 font-bold bg-zinc-900 rounded-sm uppercase px-1'
-                        >
-                          {muscle}
-                        </span>
-                      );
-                    })}
+                    {exercise.exercise.targetMuscleGroups.map(
+                      (muscle, index) => {
+                        return (
+                          <span
+                            key={index}
+                            className='text-[10px] text-zinc-500 font-bold bg-zinc-900 rounded-sm uppercase px-1'
+                          >
+                            {muscle}
+                          </span>
+                        );
+                      },
+                    )}
                   </div>
                 </div>
                 {/* play button to record exercise progress and Tooltip  */}
                 <div
                   className='relative inline-block group border border-zinc-800 rounded-lg bg-green-950 p-1'
                   onClick={() => {
-                    setSelectedExercise(exercise);
+                    setSelectedExercise(exercise.exercise);
                     setShowRecordExerciseModal(true);
                   }}
                 >
@@ -312,15 +316,27 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
                   <span className='text-gray-400 text-sm'>Done</span>
                   <input
                     type='checkbox'
-                    checked={completedExercisese.includes(exercise.id)}
-                    disabled={completedExercisese.includes(exercise.id)}
+                    checked={completedExercisese.includes(exercise.exercise.id)}
+                    disabled={completedExercisese.includes(
+                      exercise.exercise.id,
+                    )}
                     className='scale-150'
-                    onChange={() => handleCheckEvent(exercise.id)}
+                    onChange={() => handleCheckEvent(exercise.exercise.id)}
                   />
                 </div>
               </div>
             );
           })}
+        </div>
+        <div>
+          {!sessionActive && (
+            <button
+              className='mt-8 bg-red-500 rounded px-2 cursor-pointer'
+              onClick={() => closeSession()}
+            >
+              Leave Session
+            </button>
+          )}
         </div>
         {/* Modal for recording exercise progress */}
       </div>

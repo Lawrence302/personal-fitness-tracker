@@ -191,6 +191,29 @@ export const exercises: Exercise[] = [
     unitPoint: 1,
     dateCreated: new Date().toISOString(),
   },
+  {
+    id: "pike-pushup",
+    name: "Pike Push-up",
+    thumbnailUrl: "/images/thumbnail/pike-push-up-gif.gif",
+    level: "intermediate",
+    measurement: "reps",
+    type: "strength",
+    movementPattern: "push", // Push movement pattern
+    tags: ["shoulders", "triceps", "upper-body", "bodyweight", "core"], // Muscle groups targeted
+    bodyRegion: "upper-body", // The body region this targets
+    description:
+      "Start in a downward dog position, with hips raised high and feet close to your hands. Lower your head towards the ground by bending your elbows, then press back up. This targets the shoulders and triceps.",
+    targetMuscleGroups: ["Shoulders", "Triceps", "Core"], // Major muscles worked
+    mistakes: [
+      "Not engaging the core",
+      "Elbows flaring out",
+      "Not lowering head enough",
+      "Hips not raised high enough",
+    ], // Common mistakes to avoid
+    progression: ["pike-pushup-with-feet-elevated", "handstand-pushup"], // Progressions as you get stronger
+    unitPoint: 1.5, // Points awarded per rep (adjust according to difficulty)
+    dateCreated: new Date().toISOString(), // Date when exercise was added
+  },
 
   {
     id: "bodyweight-squat",
