@@ -21,7 +21,7 @@ const createNewTrainingWorkoutSession = (session: Workout) => {
     startTime: DateTime.now().toUTC().toISO(),
     endTime: undefined,
     // estimatedTime: session.estimatedTime, // in minutes
-    estimatedTime: 2, // in minutes
+    estimatedTime: session.estimatedTime, // in minutes
     exerciseLogs: [], // ids of exerciselogs
     exercisesAtempted: [], // ids of individual exercises in the session
     completedExercises: [],
@@ -36,7 +36,7 @@ const getCurrentTrainingWorkoutLog = async () => {
   const currentWorkoutLog = await db.getFromIndex(
     "trainingWorkoutLogs",
     "active",
-    1
+    1,
   );
 
   if (currentWorkoutLog) {
@@ -72,7 +72,9 @@ const getCurrentTrainingWorkoutLog = async () => {
 type WorkoutSessionProps = {
   session: Workout;
   closeSession: () => void;
+  // setDisplay: React.Dispatch<React.SetStateAction<string>>;
 };
+
 const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
   const [currentSession, setCurrentSession] = useState<Workout>(session);
   const [sessionActive, setSessionActive] = useState<boolean>(false);
@@ -85,6 +87,7 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
   const [showRecordExerciseModal, setShowRecordExerciseModal] =
     useState<boolean>(false);
   const [selectedExercise, setSelectedExercise] = useState<Exercise>();
+  const [minutesLeft, setMinutesLeft] = useState<string>();
 
   const startSession = (session: Workout) => {
     const newWorkoutSession = createNewTrainingWorkoutSession(session);
@@ -123,7 +126,7 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
       // check if all exercises are completed before closing session
       if (completedExercisese.length < session.exercises.length) {
         const confirmClose = confirm(
-          "You have not completed all exercises. Are you sure you want to finish the session?"
+          "You have not completed all exercises. Are you sure you want to finish the session?",
         );
         if (confirmClose) {
           await saveCurrentWorkoutTrainingSession();
@@ -173,12 +176,24 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
 
       if (!trainingSession) return;
       const workout = workoutPrograms.find(
-        (s) => s.id === trainingSession.workoutId
+        (s) => s.id === trainingSession.workoutId,
       );
 
       if (workout) {
         setCurrentSession(workout);
       }
+
+      // const start = DateTime.fromISO(trainingSession.startTime, {
+      //   zone: "utc",
+      // });
+      // const end = start.plus({ minutes: trainingSession.estimatedTime });
+
+      // // getting minutes and seconds left
+      // const diff = end.diff(DateTime.utc(), ["minutes", "seconds"]);
+
+      // setMinutesLeft(
+      //   `Time left: ${diff.minutes} min ${Math.floor(diff.seconds)} sec`,
+      // );
 
       setWorkoutTrainingSession(trainingSession);
       setCompletedExercises(trainingSession.completedExercises);
@@ -186,6 +201,38 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
     }
     getData();
   }, []);
+
+  // second useEffect mainly for timmer
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (workoutTrainingSession) {
+        const start = DateTime.fromISO(workoutTrainingSession.startTime, {
+          zone: "utc",
+        });
+        const end = start.plus({
+          minutes: workoutTrainingSession.estimatedTime,
+        });
+
+        // getting minutes and seconds left
+        const diff = end.diff(DateTime.utc(), ["minutes", "seconds"]);
+
+        const minutes = Math.max(0, Math.floor(diff.minutes));
+        const seconds = Math.max(0, Math.floor(diff.seconds));
+        let msg = "";
+
+        if (minutes <= 0 && seconds <= 0) {
+          setSessionActive(false);
+          msg = " : Workout Time Expired";
+        }
+
+        setMinutesLeft(
+          `Time left: ${minutes} min ${Math.floor(seconds)} sec ${msg}`,
+        );
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [workoutTrainingSession]);
 
   return (
     <div>
@@ -222,6 +269,10 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
             )}
           </div>
         </div>
+        <div>
+          {/* show time left */}
+          <p>{minutesLeft}</p>
+        </div>
         {/* showing the progress made in the session */}
         <div className='my-4'>
           <h2 className='flex text-sm gap-4 italic tracking-tighter font-bold text-zinc-500 pl-4 mb-1'>
@@ -254,42 +305,44 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
           {currentSession.exercises.map((exercise) => {
             return (
               <div
-                key={exercise.id}
+                key={exercise.exercise.id}
                 className={`border border-zinc-800 py-3 px-4 rounded-lg flex justify-between items-center hover:border-zinc-700 cursor-pointer gap-3 ${
-                  completedExercisese.includes(exercise.id)
+                  completedExercisese.includes(exercise.exercise?.id)
                     ? "disabled:opacity-50 bg-zinc-900 pointer-events-none cursor-not-allowed"
                     : ""
                 }`}
               >
                 <div className=''>
                   <h3 className='font-bold italic capitalize mb-2 '>
-                    {completedExercisese.includes(exercise.id) ? (
+                    {completedExercisese.includes(exercise.exercise?.id) ? (
                       <span className='line-through text-gray-400'>
-                        {exercise.name}
+                        {exercise.exercise.name}
                       </span>
                     ) : (
-                      exercise.name
+                      exercise.exercise.name
                     )}
                   </h3>
 
                   <div className='flex gap-1 flex-wrap'>
-                    {exercise.targetMuscleGroups.map((muscle, index) => {
-                      return (
-                        <span
-                          key={index}
-                          className='text-[10px] text-zinc-500 font-bold bg-zinc-900 rounded-sm uppercase px-1'
-                        >
-                          {muscle}
-                        </span>
-                      );
-                    })}
+                    {exercise.exercise.targetMuscleGroups.map(
+                      (muscle, index) => {
+                        return (
+                          <span
+                            key={index}
+                            className='text-[10px] text-zinc-500 font-bold bg-zinc-900 rounded-sm uppercase px-1'
+                          >
+                            {muscle}
+                          </span>
+                        );
+                      },
+                    )}
                   </div>
                 </div>
                 {/* play button to record exercise progress and Tooltip  */}
                 <div
                   className='relative inline-block group border border-zinc-800 rounded-lg bg-green-950 p-1'
                   onClick={() => {
-                    setSelectedExercise(exercise);
+                    setSelectedExercise(exercise.exercise);
                     setShowRecordExerciseModal(true);
                   }}
                 >
@@ -312,18 +365,98 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
                   <span className='text-gray-400 text-sm'>Done</span>
                   <input
                     type='checkbox'
-                    checked={completedExercisese.includes(exercise.id)}
-                    disabled={completedExercisese.includes(exercise.id)}
+                    checked={completedExercisese.includes(exercise.exercise.id)}
+                    disabled={completedExercisese.includes(
+                      exercise.exercise.id,
+                    )}
                     className='scale-150'
-                    onChange={() => handleCheckEvent(exercise.id)}
+                    onChange={() => handleCheckEvent(exercise.exercise.id)}
                   />
                 </div>
               </div>
             );
           })}
         </div>
-        {/* Modal for recording exercise progress */}
+        <div>
+          {!sessionActive && (
+            <button
+              className='mt-8 bg-red-500 rounded px-2 cursor-pointer'
+              onClick={() => closeSession()}
+            >
+              Leave Session
+            </button>
+          )}
+        </div>
+        <div>
+          <h2 className='my-8'>Workout Program Details</h2>
+          <div className='text-zinc-400'>
+            <h2 className='text-center text-xl text-white font-bold'>
+              {currentSession.name}
+            </h2>
+            <p className='my-4'>{currentSession.description}</p>
+            <p className='text-white'>Below is the workout detail:</p>
+            <div className='my-4'>
+              <ul className='list-disc ml-5 flex flex-col gap-6'>
+                {currentSession.exercises.map((exercise, index) => {
+                  return (
+                    <div className='' key={index}>
+                      <li className=''>
+                        Exercise: {exercise.exercise.name}
+                        <ul className='list-dash ml-5'>
+                          <li className="before:content-['→'] before:mr-2 italic">
+                            {exercise.description}
+                          </li>
+                          {exercise.exercise.measurement === "reps" && (
+                            <li className="before:content-['→'] before:mr-2">
+                              For this workout, you have to do{" "}
+                              <span className='font-bold italic text-white'>
+                                {exercise.sets}
+                              </span>{" "}
+                              sets of{" "}
+                              <span className='font-bold italic text-white'>
+                                {exercise.reps}{" "}
+                              </span>
+                              reps
+                            </li>
+                          )}
+                          {exercise.exercise.measurement === "seconds" && (
+                            <li className="before:content-['→'] before:mr-2">
+                              For this workout, you have to do{" "}
+                              <span className='font-bold italic text-white'>
+                                {exercise.sets}{" "}
+                              </span>
+                              sets of{" "}
+                              <span className='font-bold italic text-white'>
+                                {exercise.reps}
+                              </span>{" "}
+                              reps
+                            </li>
+                          )}
+                          <li className="before:content-['→'] before:mr-2">
+                            Rest: At least
+                            <span className='font-bold italic text-blue-500'>
+                              {" "}
+                              60 to 120{" "}
+                            </span>{" "}
+                            seconds between sets{" "}
+                          </li>
+                        </ul>
+                      </li>
+                    </div>
+                  );
+                })}
+              </ul>
+            </div>
+            <p className='italic'>
+              <span className='text-white'>Note: </span> For Fair progress
+              tracking, only mark an exercise as done(Checkbox), only if you
+              have truly completed it. Don't cheat yourself. Remember "Self
+              growth is better than points"
+            </p>
+          </div>
+        </div>
       </div>
+      {/* Modal for recording exercise progress */}
       {showRecordExerciseModal && selectedExercise && (
         <RecordExerciseModal
           closeModal={closeRecordExerciseModal}

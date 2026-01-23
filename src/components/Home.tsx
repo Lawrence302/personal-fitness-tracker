@@ -90,7 +90,7 @@ const Home = ({ setDisplay }: HomeProps) => {
           <div className='py-4'>
             <p className='text-sm'>
               Accumulate points by mastering movements. Level up your physical
-              rank through consistency and intensity
+              rank through consistency and intensity.
             </p>
           </div>
           <div className=' flex flex-col md:flex-row font-bold gap-10'>
@@ -147,6 +147,17 @@ const Home = ({ setDisplay }: HomeProps) => {
       <div>
         {/* Quick Log Exercise Section */}
         <QuickLogExercise />
+      </div>
+      <div>
+        <p className='text-xs text-zinc-300 mb-2 '>
+          <span className='text-white'>Note: </span>
+          For fair progress tracking, only record exercises you have truly
+          completed. Don&apos;t cheat yourself.{" "}
+          <span className='font-bold'>
+            {" "}
+            “Self growth is better than points.”
+          </span>
+        </p>
       </div>
 
       <div className='text-center my-8'>

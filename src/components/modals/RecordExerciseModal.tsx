@@ -234,6 +234,13 @@ const RecordExerciseModal = ({
           </div>
         </div>
         <div className='my-4'>
+          <p className='text-xs mb-2'>
+            <span className='text-white'>Note: </span>
+            For fair progress tracking, only record exercises you have truly
+            completed. Don&apos;t cheat yourself. Remember: “Self growth is
+            better than points.”
+          </p>
+
           <button
             className={`flex justify-center w-full bg-cyan-700 hover:bg-cyan-600 text-white font-bold p-2 cursor-pointer rounded-lg ${
               saveButtonDisabled ? "opacity-50 cursor-not-allowed" : ""
