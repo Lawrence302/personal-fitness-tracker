@@ -775,9 +775,32 @@ export const exercises: Exercise[] = [
     dateCreated: new Date().toISOString(),
   },
   {
+    id: "lateral-leg-raises",
+    name: "Lateral Leg Raises",
+    thumbnailUrl: "/images/thumbnail/lateral-leg-raises-gif.webp",
+    level: "beginner",
+    measurement: "reps",
+    type: "strength",
+    movementPattern: "legs",
+    tags: ["lower-body", "glutes", "hip-abductors", "bodyweight", "core"],
+    bodyRegion: "lower-body",
+    description:
+      "Lie on your side with legs straight. Lift the top leg towards the ceiling while keeping your hips stable. Lower it back down slowly, and repeat.",
+    targetMuscleGroups: ["Glutes", "Hip Abductors", "Core"],
+    mistakes: [
+      "Lifting the leg too high, causing lower back strain",
+      "Not keeping the hips stacked (rotate the body)",
+      "Using momentum instead of muscle control",
+    ],
+    progression: ["standing-leg-raises", "weighted-leg-raises"],
+    unitPoint: 0.1, // Adjust depending on your system of points
+    dateCreated: new Date().toISOString(),
+  },
+
+  {
     id: "high-knees",
     name: "High Knees",
-    thumbnailUrl: "/images/thumbnail/high-knees-gif.gif",
+    thumbnailUrl: "/images/thumbnail/high-knees.gif",
     level: "beginner",
     measurement: "seconds",
     type: "strength",
@@ -800,6 +823,67 @@ export const exercises: Exercise[] = [
     ],
     progression: ["marching-high-knees", "fast-high-knees-sprints"],
     unitPoint: 0.2,
+    dateCreated: new Date().toISOString(),
+  },
+  {
+    id: "jump-knee-tuck",
+    name: "Jump Knee Tuck",
+    thumbnailUrl: "/images/thumbnail/jump-knee-tuck-gif.gif", // Use an appropriate thumbnail URL
+    level: "intermediate", // Difficulty level (can be beginner, intermediate, advanced)
+    measurement: "reps", // Typically measured by repetitions (how many times the jump is completed)
+    type: "strength", // Exercise type can be strength, flexibility, cardio, etc.
+    movementPattern: "explosive", // This is an explosive movement (requires powerful, fast muscle contractions)
+    tags: [
+      "cardio", // It gets the heart rate up
+      "core", // Engages the core muscles for stabilization
+      "lower-body", // Primarily targets lower body muscles
+      "plyometric", // This is a plyometric exercise (involves jumping and explosive movements)
+      "calorie-burn", // Helps with burning calories
+    ],
+    bodyRegion: "lower-body", // The primary focus is on the lower body muscles, especially the legs
+    description:
+      "Jump explosively and bring your knees towards your chest, then land softly and repeat.", // Description of how to perform the exercise
+    targetMuscleGroups: [
+      "Quadriceps", // Front of the thighs
+      "Glutes", // Buttocks
+      "Hip Flexors", // Muscles around the hips
+      "Core", // Abdominals and obliques for stabilization
+      "Calves", // Lower leg muscles involved in the jump
+    ],
+    mistakes: [
+      "Landing too hard", // Avoid hard landings to prevent injury
+      "Not engaging core", // Failing to stabilize the core during the jump
+      "Jumping too low", // Ensure a high enough jump for effectiveness
+      "Knees not brought high enough", // Try to bring knees up to chest level
+    ],
+    progression: [
+      "Jumping Jacks", // Easier cardio movement as a progression
+      "Squat Jumps", // A more advanced variation of the jump
+      "Tuck Jumps", // Another progression that increases the intensity of knee tucks
+    ],
+    unitPoint: 0.5, // Points per repetition (this can be adjusted based on difficulty)
+    dateCreated: new Date().toISOString(), // Automatically generates the date when the exercise is added
+  },
+  {
+    id: "lunges",
+    name: "Lunges",
+    thumbnailUrl: "/images/thumbnail/lunges-gif.gif",
+    level: "beginner",
+    measurement: "reps",
+    type: "strength",
+    movementPattern: "legs",
+    tags: ["lower-body", "strength", "glutes", "quads", "hamstrings"],
+    bodyRegion: "lower-body",
+    description:
+      "Step forward with one leg, lowering your body until both knees are bent at 90 degrees, then push back up to the starting position and alternate legs.",
+    targetMuscleGroups: ["Quadriceps", "Glutes", "Hamstrings", "Calves"],
+    mistakes: [
+      "Knee going past toes",
+      "Not lowering hips enough",
+      "Uneven weight distribution",
+    ],
+    progression: ["static-lunge", "alternating-step-lunge", "lunges"],
+    unitPoint: 0.5,
     dateCreated: new Date().toISOString(),
   },
 
@@ -828,7 +912,7 @@ export const exercises: Exercise[] = [
       "Not going deep enough",
     ],
     progression: ["static-lunge", "alternating-step-lunge", "jumping-lunges"],
-    unitPoint: 0.8,
+    unitPoint: 0.9,
     dateCreated: new Date().toISOString(),
   },
 
@@ -999,8 +1083,38 @@ export const exercises: Exercise[] = [
     dateCreated: new Date().toISOString(),
   },
   {
+    id: "one-leg-l-sit",
+    name: "One-Leg L-Sit",
+    thumbnailUrl: "/images/thumbnail/one-leg-l-sit.webp", // Replace with actual path
+    level: "intermediate", // Progression from tuck L-sit, before full L-sit
+    measurement: "seconds", // Measured by time held
+    type: "strength",
+    movementPattern: "isometric", // Static hold
+    tags: [
+      "core",
+      "hip flexors",
+      "lower-body",
+      "bodyweight",
+      "calisthenics",
+      "balance",
+    ],
+    bodyRegion: "core",
+    description:
+      "The One-Leg L-Sit is a challenging exercise that strengthens the core and hip flexors while improving balance and stability. To perform this exercise, sit on the floor with your legs extended, lift one leg straight up while keeping the other leg bent and tucked, and hold this position as long as you can.",
+    targetMuscleGroups: ["Core", "Hip Flexors", "Quads", "Abs"],
+    mistakes: [
+      "Not keeping the back straight",
+      "Leaning back instead of keeping an upright posture",
+      "Dropping the lifted leg",
+      "Not engaging the core fully",
+    ],
+    progression: ["tuck-l-sit", "one-leg-l-sit", "full-l-sit"],
+    unitPoint: 0.5,
+    dateCreated: new Date().toISOString(),
+  },
+  {
     id: "l-sit",
-    name: "L-sit",
+    name: "L-Sit",
     thumbnailUrl: "/images/thumbnail/l-sit.webp",
     level: "intermediate",
     measurement: "seconds",

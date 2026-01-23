@@ -48,11 +48,10 @@ const Workouts = () => {
                   </div>
                   <div className='py-6'>
                     <h2 className='text-white text-2xl font-bold italic uppercase'>
-                      FULL BODY FOUNDATIONS
+                      {program.name}
                     </h2>
                     <p className='text-zinc-500 text-sm pt-4'>
-                      A balance routine for beginners to build foundational
-                      strength.
+                      {program.description}
                     </p>
                   </div>
                   <div>
@@ -60,10 +59,10 @@ const Workouts = () => {
                       return (
                         <div key={index} className='flex justify-between'>
                           <p className='text-zinc-400  uppercase font-bold'>
-                            {exercise?.name}
+                            {exercise.exercise?.name}
                           </p>
                           <p className='text-zinc-500 uppercase text-xs font-bold'>
-                            {exercise?.level}
+                            {exercise.exercise?.level}
                           </p>
                         </div>
                       );

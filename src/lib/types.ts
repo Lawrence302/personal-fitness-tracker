@@ -61,12 +61,18 @@ export type Exercise = {
 
 export type Workout = {
   id: string;
-  name: string;
-  date: string; // when workout was done
-  level: number;
-  estimatedTime: number;
-  exercises: Exercise[];
-  description: string;
+  name: string; // Descriptive name for the workout (e.g., "Push & Pull Basics")
+  bodyRegion: bodyRegion;
+  date: string; // When the workout was completed
+  level: number; // The workout level (e.g., Beginner = 1)
+  estimatedTime: number; // Estimated time in minutes
+  exercises: {
+    exercise: Exercise; // Full exercise object
+    reps: string; // The number of reps (or duration, depending on the exercise)
+    sets: number; // Number of sets
+    description: string; // Short description of the exercise
+  }[]; // Array of exercises in this workout
+  description: string; // A detailed description of the workout
 };
 
 export type ExerciseLog = {
