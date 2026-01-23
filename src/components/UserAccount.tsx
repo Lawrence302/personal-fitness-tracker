@@ -42,8 +42,13 @@ const UserAccount = ({ setDisplay }: UserAccountProps) => {
       updateLongestStreak(streaks[0]?.longestStreak || 0);
 
       // Fetch workout logs
-      const logs = await db.getAll("trainingWorkoutLogs");
+      const logs = await db.getAllFromIndex(
+        "trainingWorkoutLogs",
+        "completed",
+        1,
+      );
       setWorkoutsCompleted(logs.length);
+      console.log("Fetched workout logs:", logs);
     };
 
     fetchStats();

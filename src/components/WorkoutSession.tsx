@@ -21,7 +21,7 @@ const createNewTrainingWorkoutSession = (session: Workout) => {
     startTime: DateTime.now().toUTC().toISO(),
     endTime: undefined,
     // estimatedTime: session.estimatedTime, // in minutes
-    estimatedTime: 2, // in minutes
+    estimatedTime: 5, // in minutes
     exerciseLogs: [], // ids of exerciselogs
     exercisesAtempted: [], // ids of individual exercises in the session
     completedExercises: [],
@@ -87,6 +87,7 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
   const [showRecordExerciseModal, setShowRecordExerciseModal] =
     useState<boolean>(false);
   const [selectedExercise, setSelectedExercise] = useState<Exercise>();
+  const [minutesLeft, setMinutesLeft] = useState<string>();
 
   const startSession = (session: Workout) => {
     const newWorkoutSession = createNewTrainingWorkoutSession(session);
@@ -182,12 +183,47 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
         setCurrentSession(workout);
       }
 
+      // const start = DateTime.fromISO(trainingSession.startTime, {
+      //   zone: "utc",
+      // });
+      // const end = start.plus({ minutes: trainingSession.estimatedTime });
+
+      // // getting minutes and seconds left
+      // const diff = end.diff(DateTime.utc(), ["minutes", "seconds"]);
+
+      // setMinutesLeft(
+      //   `Time left: ${diff.minutes} min ${Math.floor(diff.seconds)} sec`,
+      // );
+
       setWorkoutTrainingSession(trainingSession);
       setCompletedExercises(trainingSession.completedExercises);
       setSessionActive(true);
     }
     getData();
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (workoutTrainingSession) {
+        const start = DateTime.fromISO(workoutTrainingSession.startTime, {
+          zone: "utc",
+        });
+        const end = start.plus({
+          minutes: workoutTrainingSession.estimatedTime,
+        });
+
+        // getting minutes and seconds left
+        const diff = end.diff(DateTime.utc(), ["minutes", "seconds"]);
+
+        const minutes = Math.max(0, Math.floor(diff.minutes));
+        const seconds = Math.max(0, Math.floor(diff.seconds));
+
+        setMinutesLeft(`Time left: ${minutes} min ${Math.floor(seconds)} sec`);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [workoutTrainingSession]);
 
   return (
     <div>
@@ -223,6 +259,10 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
               </button>
             )}
           </div>
+        </div>
+        <div>
+          {/* show time left */}
+          <p>{minutesLeft}</p>
         </div>
         {/* showing the progress made in the session */}
         <div className='my-4'>
