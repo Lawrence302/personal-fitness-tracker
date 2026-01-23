@@ -21,12 +21,12 @@ export default defineConfig({
         start_url: "/personal-fitness-tracker/",
         icons: [
           {
-            src: "/android-chrome-192x192.png", // Should work since it's in the `public/` folder
+            src: "android-chrome-192x192.png", // Should work since it's in the `public/` folder
             sizes: "192x192",
             type: "image/png",
           },
           {
-            src: "/android-chrome-512x512.png", // Same here
+            src: "android-chrome-512x512.png", // Same here
             sizes: "512x512",
             type: "image/png",
           },
