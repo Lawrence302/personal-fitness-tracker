@@ -36,6 +36,15 @@ const RecordExerciseModal = ({
   // sum of log inputs
   const total = logInputs.reduce((sum, val) => sum + val, 0);
 
+  const deleteInput = (index: number) => {
+    setLogInputs((prev) => {
+      const newLogInputs = [...prev]; // create a copy
+      newLogInputs.splice(index, 1); // remove the value at the index
+
+      return newLogInputs.length > 0 ? newLogInputs : [0]; // ensure at least one input remains
+    });
+  };
+
   // adde Exercises log function
   const addExerciseLog = async () => {
     // get the current active session
@@ -212,7 +221,10 @@ const RecordExerciseModal = ({
                         updateLogInput(Number(e.target.value), index)
                       }
                     />
-                    <Trash className='text-red-500 cursor-pointer' />
+                    <Trash
+                      className='text-red-500 cursor-pointer'
+                      onClick={() => deleteInput(index)}
+                    />
                   </div>
                 </div>
               </div>
