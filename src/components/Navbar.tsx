@@ -11,10 +11,10 @@ const getStreakStats = async () => {
 const Navbar = () => {
   const currentStreak = useExerciseStore((state) => state.currentStreak);
   const setHighestStreak = useExerciseStore(
-    (state) => state.updateLongestStreak
+    (state) => state.updateLongestStreak,
   );
   const setCurrrentStreak = useExerciseStore(
-    (state) => state.updateCurrentStreak
+    (state) => state.updateCurrentStreak,
   );
 
   const [activitySessions, setActivitySessions] = useState<number>(0);
@@ -44,7 +44,7 @@ const Navbar = () => {
         </div>
         <div>
           <h3 className='text-sm md:text-xl lg:text-2xl text-white font-bold tracking-tighter italic'>
-            MY CALI TRACK
+            CalisTrain
           </h3>
           <p className='text-xs md:text-sm lg:text-base text-zinc-500 font-bold'>
             STRENGTH CODEX

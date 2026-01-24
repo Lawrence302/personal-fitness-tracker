@@ -39,6 +39,17 @@ const tiers = [
   },
 ];
 
+const tierStyles = {
+  NEWBIE: "text-blue-400 bg-blue-900/20 font-normal",
+  BEGINNER: "text-emerald-400 bg-emerald-900/20 font-normal",
+  INTERMEDIATE: "text-lime-400 bg-lime-900/20 font-medium",
+  ADVANCED: "text-yellow-400 bg-yellow-900/20 font-medium",
+  EXPERT: "text-amber-600 bg-amber-900/25 font-semibold",
+  ELITE: "text-pink-400 bg-pink-900/20 font-semibold",
+  LEGENDARY:
+    "text-red-400 bg-red-900/30 font-bold uppercase tracking-wide border-b-2 border-yellow-300",
+};
+
 export default function TierTable() {
   return (
     <div className='w-full max-w-5xl mx-auto p-4'>
@@ -70,7 +81,9 @@ export default function TierTable() {
                   index % 2 === 0 ? "bg-zinc-800" : "bg-zinc-900"
                 }`}
               >
-                <td className='px-4 py-3 font-medium text-zinc-400'>
+                <td
+                  className={`px-4 py-3 font-medium ${tierStyles[item.tier.toUpperCase() as keyof typeof tierStyles]}`}
+                >
                   {item.tier}
                 </td>
                 <td className='px-4 py-3 text-zinc-400'>{item.points}</td>

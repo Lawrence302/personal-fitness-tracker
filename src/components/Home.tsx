@@ -21,6 +21,17 @@ const getTotalPoints = async () => {
   return totalPoints;
 };
 
+const tierStyles = {
+  NEWBIE: "text-blue-400  bg-blue-900/20",
+  BEGINNER: "text-emerald-400 bg-emerald-900/20 ",
+  INTERMEDIATE: "text-lime-400 bg-lime-900/20 ",
+  ADVANCED: "text-yellow-400 bg-yellow-900/20",
+  EXPERT: "text-amber-600 bg-amber-900/25 ",
+  ELITE: "text-pink-400 bg-pink-900/20 ",
+  LEGENDARY:
+    "text-red-400 bg-red-900/30 font-bold uppercase tracking-wide border-b-2 border-yellow-300",
+};
+
 type HomeProps = {
   setDisplay: React.Dispatch<React.SetStateAction<string>>;
 };
@@ -113,7 +124,9 @@ const Home = ({ setDisplay }: HomeProps) => {
         <div className='right-banner flex-1 flex flex-col gap-2 border rounded-xl p-4 font-bold bg-zinc-900'>
           <p className='text-xs '>PHYSICAL RANK</p>
           <div>
-            <h1 className='text-4xl  italic font-bold '>
+            <h1
+              className={`text-4xl px-1 italic font-bold w-fit ${tierStyles[tierInfo?.userRank.toUpperCase() as keyof typeof tierStyles]}`}
+            >
               {tierInfo?.userRank}
             </h1>
             <p className='text-sm'>{totalPoints.toFixed(2)} TOTAL PTS</p>

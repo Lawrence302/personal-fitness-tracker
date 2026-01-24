@@ -1,8 +1,8 @@
-# Personal Fitness Tracker (MY CALI TRACK)
+# Personal Fitness Tracker (CalisTrain)
 
 _Level up your calisthenics journey with points, ranks, and progress tracking!_
 
-**MY CALI TRACK** is a single-page web application built specifically for calisthenics athletes and individuals who train using bodyweight exercises. It helps users track workouts, log exercises, and monitor progress over time (without the need for a gym).
+**CALISTRAIN** is a single-page web application built specifically for calisthenics athletes and individuals who train using bodyweight exercises. It helps users track workouts, log exercises, and monitor progress over time (without the need for a gym).
 
 The app gamifies calisthenics training by awarding points, displaying physical ranks, and providing visual insights into training frequency, consistency, and performance.
 

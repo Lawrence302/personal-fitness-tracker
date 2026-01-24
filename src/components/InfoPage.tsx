@@ -20,10 +20,13 @@ const InfoPage = () => {
 
       {showAppInfo ? (
         <div className='space-y-4  leading-relaxed'>
+          <h1 className='text-2xl font-bold text-white'>MY CALIS TRAIN</h1>
           <p>
-            <strong className='text-white'>MY CALI TRACK</strong> is a fitness
-            tracking app built for calisthenics athletes and anyone training
-            with bodyweight exercises.
+            <strong className='text-white'>
+              MY CALISTHENICS TRAINING (CalisTrain)
+            </strong>{" "}
+            is a fitness tracking app built for calisthenics athletes and anyone
+            training with bodyweight exercises.
           </p>
 
           <p>

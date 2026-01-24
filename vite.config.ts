@@ -11,8 +11,8 @@ export default defineConfig({
       registerType: "autoUpdate",
       includeAssets: ["favicon.svg", "robots.txt", "apple-touch-icon.png"],
       manifest: {
-        name: "MY Cali Track",
-        short_name: "CaliTrack",
+        name: "CalisTrain",
+        short_name: "CalisTrain",
         description:
           "Personal Calisthenics Fitness Tracker: Track your bodyweight workouts, log exercises, earn points, and monitor progress. All without any equipment!",
         theme_color: "#18181b",
