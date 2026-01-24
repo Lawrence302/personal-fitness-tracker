@@ -31,7 +31,7 @@ const ExerciseCard = ({ exercise, index }: ExerciseCardProps) => {
         </p>
         <div className='h-40 lg:h-48 bg-zinc-800 rounded-btl-xl rounded-t-xl flex items-center justify-center'>
           <img
-            src={`/personal-fitness-tracker/${exercise.thumbnailUrl}`}
+            src={`/personal-calisthenics-tracker/${exercise.thumbnailUrl}`}
             alt={exercise.name}
             loading='lazy'
             decoding='async'

@@ -38,7 +38,7 @@ const UserAccount = ({ setDisplay }: UserAccountProps) => {
     try {
       await navigator.share({
         title: document.title,
-        text: "Get CaliTrack Now!",
+        text: "Get CalisTrain Now - Your Ultimate Calisthenics Workout Tracker!",
         url: window.location.href,
       });
     } catch (err) {
