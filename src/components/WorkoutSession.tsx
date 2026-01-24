@@ -417,6 +417,10 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
                                 {exercise.reps}{" "}
                               </span>
                               reps
+                              <span>
+                                {" "}
+                                {exercise.exercise.unitPoint} pts per rep
+                              </span>
                             </li>
                           )}
                           {exercise.exercise.measurement === "seconds" && (
@@ -429,7 +433,10 @@ const WorkoutSession = ({ session, closeSession }: WorkoutSessionProps) => {
                               <span className='font-bold italic text-white'>
                                 {exercise.reps}
                               </span>{" "}
-                              reps
+                              reps{" "}
+                              <span>
+                                {exercise.exercise.unitPoint} pts per second
+                              </span>
                             </li>
                           )}
                           <li className="before:content-['→'] before:mr-2">

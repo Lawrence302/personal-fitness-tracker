@@ -6,13 +6,13 @@ import { DateTime } from "luxon";
 import useExerciseStore from "../stores/exerciseStore";
 
 const tiers = [
-  { rank: "NEWBIE", min: 0, max: 800 },
-  { rank: "BEGINNER", min: 801, max: 2499 },
-  { rank: "INTERMEDIATE", min: 2500, max: 6499 },
-  { rank: "ADVANCED", min: 6500, max: 12999 },
-  { rank: "EXPERT", min: 13000, max: 25999 },
-  { rank: "ELITE", min: 26000, max: 51999 },
-  { rank: "LEGENDARY", min: 52000, max: Infinity },
+  { rank: "NEWBIE", min: 0, max: 850 },
+  { rank: "BEGINNER", min: 851, max: 2699 },
+  { rank: "INTERMEDIATE", min: 2700, max: 6999 },
+  { rank: "ADVANCED", min: 7000, max: 13999 },
+  { rank: "EXPERT", min: 14000, max: 27999 },
+  { rank: "ELITE", min: 28000, max: 53999 },
+  { rank: "LEGENDARY", min: 54000, max: Infinity },
 ];
 
 // Calculate user tier based on total points
@@ -132,7 +132,7 @@ export const getCurrentSession = async () => {
   // function to create a new activity session
   async function createNewActivitySession() {
     const startTime = DateTime.now().toUTC();
-    const endTime = startTime.plus({ minutes: 5 });
+    const endTime = startTime.plus({ minutes: 120 });
     const db = await initDB();
     const newActivitySession = {
       id: uuid(),

@@ -21,17 +21,27 @@ const ExerciseCard = ({ exercise, index }: ExerciseCardProps) => {
       key={index}
     >
       <div
-        className={`h-40 lg:h-48 bg-zinc-800 rounded-btl-xl rounded-t-xl `}
-        style={{
-          backgroundImage: `url(/personal-fitness-tracker/${exercise.thumbnailUrl})`,
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          backgroundSize: "contain",
-        }}
+        className='h-40 lg:h-48 bg-zinc-800 rounded-btl-xl rounded-t-xl relative '
+        // style={{
+        //   backgroundImage: `url(/personal-fitness-tracker/${exercise.thumbnailUrl})`,
+        //   backgroundRepeat: "no-repeat",
+        //   backgroundPosition: "center",
+        //   backgroundSize: "contain",
+        // }}
       >
-        <p className='border border-cyan-800 bg-zinc-900 text-cyan-500 text-xs font-semibold w-fit p-1 m-2 float-right'>
+        {" "}
+        <p className='border border-cyan-800 bg-zinc-900 text-cyan-500 text-xs font-semibold w-fit p-1 m-2 rounded-md absolute top-1 right-2 '>
           {exercise.level}
         </p>
+        <div className='h-40 lg:h-48 bg-zinc-800 rounded-btl-xl rounded-t-xl flex items-center justify-center'>
+          <img
+            src={`/personal-fitness-tracker/${exercise.thumbnailUrl}`}
+            alt={exercise.name}
+            loading='lazy'
+            decoding='async'
+            className='max-h-full max-w-full object-contain'
+          />
+        </div>
       </div>
       <div className='p-4' onClick={() => setShowExerciseModal(true)}>
         <h2 className='text-white text-lg font-bold '>{exercise.name}</h2>

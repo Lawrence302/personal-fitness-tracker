@@ -1,13 +1,20 @@
 import { Layers } from "lucide-react";
 import { useState } from "react";
 import WorkoutSession from "./WorkoutSession";
-import type { Workout } from "../lib/types";
+import type { Exercise, Workout } from "../lib/types";
 // importing default workouts programs data
 import { workoutPrograms } from "../lib/defaultData";
 
 // interface WorkoutsProps {
 //   setDisplay: React.Dispatch<React.SetStateAction<string>>;
 // }
+
+type programExercisesType = {
+  description: string;
+  exercise: Exercise;
+  sets: number;
+  reps: string;
+}[];
 
 const PAGE_SIZE = 6;
 
@@ -20,6 +27,18 @@ const Workouts = () => {
   const closeWorkoutSession = () => {
     setShowWorkoutSession(false);
     setShowWorkouts(true);
+  };
+
+  const maxPoints = (program: programExercisesType) => {
+    const totalPoints = program.reduce((accumulator, exercise) => {
+      const maxRep = exercise.reps.split("-")[1];
+      const sets = exercise.sets;
+      const unitPoint = exercise.exercise?.unitPoint;
+      const total = Number(maxRep) * Number(sets) * unitPoint;
+
+      return accumulator + total;
+    }, 0);
+    return totalPoints.toFixed(2);
   };
 
   return (
@@ -36,6 +55,7 @@ const Workouts = () => {
           </div>
           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3  gap-4 '>
             {workoutPrograms.slice(0, visibleCount).map((program, index) => {
+              const totalPoints = maxPoints(program.exercises);
               return (
                 <div
                   key={index}
@@ -74,7 +94,11 @@ const Workouts = () => {
                         </div>
                       );
                     })}
+                    <p className='text-xs text-right italic text-zinc-500'>
+                      Total: <span> {totalPoints} </span> pts
+                    </p>
                   </div>
+
                   <div className='py-4 text-white text-lg '>
                     <button
                       className='w-full rounded-xl bg-zinc-800 py-2 uppercase font-bold italic'

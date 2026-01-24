@@ -66,7 +66,7 @@ export const workoutPrograms: Workout[] = [
       },
       {
         exercise: exercises.find((e) => e.name === "Back Support")!,
-        reps: "20-30 sec",
+        reps: "20-30 - sec",
         sets: 3,
         description:
           "A simple isometric hold to build shoulder and core endurance while maintaining posture.",
@@ -92,7 +92,7 @@ export const workoutPrograms: Workout[] = [
       },
       {
         exercise: exercises.find((e) => e.name === "Dead Hang")!,
-        reps: "20-30 sec",
+        reps: "20-30 - sec",
         sets: 3,
         description:
           "A static hold to improve grip strength and shoulder stability while hanging from a bar.",
@@ -113,7 +113,7 @@ export const workoutPrograms: Workout[] = [
       },
       {
         exercise: exercises.find((e) => e.name === "Front Support")!,
-        reps: "20-30 sec",
+        reps: "20-30 - sec",
         sets: 3,
         description:
           "A static core and shoulder stability hold that helps develop endurance and support for upper body strength.",
@@ -153,7 +153,7 @@ export const workoutPrograms: Workout[] = [
       },
       {
         exercise: exercises.find((e) => e.name === "Wall Sit")!,
-        reps: "20-30 sec",
+        reps: "20-30 - sec",
         sets: 3,
         description:
           "An isometric hold to build endurance in the quadriceps and glutes.",
@@ -167,7 +167,7 @@ export const workoutPrograms: Workout[] = [
       },
       {
         exercise: exercises.find((e) => e.name === "Plank")!,
-        reps: "20-30 sec",
+        reps: "20-30 - sec",
         sets: 3,
         description:
           "A static hold to engage the core, improve stability, and build overall body strength.",
@@ -193,14 +193,14 @@ export const workoutPrograms: Workout[] = [
       },
       {
         exercise: exercises.find((e) => e.name === "Wall Sit")!,
-        reps: "20-30 sec",
+        reps: "20-30 - sec",
         sets: 3,
         description:
           "An isometric exercise that strengthens the quads and builds endurance.",
       },
       {
         exercise: exercises.find((e) => e.name === "Lateral Leg Raises")!,
-        reps: "10-12 per leg",
+        reps: "20-24 -  do 10-12  per leg",
         sets: 3,
         description:
           "A beginner-friendly exercise that targets the hip abductors, glutes, and outer thighs.",
@@ -234,21 +234,21 @@ export const workoutPrograms: Workout[] = [
       },
       {
         exercise: exercises.find((e) => e.name === "Lunges")!,
-        reps: "8-10 per leg",
+        reps: "16-20 - do 8-10 per leg",
         sets: 3,
         description:
           "A beginner-friendly leg exercise that targets quads, hamstrings, and glutes.",
       },
       {
         exercise: exercises.find((e) => e.name === "High Knees")!,
-        reps: "20-30 sec",
+        reps: "20-30 - sec",
         sets: 3,
         description:
           "A cardio exercise that works the hip flexors, quads, and calves, while improving coordination and endurance.",
       },
       {
         exercise: exercises.find((e) => e.name === "Wall Sit")!,
-        reps: "30 sec",
+        reps: "30-35 - sec",
         sets: 3,
         description: "An isometric hold to build endurance in the quads.",
       },
@@ -267,13 +267,13 @@ export const workoutPrograms: Workout[] = [
     exercises: [
       {
         exercise: exercises.find((e) => e.name === "Plank")!,
-        reps: "20-30 sec",
+        reps: "20-30 - sec",
         sets: 3,
         description: "A foundational core exercise to build stability.",
       },
       {
         exercise: exercises.find((e) => e.name === "Dead Bug")!,
-        reps: "10-12 per side",
+        reps: "20-24 - do 10-12 per side",
         sets: 3,
         description:
           "A great beginner exercise to improve core strength and coordination.",
@@ -287,7 +287,7 @@ export const workoutPrograms: Workout[] = [
       },
       {
         exercise: exercises.find((e) => e.name === "Hollow Body Hold")!,
-        reps: "10-15 sec",
+        reps: "10-15 - sec",
         sets: 3,
         description: "A low-impact hold to engage the entire core.",
       },
@@ -306,13 +306,13 @@ export const workoutPrograms: Workout[] = [
     exercises: [
       {
         exercise: exercises.find((e) => e.name === "Plank")!,
-        reps: "20-30 sec",
+        reps: "20-30 - sec",
         sets: 3,
         description: "A basic core exercise to improve strength and endurance.",
       },
       {
         exercise: exercises.find((e) => e.name === "Side Plank")!,
-        reps: "15-20 sec per side",
+        reps: "30-40 - do 15-20  sec per side",
         sets: 3,
         description:
           "A simple variation of the plank that targets the obliques.",
@@ -359,7 +359,7 @@ export const workoutPrograms: Workout[] = [
           "An incline push-up to target the upper chest and shoulders, great for beginners.",
       },
       {
-        exercise: exercises.find((e) => e.name === "Knee Push-up")!,
+        exercise: exercises.find((e) => e.name === "Knee Push-ups")!,
         reps: "12-15",
         sets: 3,
         description:
@@ -367,7 +367,7 @@ export const workoutPrograms: Workout[] = [
       },
       {
         exercise: exercises.find((e) => e.name === "Front Support")!,
-        reps: "20-30 sec",
+        reps: "20-30 - sec",
         sets: 3,
         description: "A static hold to develop shoulder and core stability.",
       },
@@ -399,14 +399,14 @@ export const workoutPrograms: Workout[] = [
       },
       {
         exercise: exercises.find((e) => e.name === "Dead Hang")!,
-        reps: "20-30 sec",
+        reps: "20-30 - sec",
         sets: 3,
         description:
           "A static hold to build grip strength and shoulder stability.",
       },
       {
         exercise: exercises.find((e) => e.name === "Pull-up Hold")!,
-        reps: "10-20 sec",
+        reps: "10-20 - sec",
         sets: 3,
         description:
           "An isometric hold that targets the upper back and strengthens your pull-up position.",
@@ -434,21 +434,21 @@ export const workoutPrograms: Workout[] = [
       },
       {
         exercise: exercises.find((e) => e.name === "Lunges")!,
-        reps: "8-10 per leg",
+        reps: "16-20 - do 8-10 per leg",
         sets: 3,
         description:
           "A basic unilateral leg exercise targeting quads, glutes, and hamstrings.",
       },
       {
         exercise: exercises.find((e) => e.name === "Horse Stance")!,
-        reps: "20-30 sec",
+        reps: "20-30 - sec",
         sets: 3,
         description:
           "An isometric hold to build endurance in the legs and improve balance.",
       },
       {
         exercise: exercises.find((e) => e.name === "High Knees")!,
-        reps: "30 seconds",
+        reps: "30-35 - seconds",
         sets: 3,
         description:
           "A cardio exercise to improve lower body endurance, warm up the muscles, and boost heart rate.",
@@ -476,21 +476,21 @@ export const workoutPrograms: Workout[] = [
       },
       {
         exercise: exercises.find((e) => e.name === "High Knees")!,
-        reps: "30 sec",
+        reps: "30-35 - sec",
         sets: 3,
         description:
           "A cardio exercise to improve lower body endurance and warm up the muscles.",
       },
       {
         exercise: exercises.find((e) => e.name === "Wall Sit")!,
-        reps: "30 sec",
+        reps: "30-35 - sec",
         sets: 3,
         description:
           "An isometric exercise to build endurance in the quadriceps and glutes.",
       },
       {
         exercise: exercises.find((e) => e.name === "Lateral Leg Raises")!,
-        reps: "12-15 per leg",
+        reps: "24-30 - do 12-15 per leg",
         sets: 3,
         description:
           "A lateral movement to target the outer thighs and hip abductors.",
@@ -511,7 +511,7 @@ export const workoutPrograms: Workout[] = [
     exercises: [
       {
         exercise: exercises.find((e) => e.name === "Plank")!,
-        reps: "20-30 sec",
+        reps: "20-30 - sec",
         sets: 3,
         description:
           "A static hold to build strength and stability in the entire core.",
@@ -525,14 +525,14 @@ export const workoutPrograms: Workout[] = [
       },
       {
         exercise: exercises.find((e) => e.name === "Bicycle Crunches")!,
-        reps: "12-15 per side",
+        reps: "24-30 - do 12-15  per side",
         sets: 3,
         description:
           "A dynamic movement targeting the abs and obliques to build rotational strength.",
       },
       {
         exercise: exercises.find((e) => e.name === "Side Plank")!,
-        reps: "20-30 sec per side",
+        reps: "40-60 - do 20-30 sec per side",
         sets: 3,
         description:
           "A static hold targeting the obliques and improving core stability.",
@@ -560,14 +560,14 @@ export const workoutPrograms: Workout[] = [
       },
       {
         exercise: exercises.find((e) => e.name === "Russian Twists")!,
-        reps: "15-20 per side",
+        reps: "30-40 - do 15-20 per side",
         sets: 3,
         description:
           "A rotational exercise to engage the obliques and build core stability.",
       },
       {
         exercise: exercises.find((e) => e.name === "Plank")!,
-        reps: "30-45 sec",
+        reps: "30-45 - sec",
         sets: 3,
         description:
           "A core strengthening exercise to improve stability and endurance.",
@@ -656,7 +656,7 @@ export const workoutPrograms: Workout[] = [
       },
       {
         exercise: exercises.find((e) => e.name === "Pull-up Hold")!,
-        reps: "20-30 sec",
+        reps: "20-30 - sec",
         sets: 3,
         description:
           "An isometric hold at the top of the pull-up to increase grip and back endurance.",
@@ -689,14 +689,14 @@ export const workoutPrograms: Workout[] = [
       },
       {
         exercise: exercises.find((e) => e.name === "Lunges")!,
-        reps: "12-15 per leg",
+        reps: "24-30 - do 12-15 per leg",
         sets: 3,
         description:
           "A unilateral leg exercise targeting quads, hamstrings, and glutes.",
       },
       {
         exercise: exercises.find((e) => e.name === "Wall Sit")!,
-        reps: "30-45 sec",
+        reps: "30-45 - sec",
         sets: 3,
         description:
           "An isometric hold to target and build endurance in the quadriceps.",
@@ -715,28 +715,28 @@ export const workoutPrograms: Workout[] = [
     exercises: [
       {
         exercise: exercises.find((e) => e.name === "Pistol Squat")!,
-        reps: "5-8 per leg",
+        reps: "5-8 - per leg",
         sets: 3,
         description:
           "An advanced single-leg squat variation to target quads, hamstrings, and glutes.",
       },
       {
         exercise: exercises.find((e) => e.name === "Jumping Lunges")!,
-        reps: "10-12 per leg",
+        reps: "20-24 - 10-12 per leg",
         sets: 3,
         description:
           "A plyometric lunge variation to improve strength and power in the legs.",
       },
       {
         exercise: exercises.find((e) => e.name === "High Knees")!,
-        reps: "30 sec",
+        reps: "30-40 - sec",
         sets: 3,
         description:
           "A cardio drill to elevate heart rate and work the lower body.",
       },
       {
         exercise: exercises.find((e) => e.name === "Lateral Leg Raises")!,
-        reps: "15-20 per leg",
+        reps: "30-40 - 15-20 - per leg",
         sets: 3,
         description:
           "A lateral movement to target the outer thighs and hip abductors.",
@@ -755,7 +755,7 @@ export const workoutPrograms: Workout[] = [
     exercises: [
       {
         exercise: exercises.find((e) => e.name === "Plank")!,
-        reps: "45-60 sec",
+        reps: "45-60 - sec",
         sets: 4,
         description:
           "A static hold that strengthens the entire core and improves stability.",
@@ -769,14 +769,14 @@ export const workoutPrograms: Workout[] = [
       },
       {
         exercise: exercises.find((e) => e.name === "Russian Twists")!,
-        reps: "20-25 per side",
+        reps: "40-50 - 20-25 per side",
         sets: 3,
         description:
           "A rotational exercise that targets the obliques and builds core stability.",
       },
       {
         exercise: exercises.find((e) => e.name === "Hollow Body Hold")!,
-        reps: "20-30 sec",
+        reps: "20-30 - sec",
         sets: 3,
         description:
           "A static hold to strengthen the deep core muscles and improve control.",
@@ -802,14 +802,14 @@ export const workoutPrograms: Workout[] = [
       },
       {
         exercise: exercises.find((e) => e.name === "Side Plank")!,
-        reps: "30-45 sec per side",
+        reps: "60-90 - do 30-45 sec per side",
         sets: 3,
         description:
           "A static hold to build strength in the obliques and improve core stability.",
       },
       {
         exercise: exercises.find((e) => e.name === "Tucked Front Lever")!,
-        reps: "10-15 sec",
+        reps: "10-15 - sec",
         sets: 3,
         description:
           "An advanced core hold that targets the deep abdominal muscles.",
@@ -837,7 +837,7 @@ export const workoutPrograms: Workout[] = [
     exercises: [
       {
         exercise: exercises.find((e) => e.name === "One-Arm Push-up")!,
-        reps: "5-8 per arm",
+        reps: "10-16 - do 5-8 per arm",
         sets: 4,
         description:
           "A one-arm push-up variation to build strength and stability in the chest, shoulders, and triceps.",
@@ -851,7 +851,7 @@ export const workoutPrograms: Workout[] = [
       },
       {
         exercise: exercises.find((e) => e.name === "Handstand")!,
-        reps: "30-45 sec",
+        reps: "30-45 - sec",
         sets: 3,
         description:
           "A static handstand hold to challenge shoulder stability and core engagement.",
@@ -891,7 +891,7 @@ export const workoutPrograms: Workout[] = [
       },
       {
         exercise: exercises.find((e) => e.name === "Straddle Front Lever")!,
-        reps: "10-15 sec",
+        reps: "10-15 - sec",
         sets: 3,
         description:
           "A front lever variation that challenges core stability and lat strength.",
@@ -917,7 +917,7 @@ export const workoutPrograms: Workout[] = [
     exercises: [
       {
         exercise: exercises.find((e) => e.name === "Pistol Squat")!,
-        reps: "5-8 per leg",
+        reps: "10-16 - do 5-8 per leg",
         sets: 4,
         description:
           "A challenging single-leg squat that targets the quads, hamstrings, and glutes, requiring strength and balance.",
@@ -931,14 +931,14 @@ export const workoutPrograms: Workout[] = [
       },
       {
         exercise: exercises.find((e) => e.name === "Jumping Lunges")!,
-        reps: "12-15 per leg",
+        reps: "24-30 - do 12-15 per leg",
         sets: 4,
         description:
           "A plyometric exercise that targets explosive strength and power in the legs.",
       },
       {
         exercise: exercises.find((e) => e.name === "Horse Stance")!,
-        reps: "30-45 sec",
+        reps: "30-45 - sec",
         sets: 3,
         description:
           "An isometric hold that improves leg endurance and stability, challenging your quads and glutes.",
@@ -957,7 +957,7 @@ export const workoutPrograms: Workout[] = [
     exercises: [
       {
         exercise: exercises.find((e) => e.name === "Pistol Squat")!,
-        reps: "6-8 per leg",
+        reps: "12-18 - do 6-8 per leg",
         sets: 4,
         description:
           "A one-legged squat that challenges balance, strength, and mobility.",
@@ -971,14 +971,14 @@ export const workoutPrograms: Workout[] = [
       },
       {
         exercise: exercises.find((e) => e.name === "Wall Sit")!,
-        reps: "45 sec",
+        reps: "45-60 - sec",
         sets: 4,
         description:
           "An isometric hold to build endurance and strength in the quadriceps and glutes.",
       },
       {
         exercise: exercises.find((e) => e.name === "Lateral Leg Raises")!,
-        reps: "15-20 per leg",
+        reps: "30-40 - do 15-20 per leg",
         sets: 3,
         description:
           "A lateral movement targeting the hip abductors, outer thighs, and glutes.",
@@ -997,7 +997,7 @@ export const workoutPrograms: Workout[] = [
     exercises: [
       {
         exercise: exercises.find((e) => e.name === "Straddle Front Lever")!,
-        reps: "10-15 sec",
+        reps: "10-15 - sec",
         sets: 4,
         description:
           "A static core hold that challenges the entire back, core, and shoulders.",
@@ -1011,7 +1011,7 @@ export const workoutPrograms: Workout[] = [
       },
       {
         exercise: exercises.find((e) => e.name === "Full L-Sit Hang")!,
-        reps: "20-30 sec",
+        reps: "20-30 - sec",
         sets: 3,
         description:
           "A static hold targeting the core, hip flexors, and shoulders.",
@@ -1020,14 +1020,14 @@ export const workoutPrograms: Workout[] = [
         exercise: exercises.find(
           (e) => e.name === "Advanced Tucked Front Lever",
         )!,
-        reps: "20-30 sec",
+        reps: "20-30 - sec",
         sets: 4,
         description:
           "A static hold to develop strength in the core and lats while maintaining a tucked position in the front lever.",
       },
       {
         exercise: exercises.find((e) => e.name === "Tucked Planche")!,
-        reps: "15-20 sec",
+        reps: "15-20 - sec",
         sets: 3,
         description:
           "An advanced hold for building shoulder stability and core strength.",
@@ -1053,7 +1053,7 @@ export const workoutPrograms: Workout[] = [
       },
       {
         exercise: exercises.find((e) => e.name === "L-Sit")!,
-        reps: "20-30 sec",
+        reps: "20-30 - sec",
         sets: 3,
         description:
           "A static hold to engage the core and hip flexors, also challenges shoulder stability.",
@@ -1068,7 +1068,7 @@ export const workoutPrograms: Workout[] = [
 
       {
         exercise: exercises.find((e) => e.name === "Tucked Front Lever")!,
-        reps: "10-15 sec",
+        reps: "10-15 - sec",
         sets: 4,
         description:
           "A foundational static hold for building strength in the core and shoulders.",
@@ -1089,7 +1089,7 @@ export const workoutPrograms: Workout[] = [
     exercises: [
       {
         exercise: exercises.find((e) => e.name === "Wall Supported Handstand")!,
-        reps: "20-30 sec",
+        reps: "20-30 - sec",
         sets: 3,
         description:
           "A static handstand hold against the wall to build shoulder and core strength, as well as balance.",
@@ -1103,7 +1103,7 @@ export const workoutPrograms: Workout[] = [
       },
       {
         exercise: exercises.find((e) => e.name === "Plank")!,
-        reps: "30-45 sec",
+        reps: "30-45 - sec",
         sets: 3,
         description:
           "A core engagement exercise to improve stability and balance for handstands.",
@@ -1139,14 +1139,14 @@ export const workoutPrograms: Workout[] = [
         exercise: exercises.find(
           (e) => e.name === "Advanced Tucked Front Lever",
         )!,
-        reps: "15-20 sec",
+        reps: "15-20 - sec",
         sets: 4,
         description:
           "A more advanced version of the front lever with less tuck.",
       },
       {
         exercise: exercises.find((e) => e.name === "Plank")!,
-        reps: "45 sec",
+        reps: "60-80 - sec",
         sets: 3,
         description:
           "A core stabilization hold to improve overall front lever strength.",
@@ -1172,20 +1172,20 @@ export const workoutPrograms: Workout[] = [
     exercises: [
       {
         exercise: exercises.find((e) => e.name === "Pseudo Planche Lean")!,
-        reps: "20-30 sec",
+        reps: "20-30 - sec",
         sets: 3,
         description: "A foundational movement to prepare for the full planche.",
       },
       {
         exercise: exercises.find((e) => e.name === "Plank")!,
-        reps: "30-45 sec",
+        reps: "60-75 - sec",
         sets: 3,
         description:
           "Builds core stability which is essential for planche training.",
       },
       {
         exercise: exercises.find((e) => e.name === "Scapular Push-ups")!,
-        reps: "12-15",
+        reps: "20-30",
         sets: 3,
         description:
           "Works on scapular mobility and control, which is crucial for the planche.",
@@ -1211,7 +1211,7 @@ export const workoutPrograms: Workout[] = [
     exercises: [
       {
         exercise: exercises.find((e) => e.name === "Tucked Planche")!,
-        reps: "10-20 sec",
+        reps: "10-20 - sec",
         sets: 4,
         description:
           "A more advanced planche progression that builds strength in the shoulders and core.",
@@ -1225,14 +1225,14 @@ export const workoutPrograms: Workout[] = [
       },
       {
         exercise: exercises.find((e) => e.name === "Handstand")!,
-        reps: "15-20 sec",
+        reps: "15-20 - sec",
         sets: 3,
         description:
           "Building shoulder and core strength by holding a handstand.",
       },
       {
         exercise: exercises.find((e) => e.name === "Advanced Tucked Planche")!,
-        reps: "10-15 sec",
+        reps: "10-15 - sec",
         sets: 3,
         description:
           "A more difficult variation of the tucked planche for advanced planche training.",
@@ -1251,7 +1251,7 @@ export const workoutPrograms: Workout[] = [
     exercises: [
       {
         exercise: exercises.find((e) => e.name === "Side Plank")!,
-        reps: "20-30 sec per side",
+        reps: "40-60 - do 20-30 sec per side",
         sets: 3,
         description:
           "A basic static hold to activate the obliques and build lateral stability.",
@@ -1265,14 +1265,14 @@ export const workoutPrograms: Workout[] = [
       },
       {
         exercise: exercises.find((e) => e.name === "Plank")!,
-        reps: "30-45 sec",
+        reps: "30-45 - sec",
         sets: 3,
         description:
           "A core stability exercise to develop endurance for holding the human flag.",
       },
       {
         exercise: exercises.find((e) => e.name === "Wall Supported Handstand")!,
-        reps: "20-30 sec",
+        reps: "20-30 - sec",
         sets: 3,
         description:
           "Building shoulder strength and balance by practicing a wall-supported handstand.",
@@ -1291,27 +1291,27 @@ export const workoutPrograms: Workout[] = [
     exercises: [
       {
         exercise: exercises.find((e) => e.name === "Human Flag")!,
-        reps: "5-10 sec",
+        reps: "5-10 - sec",
         sets: 4,
         description:
           "An advanced hold that requires core and shoulder strength to maintain the human flag position.",
       },
       {
         exercise: exercises.find((e) => e.name === "Tucked Planche")!,
-        reps: "15-20 sec",
+        reps: "15-20 - sec",
         sets: 3,
         description:
           "A challenging static hold that builds the shoulder and core strength necessary for the human flag.",
       },
       {
         exercise: exercises.find((e) => e.name === "Side Plank")!,
-        reps: "45 sec per side",
+        reps: "60-90 - do 30-45 sec per side",
         sets: 3,
         description: "Strengthens the obliques and core with a longer hold.",
       },
       {
         exercise: exercises.find((e) => e.name === "Lateral Leg Raises")!,
-        reps: "12-15 per side",
+        reps: "24-30 - do 12-15 per side",
         sets: 3,
         description:
           "Targets the obliques and hip abductors to improve lateral stability.",

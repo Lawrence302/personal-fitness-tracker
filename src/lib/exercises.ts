@@ -262,6 +262,33 @@ export const exercises: Exercise[] = [
     unitPoint: 0.23,
     dateCreated: new Date().toISOString(),
   },
+  {
+    id: "dragon-flag",
+    name: "Dragon Flags",
+    thumbnailUrl: "/images/thumbnail/dragonflag.webp",
+    level: "advanced",
+    measurement: "reps",
+    type: "strength",
+    movementPattern: "core",
+    tags: ["core", "isometric", "anti-extension"],
+    bodyRegion: "core",
+    description:
+      "Lower and raise your body in a straight line while holding onto a support, engaging your entire core and controlling the movement from shoulders to feet.",
+    targetMuscleGroups: ["Core", "Hip Flexors", "Shoulders"],
+    mistakes: [
+      "Arching or sagging lower back",
+      "Bending knees during the movement",
+      "Using momentum instead of controlled movement",
+      "Neck tension or shrugging shoulders",
+    ],
+    progression: [
+      "tucked-dragon-flag",
+      "advanced-tuck-dragon-flag",
+      "half-dragon-flag",
+    ], // easier → standard → advanced
+    unitPoint: 2.5,
+    dateCreated: new Date().toISOString(),
+  },
 
   {
     id: "plank",
