@@ -1,22 +1,23 @@
+import { useState } from "react";
 import { Exercise } from "../../lib/types";
+import RecordExerciseModal from "./RecordExerciseModal";
 
 interface ExerciseModalProps {
   isOpen: boolean;
   onClose: () => void;
   exercise: Exercise;
-  onQuickLog: (exercise: Exercise) => void;
 }
 
 const ExerciseDetailModal = ({
   isOpen,
   onClose,
   exercise,
-  onQuickLog,
 }: ExerciseModalProps) => {
+  const [showRecordExerciseModal, setShowRecordExerciseModal] = useState(false);
   if (!isOpen) return null;
 
   return (
-    <div className='fixed w-full border border-white inset-0 bg-black py-8 px-4  pb-24 md:pb-8 flex justify-center'>
+    <div className='fixed z-5 w-full border border-white inset-0 bg-black py-8 px-4  pb-24 md:pb-8 flex justify-center'>
       <div className='relative bg-zinc-950 z-15 p-4 text-white h-full md:w-[80%] overflow-y-scroll rounded-lg max-w-3xl mx-auto '>
         {/* Close Button */}
         <button
@@ -149,11 +150,20 @@ const ExerciseDetailModal = ({
         {/* Quick Log Button */}
         <div className='mt-6 text-center'>
           <button
-            onClick={() => onQuickLog(exercise)}
+            onClick={() => setShowRecordExerciseModal(true)}
             className='bg-cyan-500 hover:bg-cyan-400 text-white px-4 py-2 rounded'
           >
             Quick Log This Exercise
           </button>
+        </div>
+        <div>
+          {showRecordExerciseModal && (
+            <RecordExerciseModal
+              exercise={exercise}
+              mode='quickLog'
+              closeModal={() => setShowRecordExerciseModal(false)}
+            />
+          )}
         </div>
       </div>
     </div>

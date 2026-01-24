@@ -149,7 +149,7 @@ const Home = ({ setDisplay }: HomeProps) => {
         <QuickLogExercise />
       </div>
       <div>
-        <p className='text-xs text-zinc-300 mb-2 '>
+        <p className='text-xs text-zinc-300 mb-2 mt-5'>
           <span className='text-white'>Note: </span>
           For fair progress tracking, only record exercises you have truly
           completed. Don&apos;t cheat yourself.{" "}

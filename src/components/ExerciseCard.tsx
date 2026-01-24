@@ -10,10 +10,6 @@ type ExerciseCardProps = {
 
 const ExerciseCard = ({ exercise, index }: ExerciseCardProps) => {
   const [showExerciseModal, setShowExerciseModal] = useState(false);
-  const onQuickLog = (exercise: Exercise) => {
-    // Placeholder for quick log functionality
-    console.log(`Quick logging exercise: ${exercise.name}`);
-  };
 
   return (
     <div
@@ -67,7 +63,6 @@ const ExerciseCard = ({ exercise, index }: ExerciseCardProps) => {
           isOpen={showExerciseModal}
           exercise={exercise}
           onClose={() => setShowExerciseModal(false)}
-          onQuickLog={() => onQuickLog(exercise)}
         />
       </div>
     </div>
