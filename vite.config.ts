@@ -18,8 +18,8 @@ export default defineConfig({
         theme_color: "#18181b",
         background_color: "#09090b",
         display: "standalone",
-        start_url: "/personal-fitness-tracker/",
-        scope: "/personal-fitness-tracker/",
+        start_url: "/personal-calisthenics-tracker/",
+        scope: "/personal-calisthenics-tracker/",
         icons: [
           {
             src: "android-chrome-192x192.png", // Should work since it's in the `public/` folder
@@ -35,5 +35,5 @@ export default defineConfig({
       },
     }),
   ],
-  base: "/personal-fitness-tracker/",
+  base: "/personal-calisthenics-tracker/",
 });

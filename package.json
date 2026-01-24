@@ -1,9 +1,9 @@
 {
-  "name": "personal-fitness-tracker",
+  "name": "personal-calisthenics-tracker",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Lawrence302.github.io/personal-fitness-tracker/",
+  "homepage": "https://Lawrence302.github.io/personal-calisthenics-tracker/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
