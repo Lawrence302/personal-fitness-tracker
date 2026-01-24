@@ -8,6 +8,7 @@ import ExerciseLogsHistory from "./modals/ExerciseLogsHistory";
 import EditProfileModal from "./modals/EditProfileModal";
 import { initDB } from "../lib/db";
 import { UserInfo } from "../lib/types";
+import { Share2 } from "lucide-react";
 
 // import { Info, ChevronRight, Target } from "lucide-react";
 interface UserAccountProps {
@@ -31,6 +32,26 @@ const UserAccount = ({ setDisplay }: UserAccountProps) => {
 
   const tierInfo = calculateTier(totalPoints);
 
+  // sharing the app
+  const canShare = typeof navigator !== "undefined" && !!navigator.share;
+  const handleShare = async () => {
+    try {
+      await navigator.share({
+        title: document.title,
+        text: "Get CaliTrack Now!",
+        url: window.location.href,
+      });
+    } catch (err) {
+      if (err instanceof Error) {
+        console.error("Share cancelled", err.message);
+      } else {
+        console.error("share cancelled");
+      }
+    }
+
+    if (!canShare) return;
+  };
+
   // Load DB info on mount
   useEffect(() => {
     const fetchStats = async () => {
@@ -48,7 +69,7 @@ const UserAccount = ({ setDisplay }: UserAccountProps) => {
         1,
       );
       setWorkoutsCompleted(logs.length);
-      console.log("Fetched workout logs:", logs);
+      // console.log("Fetched workout logs:", logs);
     };
 
     fetchStats();
@@ -165,6 +186,14 @@ const UserAccount = ({ setDisplay }: UserAccountProps) => {
                 onClick={() => setDisplay("Coach")}
               >
                 Open AI Coach
+              </button>
+            </div>
+            <div>
+              <button
+                className='flex gap-2 p-2 bg-cyan-600 mt-2 rounded'
+                onClick={handleShare}
+              >
+                <Share2 /> Share App to Friends
               </button>
             </div>
           </div>

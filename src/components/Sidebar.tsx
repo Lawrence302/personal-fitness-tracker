@@ -13,9 +13,9 @@ type SidebarProps = {
 
 const sidebar = ({ setDisplay }: SidebarProps) => {
   return (
-    <div className='fixed bottom-0 left-0 z-10 md:static w-full h-20 md:w-24 md:h-full border-r  border-zinc-900 bg-zinc-950 '>
+    <div className='fixed bottom-0 left-0 z-10 md:static w-full h-20 md:w-24 md:h-full md:border-r  border-zinc-900 bg-zinc-950 '>
       <div className=' md:h-full'>
-        <ul className='border h-full text-zinc-600 p-6 flex flex-row md:flex-col  justify-around items-center text-xs'>
+        <ul className=' border-t border-t-zinc-800 md:border-r md:border-r-zinc-800 h-full text-zinc-600 p-6 flex flex-row md:flex-col  justify-around items-center text-xs'>
           <li
             className='flex  flex-col items-center hover:text-white cursor-pointer'
             onClick={() => setDisplay("Home")}
