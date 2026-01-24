@@ -24,6 +24,7 @@ I created CalisTrain for calisthenics enthusiasts like myself who want a clear, 
 
   <!-- Desktop Screenshots -->
   <img src="public/images/screen_shots/home-desktop.png" style="max-width: 100%;  height: auto;" alt="Home Desktop" />
+  <img src="public/images/screen_shots/exercises-deskotop.png" style="max-width: 100%;  height: auto;" alt="Workout Session" />
   <img src="public/images/screen_shots/workout-session.png" style="max-width: 100%;  height: auto;" alt="Workout Session" />
   <img src="public/images/screen_shots/routines-list.png" style="max-width: 100%;  height: auto;" alt="Routines List" />
 
@@ -34,7 +35,7 @@ I created CalisTrain for calisthenics enthusiasts like myself who want a clear, 
   <img src="public/images/screen_shots/exercises.png" style="max-width: 100%; width: 300px; height: auto;" alt="Exercises List" />
   <img src="public/images/screen_shots/workout-list.png" style="max-width: 100%; width: 300px; height: auto;" alt="Workout List" />
   <img src="public/images/screen_shots/sessionpage.png" style="max-width: 100%; width: 300px; height: auto;" alt="Session Page" />
-
+    <img src="public/images/screen_shots/exercise-log-mobile.png" style="max-width: 100%; width: 300px; height: auto;" alt="Session Page" />
   <!-- AI / Other Screenshots -->
   <img src="public/images/screen_shots/ai-desktip.png" style="max-width: 100%;  height: auto;" alt="AI Coach Desktop" />
 
